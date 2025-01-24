@@ -56,7 +56,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("version_gem", ">= 1.1.4", "< 3")
 
   ### Documentation
-  spec.add_development_dependency("github-markup")
+  spec.add_development_dependency("github-markup", "~> 5.0", ">= 5.0.1")
   spec.add_development_dependency("rdoc", "~> 6.11")
   spec.add_development_dependency("redcarpet", "~> 3.6")
   spec.add_development_dependency("yard", "~> 0.9", ">= 0.9.37")
