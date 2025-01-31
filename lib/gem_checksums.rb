@@ -19,6 +19,7 @@ module GemChecksums
   # The positive lookahead ensures it is present, and prevents it from being captured.
   VERSION_REGEX = /((\d+\.\d+\.\d+)([-.][0-9A-Za-z-]+)*)(?=\.gem)/
   RUNNING_AS = File.basename($PROGRAM_NAME)
+  BUILD_TIME_ERROR_MESSAGE = "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See gem_checksums/README.md".freeze
 
   # Make this gem's rake tasks available in your Rakefile:
   #
@@ -32,7 +33,11 @@ module GemChecksums
 
   # Script, stolen from myself, from https://github.com/rubygems/guides/pull/325
   def generate
-    puts "gem_checksums is RUNNING_AS: #{RUNNING_AS}"
+    build_time = ENV.fetch("SOURCE_DATE_EPOCH", "")
+    puts "gem_checksums is RUNNING_AS: #{RUNNING_AS}, with build time: #{build_time}"
+    has_build_time = build_time =~ /\d{10,}/
+    raise BUILD_TIME_ERROR_MESSAGE unless has_build_time
+
     gem_path_parts =
       case RUNNING_AS
       when "rake", "gem_checksums"
