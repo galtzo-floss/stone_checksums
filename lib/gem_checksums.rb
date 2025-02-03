@@ -47,9 +47,9 @@ module GemChecksums
           WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
                    To ensure consistent SHA-256 & SHA-512 checksums,
                    you must set this environment variable *before* building the gem.
-          
+
           IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
-          
+
           How to set the build time:
 
           In zsh shell:
@@ -63,7 +63,7 @@ module GemChecksums
 
           In bash shell:
             - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
-      
+
         BUILD_TIME_WARNING
       )
       raise Error, BUILD_TIME_ERROR_MESSAGE
