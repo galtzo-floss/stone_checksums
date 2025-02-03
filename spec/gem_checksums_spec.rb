@@ -18,7 +18,7 @@ RSpec.describe GemChecksums do
       end
 
       it "raises an error" do
-        block_is_expected.to raise_error(RuntimeError, "Unable to find gems pkg/*.gem")
+        block_is_expected.to raise_error(GemChecksums::Error, "Unable to find gems pkg/*.gem")
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe GemChecksums do
       end
 
       it "raises an error" do
-        block_is_expected.to raise_error(RuntimeError, "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See gem_checksums/README.md")
+        block_is_expected.to raise_error(GemChecksums::Error, "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See gem_checksums/README.md")
       end
     end
   end

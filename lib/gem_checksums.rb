@@ -11,6 +11,7 @@ require "version_gem"
 require_relative "gem_checksums/version"
 
 module GemChecksums
+  # Errors raised by this gem will use this class
   class Error < StandardError; end
 
   # Final clause of Regex `(?=\.gem)` is a positive lookahead assertion
@@ -39,13 +40,13 @@ module GemChecksums
     build_time = ENV.fetch("SOURCE_DATE_EPOCH", "")
     puts "gem_checksums is RUNNING_AS: #{RUNNING_AS}, with build time: #{build_time}"
     has_build_time = build_time =~ /\d{10,}/
-    raise BUILD_TIME_ERROR_MESSAGE unless has_build_time
+    raise Error, BUILD_TIME_ERROR_MESSAGE unless has_build_time
 
     gem_path_parts =
       case RUNNING_AS
       when "rake", "gem_checksums"
         ARGV.first&.split("/")
-      else # "rspec"
+      else # e.g. "rspec"
         []
       end
 
@@ -59,7 +60,7 @@ module GemChecksums
       gem_pkgs = File.join("pkg", "*.gem")
       puts "Looking for: #{gem_pkgs.inspect}"
       gems = Dir[gem_pkgs]
-      raise "Unable to find gems #{gem_pkgs}" if gems.empty?
+      raise Error, "Unable to find gems #{gem_pkgs}" if gems.empty?
 
       # Sort by newest last
       # [ "my_gem-2.3.9.gem", "my_gem-2.3.11.pre.alpha.4.gem", "my_gem-2.3.15.gem", ... ]
