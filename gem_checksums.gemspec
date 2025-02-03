@@ -52,7 +52,6 @@ Gem::Specification.new do |spec|
   ]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency("rake", ">= 10")
   spec.add_dependency("version_gem", ">= 1.1.4", "< 3")
 
   ### Documentation
@@ -70,6 +69,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("standard", "~> 1.44")
 
   ### Testing
+  spec.add_development_dependency("rake", "~> 13.2", ">= 13.2.1")
   spec.add_development_dependency("rspec", "~> 3.13")
   spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")
 
