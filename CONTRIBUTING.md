@@ -18,7 +18,7 @@ Simply follow these instructions:
 3. Make some fixes.
 4. Commit your changes (`git commit -am 'Added some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)
-6. Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+6. Make sure to add tests for it. This is important, so it doesn't break in a future release.
 7. Create new Pull Request.
 
 ## Contributors
