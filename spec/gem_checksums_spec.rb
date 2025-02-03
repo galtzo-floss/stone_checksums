@@ -8,9 +8,9 @@ RSpec.describe GemChecksums do
   end
 
   describe "::generate" do
-    include_context "with stubbed env"
-
     subject(:generate) { described_class.generate }
+
+    include_context "with stubbed env"
 
     context "with SOURCE_DATE_EPOCH set" do
       before do
