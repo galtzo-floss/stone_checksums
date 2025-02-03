@@ -39,9 +39,35 @@ module GemChecksums
   #       and thus will match the SHA-256 checksum generated for every gem on Rubygems.org.
   def generate
     build_time = ENV.fetch("SOURCE_DATE_EPOCH", "")
-    puts "gem_checksums is RUNNING_AS: #{RUNNING_AS}, with build time: #{build_time}"
-    has_build_time = build_time =~ /\d{10,}/
-    raise Error, BUILD_TIME_ERROR_MESSAGE unless has_build_time
+    build_time_missing = !(build_time =~ /\d{10,}/)
+
+    if build_time_missing
+      warn(
+        <<~BUILD_TIME_WARNING,
+          WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
+                   To ensure consistent SHA-256 & SHA-512 checksums,
+                   you must set this environment variable *before* building the gem.
+          
+          IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
+          
+          How to set the build time:
+
+          In zsh shell:
+            - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
+            - If the echo above has no output, then it didn't work.
+            - Note that you'll need the `zsh/datetime` module enabled.
+
+          In fish shell:
+            - set -x SOURCE_DATE_EPOCH (date +%s)
+            - echo $SOURCE_DATE_EPOCH 
+
+          In bash shell:
+            - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
+      
+        BUILD_TIME_WARNING
+      )
+      raise Error, BUILD_TIME_ERROR_MESSAGE
+    end
 
     gem_path_parts =
       case RUNNING_AS
