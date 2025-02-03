@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 # Get the GEMFILE_VERSION without *require* "my_gem/version", for code coverage accuracy
-# See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-825171399
-load "lib/gem_checksums/version.rb"
+# See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
+# Kernel.load because load is overloaded in RubyGems during gemspec evaluation
+Kernel.load("lib/gem_checksums/version.rb")
 gem_version = GemChecksums::Version::VERSION
 GemChecksums::Version.send(:remove_const, :VERSION)
 
