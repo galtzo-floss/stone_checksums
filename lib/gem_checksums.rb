@@ -10,6 +10,7 @@ require "version_gem"
 # this library's version
 require_relative "gem_checksums/version"
 
+# Primary namespace of this library
 module GemChecksums
   # Errors raised by this gem will use this class
   class Error < StandardError; end
@@ -71,13 +72,17 @@ module GemChecksums
       puts "Found: #{gems.length} gems; latest is #{gem_name}"
     end
 
-    checksum512 = Digest::SHA512.new.hexdigest(File.read(gem_pkg))
-    checksum512_path = "checksums/#{gem_name}.sha512"
-    File.write(checksum512_path, checksum512)
+    pkg_bits = File.read(gem_pkg)
 
-    checksum256 = Digest::SHA256.new.hexdigest(File.read(gem_pkg))
-    checksum256_path = "checksums/#{gem_name}.sha256"
-    File.write(checksum256_path, checksum256)
+    # SHA-512 digest is 8 64-bit words
+    digest512_64bit = Digest::SHA512.new.hexdigest(pkg_bits)
+    digest512_64bit_path = "checksums/#{gem_name}.sha512"
+    File.write(digest512_64bit_path, digest512_64bit)
+
+    # SHA-256 digest is 8 32-bit words
+    digest256_32bit = Digest::SHA256.new.hexdigest(pkg_bits)
+    digest256_32bit_path = "checksums/#{gem_name}.sha256"
+    File.write(digest256_32bit_path, digest256_32bit)
 
     version = gem_name[VERSION_REGEX]
 
@@ -90,10 +95,10 @@ module GemChecksums
       [ GEM: #{gem_name} ]
       [ VERSION: #{version} ]
       [ GEM PKG LOCATION: #{gem_pkg} ]
-      [ CHECKSUM SHA-256: #{checksum256} ]
-      [ CHECKSUM SHA-512: #{checksum512} ]
-      [ CHECKSUM SHA-256 PATH: #{checksum256_path} ]
-      [ CHECKSUM SHA-512 PATH: #{checksum512_path} ]
+      [ CHECKSUM SHA-256: #{digest256_32bit} ]
+      [ CHECKSUM SHA-512: #{digest512_64bit} ]
+      [ CHECKSUM SHA-256 PATH: #{digest256_32bit_path} ]
+      [ CHECKSUM SHA-512 PATH: #{digest512_64bit_path} ]
 
       ... Running ...
 

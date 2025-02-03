@@ -1,0 +1,4 @@
+lib/gem_checksums.rb -- 2 warnings:
+  [55, 71]:DuplicateMethodCall: GemChecksums#generate calls 'gem_path_parts.last' 2 times [https://github.com/troessner/reek/blob/v6.4.0/docs/Duplicate-Method-Call.md]
+  [40]:TooManyStatements: GemChecksums#generate has approx 32 statements [https://github.com/troessner/reek/blob/v6.4.0/docs/Too-Many-Statements.md]
+2 total warnings
