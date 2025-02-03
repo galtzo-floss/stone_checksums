@@ -15,7 +15,9 @@ Gem::Specification.new do |spec|
 
   # See CONTRIBUTING.md
   spec.cert_chain = [ENV.fetch("GEM_CERT_PATH", "certs/#{ENV.fetch("GEM_CERT_USER", ENV["USER"])}.pem")]
-  spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $PROGRAM_NAME.end_with?("gem")
+  if $PROGRAM_NAME.end_with?("gem") && ARGV == ["build", __FILE__]
+    spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem")
+  end
 
   spec.summary = "Generate both SHA256 & SHA512 checksums of RubyGem libraries"
   spec.description = "Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them"
@@ -37,12 +39,24 @@ Gem::Specification.new do |spec|
   spec.files = Dir[
     # Splats (alphabetical)
     "lib/**/*.rb",
-    "sig/**/*.rbs",
     "lib/gem_checksums/rakelib/*.rake",
+    "sig/**/*.rbs",
+  ]
+  # Automatically included with gem package, no need to list again in files.
+  spec.extra_rdoc_files = Dir[
     # Files (alphabetical)
     "CHANGELOG.md",
     "LICENSE.txt",
     "README.md",
+  ]
+  spec.rdoc_options += [
+    "--title",
+    "#{spec.name} - #{spec.summary}",
+    "--main",
+    "README.md",
+    "--line-numbers",
+    "--inline-source",
+    "--quiet",
   ]
 
   # bin/ is scripts, in any available language, for development of this specific gem
