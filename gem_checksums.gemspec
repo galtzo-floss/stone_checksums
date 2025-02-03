@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $PROGRAM_NAME.end_with?("gem")
 
   spec.summary = "Generate both SHA256 & SHA512 checksums of RubyGem libraries"
-  spec.description = spec.summary
+  spec.description = "Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them"
   spec.homepage = "https://github.com/pboling/gem_checksums"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7.0"

@@ -32,6 +32,9 @@ module GemChecksums
   module_function :install_tasks
 
   # Script, stolen from myself, from https://github.com/rubygems/guides/pull/325
+  # NOTE: SOURCE_DATE_EPOCH must be set in your environment prior to building the gem.
+  #       This ensures that the gem build, and the gem checksum will use the same timestamp,
+  #       and thus will match the SHA-256 checksum generated for every gem on Rubygems.org.
   def generate
     build_time = ENV.fetch("SOURCE_DATE_EPOCH", "")
     puts "gem_checksums is RUNNING_AS: #{RUNNING_AS}, with build time: #{build_time}"
