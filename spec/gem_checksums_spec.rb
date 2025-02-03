@@ -8,10 +8,28 @@ RSpec.describe GemChecksums do
   end
 
   describe "::generate" do
-    subject(:install_tasks) { described_class.generate }
+    include_context "with stubbed env"
 
-    it "raises an error" do
-      block_is_expected.to raise_error(RuntimeError, /Unable to find gems/)
+    subject(:generate) { described_class.generate }
+
+    context "with SOURCE_DATE_EPOCH set" do
+      before do
+        stub_env("SOURCE_DATE_EPOCH" => "1738472935")
+      end
+
+      it "raises an error" do
+        block_is_expected.to raise_error(RuntimeError, "Unable to find gems pkg/*.gem")
+      end
+    end
+
+    context "without SOURCE_DATE_EPOCH set" do
+      before do
+        stub_env("SOURCE_DATE_EPOCH" => "")
+      end
+
+      it "raises an error" do
+        block_is_expected.to raise_error(RuntimeError, "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See gem_checksums/README.md")
+      end
     end
   end
 

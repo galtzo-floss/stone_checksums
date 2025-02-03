@@ -6,6 +6,7 @@ require "version_gem/ruby"
 # RSpec Configs
 require_relative "config/byebug"
 require_relative "config/rspec/rspec_block_is_expected"
+require_relative "config/rspec/rspec_stubbed_env"
 require_relative "config/rspec/rspec_core"
 require_relative "config/rspec/version_gem"
 

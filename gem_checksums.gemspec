@@ -72,6 +72,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("rake", "~> 13.2", ">= 13.2.1")
   spec.add_development_dependency("rspec", "~> 3.13")
   spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")
+  spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.1")
 
   ### Coverage
   spec.add_development_dependency("kettle-soup-cover", "~> 1.0", ">= 1.0.4")
