@@ -78,7 +78,7 @@ default_tasks =
     %i[coverage rubocop_gradual:autocorrect yard yard:junk]
   else
     # Run coverage, but do not open in browser, in CI
-    %i[spec rubocop_gradual:autocorrect yard yard:junk]
+    %i[spec rubocop_gradual:check yard yard:junk]
   end
 
 task default: default_tasks
