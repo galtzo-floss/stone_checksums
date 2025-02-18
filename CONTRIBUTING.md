@@ -7,9 +7,9 @@ the [code of conduct][🤝conduct].
 To submit a patch, please fork the project and create a patch with tests.
 Once you're happy with it send a pull request.
 
-## You can help!
+We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
 
-Take a look at the `reek` list which is the file called `REEK` and find something to improve.
+## You can help!
 
 Simply follow these instructions:
 
@@ -21,15 +21,9 @@ Simply follow these instructions:
 6. Make sure to add tests for it. This is important, so it doesn't break in a future release.
 7. Create new Pull Request.
 
-## Contributors
-
-Your picture could be here!
-
-[![Contributors][🖐contributors-img]][🖐contributors]
-
-Made with [contributors-img][🖐contrib-rocks].
-
 ## The Reek List
+
+Take a look at the `reek` list which is the file called `REEK` and find something to improve.
 
 To refresh the `reek` list:
 
@@ -40,6 +34,7 @@ bundle exec reek > REEK
 ## Run Tests
 
 To run all tests
+
 ```bash
 bundle exec rake test
 ```
@@ -53,11 +48,22 @@ bundle exec rake
 ```
 
 Or just run the linter.
+
 ```bash
 bundle exec rubocop_gradual:autocorrect
 ```
 
-## Release
+## Contributors
+
+Your picture could be here!
+
+[![Contributors][🖐contributors-img]][🖐contributors]
+
+Made with [contributors-img][🖐contrib-rocks].
+
+Also see GitLab Contributors: [https://gitlab.com/oauth-xx/version_gem/-/graphs/main][🚎contributors]
+
+## For Maintainers
 
 ### One-time, Per-maintainer, Setup
 
@@ -91,8 +97,11 @@ See: [RubyGems Security Guide][🔒️rubygems-security-guide]
 [🧪build]: https://github.com/pboling/gem_checksums/actions
 [🤝conduct]: https://github.com/pboling/gem_checksums/blob/main/CODE_OF_CONDUCT.md
 [🖐contrib-rocks]: https://contrib.rocks
+[🚎contributors]: https://gitlab.com/pboling/gem_checksums/-/graphs/main
 [🖐contributors]: https://github.com/pboling/gem_checksums/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=pboling/gem_checksums
+[📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
+[📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
 [💎rubygems]: https://rubygems.org
 [🔒️rubygems-security-guide]: https://guides.rubygems.org/security/#building-gems
 [🔒️rubygems-checksums-pr]: https://github.com/rubygems/guides/pull/325
