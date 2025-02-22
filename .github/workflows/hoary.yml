@@ -1,4 +1,5 @@
-name: MRI 2.3, 2.4, 2.5 (EOL)
+# NOTE: Hoary is a synonym of ancient
+name: MRI 2.2 (EOL)
 
 on:
   push:
@@ -22,7 +23,7 @@ jobs:
   test:
     name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}.gemfile
@@ -30,29 +31,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Ruby 2.3
-          - ruby: "2.3"
-            appraisal: "ruby-2-3"
+          # Ruby 2.2
+          - ruby: "2.2"
+            appraisal: "ruby-2-2"
             exec_cmd: "rake spec"
             gemfile: "Appraisal.root"
-            rubygems: "3.3.27"
-            bundler: "2.3.27"
-
-          # Ruby 2.4
-          - ruby: "2.4"
-            appraisal: "ruby-2-4"
-            exec_cmd: "rake spec"
-            gemfile: "Appraisal.root"
-            rubygems: "3.3.27"
-            bundler: "2.3.27"
-
-          # Ruby 2.5
-          - ruby: "2.5"
-            appraisal: "ruby-2-5"
-            exec_cmd: "rake spec"
-            gemfile: "Appraisal.root"
-            rubygems: "3.3.27"
-            bundler: "2.3.27"
+            rubygems: default
+            bundler: default
 
     steps:
       - name: Checkout

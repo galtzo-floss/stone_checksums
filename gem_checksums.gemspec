@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.description = "Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them"
   spec.homepage = "https://github.com/pboling/gem_checksums"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 2.2.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["homepage_uri"] = "https://railsbling.com/tags/#{spec.name}/"
@@ -67,28 +67,19 @@ Gem::Specification.new do |spec|
   ]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency("version_gem", ">= 1.1.4", "< 3")
+  spec.add_dependency("version_gem", ">= 1.1.5", "< 3")
 
-  ### Documentation
-  spec.add_development_dependency("github-markup", "~> 5.0", ">= 5.0.1")
-  spec.add_development_dependency("rdoc", "~> 6.11")
-  spec.add_development_dependency("redcarpet", "~> 3.6")
-  spec.add_development_dependency("yard", "~> 0.9", ">= 0.9.37")
-  spec.add_development_dependency("yard-junk", "~> 0.0", ">= 0.0.10")
+  # Tests
+  spec.add_development_dependency("rspec", "~> 3.13")                         # ruby >= 0
+  spec.add_development_dependency("rspec-block_is_expected", "~> 1.0")        # ruby >= 1.8.7
+  spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.1")  # Ruby >= 1.8.7
 
-  ###  Linting
-  spec.add_development_dependency("reek", "~> 6.4")
-  spec.add_development_dependency("rubocop-lts", "~> 18.2", ">= 18.2.1")
-  spec.add_development_dependency("rubocop-packaging", "~> 0.5", ">= 0.5.2")
-  spec.add_development_dependency("rubocop-rspec", "~> 3.4")
-  spec.add_development_dependency("standard", "~> 1.44")
+  # Development Tasks
+  spec.add_development_dependency("rake", "~> 13.0")                          # ruby >= 2.2
 
-  ### Testing
-  spec.add_development_dependency("rake", "~> 13.2", ">= 13.2.1")
-  spec.add_development_dependency("rspec", "~> 3.13")
-  spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")
-  spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.1")
-
-  ### Coverage
-  spec.add_development_dependency("kettle-soup-cover", "~> 1.0", ">= 1.0.4")
+  # Linting - rubocop-lts v8 is a rubocop wrapper for Ruby >= 2.2,
+  #   and should only be bumped when dropping old Ruby support
+  # NOTE: it can only be installed on, and run on Ruby >= 2.7, so we add the dependency in the Gemfile.
+  # see: https://rubocop-lts.gitlab.io
+  # spec.add_development_dependency 'rubocop-lts', ['~> 8.1', '>= 8.1.1']
 end
