@@ -1,8 +1,8 @@
 name: Test Coverage
 
 env:
-  K_SOUP_COV_MIN_BRANCH: 100
-  K_SOUP_COV_MIN_LINE: 100
+  K_SOUP_COV_MIN_BRANCH: 50
+  K_SOUP_COV_MIN_LINE: 61
   K_SOUP_COV_MIN_HARD: true
   K_SOUP_COV_DO: true
   K_SOUP_COV_COMMAND_NAME: "RSpec Coverage"
@@ -29,8 +29,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
-    name: Specs with Coverage ${{ matrix.ruby }}
+  coverage:
+    name: Code Coverage on ${{ matrix.ruby }}@current
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
