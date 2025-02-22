@@ -14,6 +14,11 @@ It is different from, and improves on, the standard rake task in that it:
 - does various checks to ensure the generated checksums will be valid
 - does `git commit` the generated checksums
 
+The script accomplishes the same thing if you prefer that:
+```shell
+gem_checksums
+```
+
 ## Installation
 
 Install the gem and add to the gem's Gemfile by executing:
@@ -45,6 +50,12 @@ This gem ships an improved version as `build:checksums`, based on the
 
 ```shell
 rake build:checksums
+```
+
+Or...
+
+```shell
+gem_checksums
 ```
 
 Generating checksums makes sense when you are building and releasing a gem, so how does it fit into that process?

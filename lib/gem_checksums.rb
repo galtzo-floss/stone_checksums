@@ -43,26 +43,26 @@ module GemChecksums
 
     if build_time_missing
       warn(
-        <<~BUILD_TIME_WARNING,
-          WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
-                   To ensure consistent SHA-256 & SHA-512 checksums,
-                   you must set this environment variable *before* building the gem.
+        <<-BUILD_TIME_WARNING,
+WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
+         To ensure consistent SHA-256 & SHA-512 checksums,
+         you must set this environment variable *before* building the gem.
 
-          IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
+IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
 
-          How to set the build time:
+How to set the build time:
 
-          In zsh shell:
-            - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
-            - If the echo above has no output, then it didn't work.
-            - Note that you'll need the `zsh/datetime` module enabled.
+In zsh shell:
+  - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
+  - If the echo above has no output, then it didn't work.
+  - Note that you'll need the `zsh/datetime` module enabled.
 
-          In fish shell:
-            - set -x SOURCE_DATE_EPOCH (date +%s)
-            - echo $SOURCE_DATE_EPOCH 
+In fish shell:
+  - set -x SOURCE_DATE_EPOCH (date +%s)
+  - echo $SOURCE_DATE_EPOCH 
 
-          In bash shell:
-            - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
+In bash shell:
+  - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
 
         BUILD_TIME_WARNING
       )
@@ -72,12 +72,13 @@ module GemChecksums
     gem_path_parts =
       case RUNNING_AS
       when "rake", "gem_checksums"
-        ARGV.first&.split("/")
+        first_arg = ARGV.first
+        first_arg.respond_to?(:split) ? first_arg.split("/") : []
       else # e.g. "rspec"
         []
       end
 
-    if gem_path_parts&.any?
+    if gem_path_parts.any?
       gem_name = gem_path_parts.last
       gem_pkg = File.join(gem_path_parts)
       puts "Looking for: #{gem_pkg.inspect}"
@@ -112,23 +113,23 @@ module GemChecksums
 
     version = gem_name[VERSION_REGEX]
 
-    git_cmd = <<~GIT_MSG
-      git add checksums/* && \
-      git commit -m "🔒️ Checksums for v#{version}"
+    git_cmd = <<-GIT_MSG
+git add checksums/* && \
+git commit -m "🔒️ Checksums for v#{version}"
     GIT_MSG
 
-    puts <<~RESULTS
-      [ GEM: #{gem_name} ]
-      [ VERSION: #{version} ]
-      [ GEM PKG LOCATION: #{gem_pkg} ]
-      [ CHECKSUM SHA-256: #{digest256_32bit} ]
-      [ CHECKSUM SHA-512: #{digest512_64bit} ]
-      [ CHECKSUM SHA-256 PATH: #{digest256_32bit_path} ]
-      [ CHECKSUM SHA-512 PATH: #{digest512_64bit_path} ]
+    puts <<-RESULTS
+[ GEM: #{gem_name} ]
+[ VERSION: #{version} ]
+[ GEM PKG LOCATION: #{gem_pkg} ]
+[ CHECKSUM SHA-256: #{digest256_32bit} ]
+[ CHECKSUM SHA-512: #{digest512_64bit} ]
+[ CHECKSUM SHA-256 PATH: #{digest256_32bit_path} ]
+[ CHECKSUM SHA-512 PATH: #{digest512_64bit_path} ]
 
-      ... Running ...
+... Running ...
 
-      #{git_cmd}
+#{git_cmd}
     RESULTS
 
     # This will replace the current process with the git process, and exit.
