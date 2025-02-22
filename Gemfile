@@ -14,3 +14,5 @@ platform :mri do
   ### Debugging (MRI Only)
   gem "byebug", ">= 11"
 end
+
+gem "appraisal", github: "pboling/appraisal", branch: "galtzo"
