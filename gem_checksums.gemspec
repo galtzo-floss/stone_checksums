@@ -72,6 +72,7 @@ Gem::Specification.new do |spec|
   # Tests
   spec.add_development_dependency("rspec", "~> 3.13")                         # ruby >= 0
   spec.add_development_dependency("rspec-block_is_expected", "~> 1.0")        # ruby >= 1.8.7
+  spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.16") # ruby >= 1.8.7
   spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.1")  # Ruby >= 1.8.7
 
   # Development Tasks
