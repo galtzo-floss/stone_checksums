@@ -21,6 +21,22 @@ Simply follow these instructions:
 6. Make sure to add tests for it. This is important, so it doesn't break in a future release.
 7. Create new Pull Request.
 
+## Appraisals
+
+From time to time the appraisal gemfiles in `gemfiles/` will need to be updated.
+They are created and updated with the commands:
+
+NOTE: We run on a [fork][🚎appraisal-fork] of Appraisal.
+
+Please upvote the PR for `eval_gemfile` [support][🚎appraisal-eval-gemfile-pr]
+
+```shell
+BUNDLE_GEMFILE=Appraisal.root.gemfile bundle
+BUNDLE_GEMFILE=Appraisal.root.gemfile bundle exec appraisal update
+```
+
+When adding an appraisal to CI check the [runner tool cache][🏃‍♂️runner-tool-cache] to see which runner to use.
+
 ## The Reek List
 
 Take a look at the `reek` list which is the file called `REEK` and find something to improve.
@@ -50,7 +66,7 @@ bundle exec rake
 Or just run the linter.
 
 ```bash
-bundle exec rubocop_gradual:autocorrect
+bundle exec rake rubocop_gradual:autocorrect
 ```
 
 ## Contributors
@@ -61,7 +77,7 @@ Your picture could be here!
 
 Made with [contributors-img][🖐contrib-rocks].
 
-Also see GitLab Contributors: [https://gitlab.com/oauth-xx/version_gem/-/graphs/main][🚎contributors]
+Also see GitLab Contributors: [https://gitlab.com/pboling/gem_checksums/-/graphs/main][🚎contributors-gl]
 
 ## For Maintainers
 
@@ -75,7 +91,7 @@ See: [RubyGems Security Guide][🔒️rubygems-security-guide]
 ### To release a new version:
 
 1. Run `bin/setup && bin/rake` as a tests, coverage, & linting sanity check
-2. Update the version number in `version.rb`
+2. Update the version number in `version.rb`, and ensure `CHANGELOG.md` reflects changes
 3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`
 4. Run `git commit -am "🔖 Prepare release v<VERSION>"` to commit the changes
 5. Run `git push` to trigger the final CI pipeline before release, & merge PRs
@@ -89,20 +105,29 @@ See: [RubyGems Security Guide][🔒️rubygems-security-guide]
    - Note that you'll need the `zsh/datetime` module, if running `zsh`.
    - In `bash` you can use `date +%s` instead, i.e. `export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
 10. Run `bundle exec rake build`
-11. Run `gem_checksums` (from this gem, and added to path in .envrc, more [context][🔒️rubygems-checksums-pr]) to create SHA-256 and SHA-512 checksums
+11. Run `gem_checksums` (more context [1][🔒️rubygems-checksums-pr] and [2][🔒️rubygems-guides-pr])
+   to create SHA-256 and SHA-512 checksums
     - Checksums will be committed automatically by the script, but not pushed
 12. Run `bundle exec rake release` which will create a git tag for the version,
-    push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
+   push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
 
+[⛳mail-list]: http://groups.google.com/group/oauth-ruby
+[🚎src-main]: https://gitlab.com/pboling/gem_checksums
 [🧪build]: https://github.com/pboling/gem_checksums/actions
-[🤝conduct]: https://github.com/pboling/gem_checksums/blob/main/CODE_OF_CONDUCT.md
+[🏘chat]: https://matrix.to/#/#pboling_version_gem:gitter.im
+[🤝conduct]: https://gitlab.com/pboling/gem_checksums/-/blob/main/CODE_OF_CONDUCT.md
 [🖐contrib-rocks]: https://contrib.rocks
-[🚎contributors]: https://gitlab.com/pboling/gem_checksums/-/graphs/main
 [🖐contributors]: https://github.com/pboling/gem_checksums/graphs/contributors
+[🚎contributors-gl]: https://gitlab.com/pboling/gem_checksums/-/graphs/main
 [🖐contributors-img]: https://contrib.rocks/image?repo=pboling/gem_checksums
-[📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
-[📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
 [💎rubygems]: https://rubygems.org
 [🔒️rubygems-security-guide]: https://guides.rubygems.org/security/#building-gems
-[🔒️rubygems-checksums-pr]: https://github.com/rubygems/guides/pull/325
-[🚎src-main]: https://github.com/pboling/gem_checksums
+[🔒️rubygems-checksums-pr]: https://github.com/rubygems/rubygems/pull/6022
+[🔒️rubygems-guides-pr]: https://github.com/rubygems/guides/pull/325
+[📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
+[📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
+[📌semver-breaking]: https://github.com/semver/semver/issues/716#issuecomment-869336139
+[📌major-versions-not-sacred]: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html
+[🚎appraisal-eval-gemfile-pr]: https://github.com/thoughtbot/appraisal/pull/248
+[🚎appraisal-fork]: https://github.com/pboling/appraisal/tree/galtzo
+[🏃‍♂️runner-tool-cache]: https://github.com/ruby/ruby-builder/releases/tag/toolcache

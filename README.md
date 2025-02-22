@@ -4,7 +4,7 @@ A ruby script, and rake task, to generate SHA-256 and SHA-512 checksums of RubyG
 
 You may be familiar with the standard rake task `build:checksum` from RubyGems.
 This gem ships an improved version as `build:checksums`, based on the
-[RubyGems pull request and discussion here](https://github.com/rubygems/rubygems/pull/6022).
+[RubyGems pull request](https://github.com/rubygems/rubygems/pull/6022) I started in October 2022.
 
 ```shell
 rake build:checksums
@@ -41,7 +41,7 @@ gem install gem_checksums
 
 You may be familiar with the standard rake task `build:checksum` from RubyGems.
 This gem ships an improved version as `build:checksums`, based on the
-[RubyGems pull request and discussion here](https://github.com/rubygems/rubygems/pull/6022).
+[RubyGems pull request and discussion here][🔒️rubygems-checksums-pr].
 
 ```shell
 rake build:checksums
@@ -101,7 +101,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ### TODOs
 
-- [] Prepend `rake build` task with check for `SOURCE_DATE_EPOCH` environment variable, and raise error if not set.
+- [ ] Prepend `rake build` task with check for `SOURCE_DATE_EPOCH` environment variable, and raise error if not set.
 
 ## Contributing
 

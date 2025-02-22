@@ -1,4 +1,7 @@
-name: MRI 2.3, 2.4, 2.5 (EOL)
+name: Truffle
+
+env:
+  K_SOUP_COV_DO: false
 
 on:
   push:
@@ -11,6 +14,9 @@ on:
       - '*'
   # Allow manually triggering the workflow.
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 # Cancels all previous workflow runs for the same branch that have not yet completed.
 concurrency:
@@ -27,32 +33,32 @@ jobs:
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}.gemfile
     strategy:
-      fail-fast: false
       matrix:
         include:
-          # Ruby 2.3
-          - ruby: "2.3"
-            appraisal: "ruby-2-3"
+          # NOTE: truffleruby does not support upgrading rubygems.
+          # truffleruby-22.3 (targets Ruby 3.0 compatibility)
+          - ruby: "truffleruby-22.3"
+            appraisal: "ruby-3-0"
             exec_cmd: "rake spec"
             gemfile: "Appraisal.root"
-            rubygems: "3.3.27"
-            bundler: "2.3.27"
+            rubygems: default
+            bundler: default
 
-          # Ruby 2.4
-          - ruby: "2.4"
-            appraisal: "ruby-2-4"
+          # truffleruby-23.0 (targets Ruby 3.1 compatibility)
+          - ruby: "truffleruby-23.0"
+            appraisal: "ruby-3-1"
             exec_cmd: "rake spec"
             gemfile: "Appraisal.root"
-            rubygems: "3.3.27"
-            bundler: "2.3.27"
+            rubygems: default
+            bundler: default
 
-          # Ruby 2.5
-          - ruby: "2.5"
-            appraisal: "ruby-2-5"
+          # truffleruby-23.1 (targets Ruby 3.2 compatibility)
+          - ruby: "truffleruby-23.1"
+            appraisal: "ruby-3-2"
             exec_cmd: "rake spec"
             gemfile: "Appraisal.root"
-            rubygems: "3.3.27"
-            bundler: "2.3.27"
+            rubygems: default
+            bundler: default
 
     steps:
       - name: Checkout

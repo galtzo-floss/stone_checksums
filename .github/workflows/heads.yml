@@ -1,4 +1,4 @@
-name: Heads Compat Matrix
+name: Heads
 
 env:
   K_SOUP_COV_DO: false
@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   test:
-    name: Specs - Ruby ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
+    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
@@ -36,30 +36,30 @@ jobs:
       fail-fast: true
       matrix:
         include:
+          # NOTE: Heads use default rubygems / bundler; their defaults are custom, unreleased, and from the future!
           # ruby-head
           - ruby: "ruby-head"
             appraisal: "ruby-head"
-            exec_cmd: "rake test"
+            exec_cmd: "rake spec"
             gemfile: "Appraisal.root"
-            rubygems: latest
-            bundler: latest
+            rubygems: default
+            bundler: default
 
           # truffleruby-head
           - ruby: "truffleruby-head"
             appraisal: "truffleruby-head"
-            exec_cmd: "rake test"
+            exec_cmd: "rake spec"
             gemfile: "Appraisal.root"
-            rubygems: latest
-            bundler: latest
+            rubygems: default
+            bundler: default
 
           # jruby-head
-          # Error output has a significantly different format in JRuby :(
-          #  - ruby: "jruby-head"
-          #    appraisal: "jruby-head"
-          #    exec_cmd: "rake test"
-          #    gemfile: "Appraisal.root"
-          #    rubygems: latest
-          #    bundler: latest
+          - ruby: "jruby-head"
+            appraisal: "jruby-head"
+            exec_cmd: "rake spec"
+            gemfile: "Appraisal.root"
+            rubygems: default
+            bundler: default
 
     steps:
       - name: Checkout
@@ -76,9 +76,9 @@ jobs:
       # Raw `bundle` will use the BUNDLE_GEMFILE set to matrix.gemfile (i.e. Appraisal.root)
       # We need to do this first to get appraisal installed.
       # NOTE: This does not use the main Gemfile at all.
-      - name: Bundle install for Appraisal ${{ matrix.appraisal }}
+      - name: Install Root Appraisal
         run: bundle
-      - name: Install Appraisal ${{ matrix.appraisal }} dependencies
+      - name: Appraisal for ${{ matrix.appraisal }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle
-      - name: Run ${{ matrix.appraisal }} tests via ${{ matrix.exec_cmd }}
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
