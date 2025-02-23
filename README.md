@@ -30,7 +30,8 @@
 [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi]
 [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
 
-A ruby script, and rake task, to generate SHA-256 and SHA-512 checksums of RubyGem libraries, shipped as a RubyGem.
+A ruby shell script, and rake task, to generate SHA-256 and SHA-512 checksums of RubyGem libraries,
+shipped as a RubyGem.
 
 You may be familiar with the standard rake task `build:checksum` from RubyGems.
 This gem ships an improved version as `build:checksums`, based on the
@@ -88,9 +89,27 @@ gem install gem_checksums
 
 ## Usage
 
-You may be familiar with the standard rake task `build:checksum` from RubyGems.
-This gem ships an improved version as `build:checksums`, based on the
-[RubyGems pull request and discussion here][🔒️rubygems-checksums-pr].
+Once installed you can use the shell script without any changes to your code.
+
+```shell
+# prepend with `bundle exec` if gem was added to Gemfile instead of installed globally
+gem_checksums
+```
+
+However, if you want to use the bundled rake task you'll need to add it to your Rakefile first.
+
+```ruby
+begin
+  require "gem_checksums"
+  GemChecksums.install_tasks
+rescue LoadError
+  task("build:checksums") do
+    warn("gem_checksums is not available")
+  end
+end
+```
+
+Then you can do:
 
 ```shell
 # prepend with `bundle exec` if gem was added to Gemfile instead of installed globally
@@ -100,13 +119,6 @@ rake build:checksums
 It is different from, and improves on, the standard rake task in that it:
 - does various checks to ensure the generated checksums will be valid
 - does `git commit` the generated checksums
-
-You can alternatively use the shell script if `rake` tasks leave you feeling empty inside.
-
-```shell
-# prepend with `bundle exec` if gem was added to Gemfile instead of installed globally
-gem_checksums
-```
 
 Generating checksums makes sense when you are building and releasing a gem, so how does it fit into that process?
 
@@ -120,7 +132,7 @@ with notes for `zsh` and `bash` shells.
 3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`
 4. Run `git commit -am "🔖 Prepare release v<VERSION>"` to commit the changes
 5. Run `git push` to trigger the final CI pipeline before release, & merge PRs
-    - NOTE: Remember to [check the build][🧪build]!
+    - NOTE: Remember to [check your project's CI][🧪build]!
 6. Run `export GIT_TRUNK_BRANCH_NAME="$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)" && echo $GIT_TRUNK_BRANCH_NAME`
 7. Run `git checkout $GIT_TRUNK_BRANCH_NAME`
 8. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure you will release the latest trunk code
@@ -162,7 +174,7 @@ In zsh shell:
 
 In fish shell:
   - set -x SOURCE_DATE_EPOCH (date +%s)
-  - echo $SOURCE_DATE_EPOCH 
+  - echo $SOURCE_DATE_EPOCH
 
 In bash shell:
   - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
