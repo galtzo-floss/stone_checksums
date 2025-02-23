@@ -111,10 +111,8 @@ See: [RubyGems Security Guide][🔒️rubygems-security-guide]
 12. Run `bundle exec rake release` which will create a git tag for the version,
    push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
 
-[⛳mail-list]: http://groups.google.com/group/oauth-ruby
 [🚎src-main]: https://gitlab.com/pboling/gem_checksums
 [🧪build]: https://github.com/pboling/gem_checksums/actions
-[🏘chat]: https://matrix.to/#/#pboling_version_gem:gitter.im
 [🤝conduct]: https://gitlab.com/pboling/gem_checksums/-/blob/main/CODE_OF_CONDUCT.md
 [🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/pboling/gem_checksums/graphs/contributors
