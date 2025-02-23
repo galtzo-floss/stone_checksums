@@ -19,12 +19,34 @@ module GemChecksums
   # See: https://learnbyexample.github.io/Ruby_Regexp/lookarounds.html#positive-lookarounds
   # Used to pattern match against a gem package name, which always ends with .gem.
   # The positive lookahead ensures it is present, and prevents it from being captured.
-  VERSION_REGEX = /((\d+\.\d+\.\d+)([-.][0-9A-Za-z-]+)*)(?=\.gem)/
+  VERSION_REGEX = /((\d+\.\d+\.\d+)([-.][0-9A-Za-z-]+)*)(?=\.gem)/.freeze
   RUNNING_AS = File.basename($PROGRAM_NAME)
   BUILD_TIME_ERROR_MESSAGE = "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See gem_checksums/README.md"
   GIT_DRY_RUN_ENV = ENV.fetch("GEM_CHECKSUMS_GIT_DRY_RUN", "false").casecmp("true") == 0
   CHECKSUMS_DIR = ENV.fetch("GEM_CHECKSUMS_CHECKSUMS_DIR", "checksums")
   PACKAGE_DIR = ENV.fetch("GEM_CHECKSUMS_PACKAGE_DIR", "pkg")
+  BUILD_TIME_WARNING = <<-BUILD_TIME_WARNING
+WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
+         To ensure consistent SHA-256 & SHA-512 checksums,
+         you must set this environment variable *before* building the gem.
+
+IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
+
+How to set the build time:
+
+In zsh shell:
+  - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
+  - If the echo above has no output, then it didn't work.
+  - Note that you'll need the `zsh/datetime` module enabled.
+
+In fish shell:
+  - set -x SOURCE_DATE_EPOCH (date +%s)
+  - echo $SOURCE_DATE_EPOCH 
+
+In bash shell:
+  - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
+
+  BUILD_TIME_WARNING
 
   # Make this gem's rake tasks available in your Rakefile:
   #
@@ -47,30 +69,7 @@ module GemChecksums
     warn("Will run git commit with --dry-run") if git_dry_run_flag
 
     if build_time_missing
-      warn(
-        <<-BUILD_TIME_WARNING,
-WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
-         To ensure consistent SHA-256 & SHA-512 checksums,
-         you must set this environment variable *before* building the gem.
-
-IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
-
-How to set the build time:
-
-In zsh shell:
-  - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
-  - If the echo above has no output, then it didn't work.
-  - Note that you'll need the `zsh/datetime` module enabled.
-
-In fish shell:
-  - set -x SOURCE_DATE_EPOCH (date +%s)
-  - echo $SOURCE_DATE_EPOCH 
-
-In bash shell:
-  - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
-
-        BUILD_TIME_WARNING
-      )
+      warn(BUILD_TIME_WARNING)
       raise Error, BUILD_TIME_ERROR_MESSAGE
     end
 

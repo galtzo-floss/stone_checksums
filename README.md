@@ -363,15 +363,15 @@ or one of the others at the head of this README.
 [👽version]: https://rubygems.org/gems/gem_checksums
 [👽versioni]: https://img.shields.io/gem/v/gem_checksums.svg
 [🔑cc-mnt]: https://codeclimate.com/github/pboling/gem_checksums/maintainability
-[🔑cc-mnti♻️]: https://api.codeclimate.com/v1/badges/e26c543320ca0d14e871/maintainability
+[🔑cc-mnti♻️]: https://api.codeclimate.com/v1/badges/ff2234fcbe9051436f37/maintainability
 [🔑cc-cov]: https://codeclimate.com/github/pboling/gem_checksums/test_coverage
-[🔑cc-covi♻️]: https://api.codeclimate.com/v1/badges/e26c543320ca0d14e871/test_coverage
+[🔑cc-covi♻️]: https://api.codeclimate.com/v1/badges/ff2234fcbe9051436f37/test_coverage
 [🔑codecov]: https://codecov.io/gh/pboling/gem_checksums
-[🔑codecovi♻️]: https://codecov.io/gh/pboling/gem_checksums/branch/main/graph/badge.svg?token=cc6UdZCpAL
+[🔑codecovi♻️]: https://codecov.io/gh/pboling/gem_checksums/branch/main/graph/badge.svg?token=iQykVGCFME
 [🔑coveralls]: https://coveralls.io/github/pboling/gem_checksums?branch=main
 [🔑coveralls-img]: https://coveralls.io/repos/github/pboling/gem_checksums/badge.svg?branch=main
 [🔑depfu]: https://depfu.com/github/pboling/gem_checksums
-[🔑depfui♻️]: https://badges.depfu.com/badges/6c9b45362951b872127f9e46d39bed76/count.svg
+[🔑depfui♻️]: https://badges.depfu.com/badges/85187dfdd2ecf7839b2ec78c64d2bf4e/count.svg
 [🖐codeQL]: https://github.com/pboling/gem_checksums/security/code-scanning
 [🖐codeQL-img]: https://github.com/pboling/gem_checksums/actions/workflows/codeql-analysis.yml/badge.svg
 [🚎1-an-wf]: https://github.com/pboling/gem_checksums/actions/workflows/ancient.yml
@@ -431,7 +431,7 @@ or one of the others at the head of this README.
 [🤝issues]: https://github.com/pboling/gem_checksums/issues
 [🤝pulls]: https://github.com/pboling/gem_checksums/pulls
 [🤝contributing]: CONTRIBUTING.md
-[🔑codecov-g♻️]: https://codecov.io/gh/pboling/gem_checksums/graphs/tree.svg?token=cc6UdZCpAL
+[🔑codecov-g♻️]: https://codecov.io/gh/pboling/gem_checksums/graphs/tree.svg?token=iQykVGCFME
 [🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/pboling/gem_checksums/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=pboling/gem_checksums
@@ -447,7 +447,7 @@ or one of the others at the head of this README.
 [📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.058-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
+[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.073-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-brightgreen.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year
