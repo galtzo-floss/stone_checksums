@@ -130,7 +130,7 @@ Behavior can be controlled by ENV variables!
 - `GEM_CHECKSUMS_CHECKSUMS_DIR` default value is `checksums` (relative path)
   - this directory will be created, relative to current working directory, if not present
 - `GEM_CHECKSUMS_PACKAGE_DIR` default value is `pkg` (relative path)
-  - this directory will be searched for the latest gem package to generate checksums for 
+  - this directory will be searched for the latest gem package to generate checksums for
 
 ### ARGV
 
