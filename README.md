@@ -371,7 +371,7 @@ or one of the others at the head of this README.
 [🔑coveralls]: https://coveralls.io/github/pboling/gem_checksums?branch=main
 [🔑coveralls-img]: https://coveralls.io/repos/github/pboling/gem_checksums/badge.svg?branch=main
 [🔑depfu]: https://depfu.com/github/pboling/gem_checksums
-[🔑depfui♻️]: https://badges.depfu.com/badges/6c9b45362951b872127f9e46d39bed76/count.svg
+[🔑depfui♻️]: https://badges.depfu.com/badges/85187dfdd2ecf7839b2ec78c64d2bf4e/count.svg
 [🖐codeQL]: https://github.com/pboling/gem_checksums/security/code-scanning
 [🖐codeQL-img]: https://github.com/pboling/gem_checksums/actions/workflows/codeql-analysis.yml/badge.svg
 [🚎1-an-wf]: https://github.com/pboling/gem_checksums/actions/workflows/ancient.yml
