@@ -1,0 +1,5 @@
+{
+  "bin/bundle:247448467": [
+    [64, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147]
+  ]
+}
