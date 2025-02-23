@@ -140,6 +140,34 @@ with notes for `zsh` and `bash` shells.
 [🔒️rubygems-checksums-pr]: https://github.com/rubygems/rubygems/pull/6022
 [🔒️rubygems-guides-pr]: https://github.com/rubygems/guides/pull/325
 
+### Too many steps?
+
+If you don't follow the steps above you'll end up seeing this error:
+
+```
+WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
+         To ensure consistent SHA-256 & SHA-512 checksums,
+         you must set this environment variable *before* building the gem.
+
+IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
+
+How to set the build time:
+
+In zsh shell:
+  - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
+  - If the echo above has no output, then it didn't work.
+  - Note that you'll need the `zsh/datetime` module enabled.
+
+In fish shell:
+  - set -x SOURCE_DATE_EPOCH (date +%s)
+  - echo $SOURCE_DATE_EPOCH 
+
+In bash shell:
+  - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
+```
+
+Just do what it says!
+
 ## 🔐 Security
 
 See [SECURITY.md][🔐security].
