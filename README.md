@@ -363,9 +363,9 @@ or one of the others at the head of this README.
 [👽version]: https://rubygems.org/gems/gem_checksums
 [👽versioni]: https://img.shields.io/gem/v/gem_checksums.svg
 [🔑cc-mnt]: https://codeclimate.com/github/pboling/gem_checksums/maintainability
-[🔑cc-mnti♻️]: https://api.codeclimate.com/v1/badges/e26c543320ca0d14e871/maintainability
+[🔑cc-mnti♻️]: https://api.codeclimate.com/v1/badges/ff2234fcbe9051436f37/maintainability
 [🔑cc-cov]: https://codeclimate.com/github/pboling/gem_checksums/test_coverage
-[🔑cc-covi♻️]: https://api.codeclimate.com/v1/badges/e26c543320ca0d14e871/test_coverage
+[🔑cc-covi♻️]: https://api.codeclimate.com/v1/badges/ff2234fcbe9051436f37/test_coverage
 [🔑codecov]: https://codecov.io/gh/pboling/gem_checksums
 [🔑codecovi♻️]: https://codecov.io/gh/pboling/gem_checksums/branch/main/graph/badge.svg?token=iQykVGCFME
 [🔑coveralls]: https://coveralls.io/github/pboling/gem_checksums?branch=main
