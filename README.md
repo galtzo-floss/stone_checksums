@@ -93,6 +93,7 @@ This gem ships an improved version as `build:checksums`, based on the
 [RubyGems pull request and discussion here][🔒️rubygems-checksums-pr].
 
 ```shell
+# prepend with `bundle exec` if gem was added to Gemfile instead of installed globally
 rake build:checksums
 ```
 
@@ -103,6 +104,7 @@ It is different from, and improves on, the standard rake task in that it:
 You can alternatively use the shell script if `rake` tasks leave you feeling empty inside.
 
 ```shell
+# prepend with `bundle exec` if gem was added to Gemfile instead of installed globally
 gem_checksums
 ```
 
