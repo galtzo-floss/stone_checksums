@@ -22,9 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 ### Removed
 
-## [1.0.0] - 2025-01-23 ([tag][1.0.0t])
-- Line Coverage: 60.34% (35 / 58)
-- Branch Coverage: 50.0% (6 / 12)
+## [1.0.0] - 2025-02-23 ([tag][1.0.0t])
+- COVERAGE:  98.63% -- 72/73 lines in 4 files
+- BRANCH COVERAGE:  79.17% -- 19/24 branches in 4 files
 - 55.56% documented
 ### Added
 - Initial release

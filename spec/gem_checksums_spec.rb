@@ -36,6 +36,10 @@ RSpec.describe GemChecksums do
   describe "::install_tasks" do
     subject(:install_tasks) { described_class.install_tasks }
 
+    before do
+      Rake.application = Rake::Application.new
+    end
+
     it "loads gem_checksums/tasks.rb" do
       # The order is important, spec will fail if wrong order
       block_is_expected.to not_raise_error &

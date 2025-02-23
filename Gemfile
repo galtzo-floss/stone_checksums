@@ -17,7 +17,7 @@ gemspec
 
 platform :mri do
   # Debugging - Ensure ENV["DEBUG"] == "true" to use debuggers within spec suite
-  if ruby_version < Gem::Version.new("2.7")
+  if ruby_version < Gem::Version.create("2.7")
     # Use byebug in code
     gem "byebug", ">= 11"
   else

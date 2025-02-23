@@ -11,15 +11,24 @@ require_relative "config/rspec/rspec_stubbed_env"
 require_relative "config/rspec/rspec_core"
 require_relative "config/rspec/version_gem"
 
+# Support
+require_relative "support/shared_contexts/with_rake"
+
 # Last thing before loading this gem is to set up code coverage
 begin
   # This does not require "simplecov", but
   require "kettle-soup-cover"
   #   this next line has a side effect of running `.simplecov`
-  require "simplecov" if Kettle::Soup::Cover::DO_COV
+  require "simplecov" if defined?(Kettle) && Kettle::Soup::Cover::DO_COV
 rescue LoadError
   nil
 end
 
 # This gem
 require "gem_checksums"
+
+RSpec.configure do |config|
+  config.before do
+    stub_const("GemChecksums::GIT_DRY_RUN_ENV", true)
+  end
+end

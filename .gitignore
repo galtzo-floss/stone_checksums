@@ -14,6 +14,6 @@
 /.idea/
 
 # Packaging Artifacts
-*.gem
+/pkg/*.gem
 gemfiles/*.gemfile.lock
 Appraisal.*.gemfile.lock
