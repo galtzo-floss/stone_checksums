@@ -22,6 +22,9 @@ module GemChecksums
   VERSION_REGEX = /((\d+\.\d+\.\d+)([-.][0-9A-Za-z-]+)*)(?=\.gem)/
   RUNNING_AS = File.basename($PROGRAM_NAME)
   BUILD_TIME_ERROR_MESSAGE = "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See gem_checksums/README.md"
+  GIT_DRY_RUN_ENV = ENV.fetch("GEM_CHECKSUMS_GIT_DRY_RUN", "false").casecmp("true") == 0
+  CHECKSUMS_DIR = ENV.fetch("GEM_CHECKSUMS_CHECKSUMS_DIR", "checksums")
+  PACKAGE_DIR = ENV.fetch("GEM_CHECKSUMS_PACKAGE_DIR", "pkg")
 
   # Make this gem's rake tasks available in your Rakefile:
   #
@@ -37,9 +40,11 @@ module GemChecksums
   # NOTE: SOURCE_DATE_EPOCH must be set in your environment prior to building the gem.
   #       This ensures that the gem build, and the gem checksum will use the same timestamp,
   #       and thus will match the SHA-256 checksum generated for every gem on Rubygems.org.
-  def generate
+  def generate(git_dry_run: false)
     build_time = ENV.fetch("SOURCE_DATE_EPOCH", "")
     build_time_missing = !(build_time =~ /\d{10,}/)
+    git_dry_run_flag = (git_dry_run || GIT_DRY_RUN_ENV) ? "--dry-run" : nil
+    warn("Will run git commit with --dry-run") if git_dry_run_flag
 
     if build_time_missing
       warn(
@@ -83,9 +88,11 @@ In bash shell:
       gem_pkg = File.join(gem_path_parts)
       puts "Looking for: #{gem_pkg.inspect}"
       gems = Dir[gem_pkg]
+      raise Error, "Unable to find gem #{gem_pkg}" if gems.empty?
+
       puts "Found: #{gems.inspect}"
     else
-      gem_pkgs = File.join("pkg", "*.gem")
+      gem_pkgs = File.join(PACKAGE_DIR, "*.gem")
       puts "Looking for: #{gem_pkgs.inspect}"
       gems = Dir[gem_pkgs]
       raise Error, "Unable to find gems #{gem_pkgs}" if gems.empty?
@@ -103,20 +110,32 @@ In bash shell:
 
     # SHA-512 digest is 8 64-bit words
     digest512_64bit = Digest::SHA512.new.hexdigest(pkg_bits)
-    digest512_64bit_path = "checksums/#{gem_name}.sha512"
+    digest512_64bit_path = "#{CHECKSUMS_DIR}/#{gem_name}.sha512"
+    Dir.mkdir(CHECKSUMS_DIR) unless Dir.exist?(CHECKSUMS_DIR)
     File.write(digest512_64bit_path, digest512_64bit)
 
     # SHA-256 digest is 8 32-bit words
     digest256_32bit = Digest::SHA256.new.hexdigest(pkg_bits)
-    digest256_32bit_path = "checksums/#{gem_name}.sha256"
+    digest256_32bit_path = "#{CHECKSUMS_DIR}/#{gem_name}.sha256"
     File.write(digest256_32bit_path, digest256_32bit)
 
     version = gem_name[VERSION_REGEX]
 
-    git_cmd = <<-GIT_MSG
-git add checksums/* && \
-git commit -m "🔒️ Checksums for v#{version}"
+    git_cmd = <<-GIT_MSG.rstrip
+git add #{CHECKSUMS_DIR}/* && \
+git commit #{git_dry_run_flag} -m "🔒️ Checksums for v#{version}"
     GIT_MSG
+
+    if git_dry_run_flag
+      git_cmd += <<-CLEANUP_MSG
+ && \
+echo "Cleaning up in dry run mode" && \
+git reset #{digest512_64bit_path} && \
+git reset #{digest256_32bit_path} && \
+rm -f #{digest512_64bit_path} && \
+rm -f #{digest256_32bit_path}
+      CLEANUP_MSG
+    end
 
     puts <<-RESULTS
 [ GEM: #{gem_name} ]
@@ -132,10 +151,16 @@ git commit -m "🔒️ Checksums for v#{version}"
 #{git_cmd}
     RESULTS
 
-    # This will replace the current process with the git process, and exit.
-    # Within the generate method, Ruby code placed after the `exec` *will not be run*:
-    #   See: https://www.akshaykhot.com/call-shell-commands-in-ruby
-    exec(git_cmd)
+    if git_dry_run_flag
+      %x{#{git_cmd}}
+    else
+      # `exec` will replace the current process with the git process, and exit.
+      # Within the generate method, Ruby code placed after the `exec` *will not be run*:
+      #   See: https://www.akshaykhot.com/call-shell-commands-in-ruby
+      # But we can't exit the process when testing from RSpec,
+      #   since that would exit the parent RSpec process
+      exec(git_cmd)
+    end
   end
   module_function :generate
 end
