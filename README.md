@@ -367,7 +367,7 @@ or one of the others at the head of this README.
 [🔑cc-cov]: https://codeclimate.com/github/pboling/gem_checksums/test_coverage
 [🔑cc-covi♻️]: https://api.codeclimate.com/v1/badges/e26c543320ca0d14e871/test_coverage
 [🔑codecov]: https://codecov.io/gh/pboling/gem_checksums
-[🔑codecovi♻️]: https://codecov.io/gh/pboling/gem_checksums/branch/main/graph/badge.svg?token=cc6UdZCpAL
+[🔑codecovi♻️]: https://codecov.io/gh/pboling/gem_checksums/branch/main/graph/badge.svg?token=iQykVGCFME
 [🔑coveralls]: https://coveralls.io/github/pboling/gem_checksums?branch=main
 [🔑coveralls-img]: https://coveralls.io/repos/github/pboling/gem_checksums/badge.svg?branch=main
 [🔑depfu]: https://depfu.com/github/pboling/gem_checksums
@@ -431,7 +431,7 @@ or one of the others at the head of this README.
 [🤝issues]: https://github.com/pboling/gem_checksums/issues
 [🤝pulls]: https://github.com/pboling/gem_checksums/pulls
 [🤝contributing]: CONTRIBUTING.md
-[🔑codecov-g♻️]: https://codecov.io/gh/pboling/gem_checksums/graphs/tree.svg?token=cc6UdZCpAL
+[🔑codecov-g♻️]: https://codecov.io/gh/pboling/gem_checksums/graphs/tree.svg?token=iQykVGCFME
 [🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/pboling/gem_checksums/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=pboling/gem_checksums
