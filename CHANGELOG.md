@@ -23,9 +23,9 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Removed
 
 ## [1.0.0] - 2025-02-23 ([tag][1.0.0t])
-- COVERAGE:  98.63% -- 72/73 lines in 4 files
-- BRANCH COVERAGE:  79.17% -- 19/24 branches in 4 files
-- 55.56% documented
+- COVERAGE:  98.67% -- 74/75 lines in 5 files
+- BRANCH COVERAGE:  79.17% -- 19/24 branches in 5 files
+- 38.46% documented
 ### Added
 - Initial release
 
