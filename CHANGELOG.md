@@ -30,5 +30,5 @@ Please file a bug if you notice a violation of semantic versioning.
 - Initial release
 
 [Unreleased]: https://github.com/pboling/gem_checksums/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/pboling/gem_checksums/compare/SHA_HERE...v1.0.0
+[1.0.0]: https://github.com/pboling/gem_checksums/compare/1fd75630d9d3c4a1ef8fed384fda98755ae01d5e...v1.0.0
 [1.0.0t]: https://github.com/pboling/gem_checksums/tags/v1.0.0
