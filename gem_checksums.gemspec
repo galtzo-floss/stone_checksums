@@ -8,19 +8,33 @@ gem_version = GemChecksums::Version::VERSION
 GemChecksums::Version.send(:remove_const, :VERSION)
 
 Gem::Specification.new do |spec|
-  spec.name = "gem_checksums"
+  # Linux distros may package ruby gems differently,
+  #   and securely certify them independently via alternate package management systems.
+  # Ref: https://gitlab.com/oauth-xx/version_gem/-/issues/3
+  # Hence, only enable signing if the cert_file is present.
+  # See CONTRIBUTING.md
+  cert_file = ENV.fetch("GEM_CERT_PATH", "certs/#{ENV.fetch("GEM_CERT_USER", ENV["USER"])}.pem")
+  if cert_file && File.exist?(File.join(__dir__, cert_file))
+    spec.cert_chain = [ENV.fetch("GEM_CERT_PATH", "certs/#{ENV.fetch("GEM_CERT_USER", ENV["USER"])}.pem")]
+    if $PROGRAM_NAME.end_with?("gem", "rake") && ARGV[0] == "build"
+      spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem")
+    end
+  end
+
+  spec.name = "stone_checksums"
   spec.version = gem_version
   spec.authors = ["Peter Boling"]
   spec.email = ["peter.boling@gmail.com"]
 
-  # See CONTRIBUTING.md
-  spec.cert_chain = [ENV.fetch("GEM_CERT_PATH", "certs/#{ENV.fetch("GEM_CERT_USER", ENV["USER"])}.pem")]
-  if $PROGRAM_NAME.end_with?("gem") && ARGV == ["build", __FILE__]
-    spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem")
-  end
-
   spec.summary = "Generate both SHA256 & SHA512 checksums of RubyGem libraries"
-  spec.description = "Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them"
+  spec.description = <<-DESCRIPTION.rstrip
+Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.
+  gem install stone_checksums
+Then, use the rake task or the script:
+  rake build:generate_checksums
+  gem_checksums
+Control options with ENV variables!
+  DESCRIPTION
   spec.homepage = "https://github.com/pboling/gem_checksums"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.2.0"
@@ -46,8 +60,11 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = Dir[
     # Files (alphabetical)
     "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
     "LICENSE.txt",
     "README.md",
+    "SECURITY.md",
   ]
   spec.rdoc_options += [
     "--title",

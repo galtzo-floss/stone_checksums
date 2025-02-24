@@ -2,7 +2,7 @@
 
 require "rake"
 
-RSpec.describe "rake build:checksums" do # rubocop:disable RSpec/DescribeClass
+RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/DescribeClass
   subject(:build_checksums) { invoke }
 
   include_context "with rake", "gem_checksums"
@@ -19,7 +19,7 @@ RSpec.describe "rake build:checksums" do # rubocop:disable RSpec/DescribeClass
       end
 
       it "raises an error" do
-        block_is_expected.to raise_error(GemChecksums::Error, "Unable to find gems pkg/*.gem")
+        block_is_expected.to raise_error(GemChecksums::Error, "Unable to find gems avocado_packages/*.gem")
       end
 
       context "when good package directory" do
@@ -44,12 +44,12 @@ Found: 1 gems; latest is gem_checksums-1.0.0.gem
 [ GEM PKG LOCATION: spec/support/fixtures/gem_checksums-1.0.0.gem ]
 [ CHECKSUM SHA-256: 8e35e0a7cae7fab47c0b7e3d3e81d38294151138bcfcfe8d4aa2e971ff302339 ]
 [ CHECKSUM SHA-512: 8b18f8422f22a5a3b301deeaeb8b4e669dfc8033a63c1b5fbfc787af59f60e9df7f920ae2c48ede27ef7d09f0b025f63fc2474a842d54d8f148b266eac4bfa94 ]
-[ CHECKSUM SHA-256 PATH: checksums/gem_checksums-1.0.0.gem.sha256 ]
-[ CHECKSUM SHA-512 PATH: checksums/gem_checksums-1.0.0.gem.sha512 ]
+[ CHECKSUM SHA-256 PATH: banana_checksums/gem_checksums-1.0.0.gem.sha256 ]
+[ CHECKSUM SHA-512 PATH: banana_checksums/gem_checksums-1.0.0.gem.sha512 ]
 
 ... Running ...
 
-git add checksums/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset checksums/gem_checksums-1.0.0.gem.sha512 && git reset checksums/gem_checksums-1.0.0.gem.sha256 && rm -f checksums/gem_checksums-1.0.0.gem.sha512 && rm -f checksums/gem_checksums-1.0.0.gem.sha256
+git add banana_checksums/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset banana_checksums/gem_checksums-1.0.0.gem.sha512 && git reset banana_checksums/gem_checksums-1.0.0.gem.sha256 && rm -f banana_checksums/gem_checksums-1.0.0.gem.sha512 && rm -f banana_checksums/gem_checksums-1.0.0.gem.sha256
 
             CHECKSUMS_OUTPUT
           end
@@ -79,12 +79,12 @@ Found: ["spec/support/fixtures/gem_checksums-1.0.0.gem"]
 [ GEM PKG LOCATION: spec/support/fixtures/gem_checksums-1.0.0.gem ]
 [ CHECKSUM SHA-256: 8e35e0a7cae7fab47c0b7e3d3e81d38294151138bcfcfe8d4aa2e971ff302339 ]
 [ CHECKSUM SHA-512: 8b18f8422f22a5a3b301deeaeb8b4e669dfc8033a63c1b5fbfc787af59f60e9df7f920ae2c48ede27ef7d09f0b025f63fc2474a842d54d8f148b266eac4bfa94 ]
-[ CHECKSUM SHA-256 PATH: checksums/gem_checksums-1.0.0.gem.sha256 ]
-[ CHECKSUM SHA-512 PATH: checksums/gem_checksums-1.0.0.gem.sha512 ]
+[ CHECKSUM SHA-256 PATH: banana_checksums/gem_checksums-1.0.0.gem.sha256 ]
+[ CHECKSUM SHA-512 PATH: banana_checksums/gem_checksums-1.0.0.gem.sha512 ]
 
 ... Running ...
 
-git add checksums/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset checksums/gem_checksums-1.0.0.gem.sha512 && git reset checksums/gem_checksums-1.0.0.gem.sha256 && rm -f checksums/gem_checksums-1.0.0.gem.sha512 && rm -f checksums/gem_checksums-1.0.0.gem.sha256
+git add banana_checksums/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset banana_checksums/gem_checksums-1.0.0.gem.sha512 && git reset banana_checksums/gem_checksums-1.0.0.gem.sha256 && rm -f banana_checksums/gem_checksums-1.0.0.gem.sha512 && rm -f banana_checksums/gem_checksums-1.0.0.gem.sha256
 
           CHECKSUMS_OUTPUT
         end
@@ -129,7 +129,7 @@ git add checksums/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" &&
     end
 
     it "raises an error" do
-      block_is_expected.to raise_error(GemChecksums::Error, "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See gem_checksums/README.md")
+      block_is_expected.to raise_error(GemChecksums::Error, "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See README.md of stone_checksums")
     end
   end
 end
