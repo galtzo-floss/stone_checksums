@@ -2,4 +2,4 @@
 
 require "kettle/soup/cover/config"
 
-SimpleCov.start
+SimpleCov.start if Kettle::Soup::Cover::DO_COV
