@@ -38,7 +38,7 @@ Then, use the rake task or the script:
   gem_checksums
 Control options with ENV variables!
   DESCRIPTION
-  spec.homepage = "https://github.com/pboling/gem_checksums"
+  spec.homepage = "https://github.com/galtzo-floss/stone_checksums"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.2.0"
 
