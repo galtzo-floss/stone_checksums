@@ -164,12 +164,16 @@ The positive lookahead ensures it is present, and prevents it from being capture
         </dt>
         <dd><pre class="code"><span class='heredoc_beg'>&lt;&lt;-BUILD_TIME_WARNING</span>
 <span class='tstring_content'>WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
-       To ensure consistent SHA-256 &amp; SHA-512 checksums,
-       you must set this environment variable *before* building the gem.
+       When using Bundler &lt; 2.7.0, you must set SOURCE_DATE_EPOCH *before* building
+       the gem to ensure consistent SHA-256 &amp; SHA-512 checksums.
 
-IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
+PREFERRED: Upgrade to Bundler &gt;= 2.7.0, which uses a constant timestamp for gem builds,
+         making SOURCE_DATE_EPOCH unnecessary for reproducible checksums.
 
-How to set the build time:
+IMPORTANT: If you choose to set the build time via SOURCE_DATE_EPOCH,
+         you must re-build the gem, i.e. `bundle exec rake build` or `gem build`.
+
+How to set the build time (only needed for Bundler &lt; 2.7.0):
 
 In zsh shell:
 - export SOURCE_DATE_EPOCH=$EPOCHSECONDS &amp;&amp; echo $SOURCE_DATE_EPOCH
@@ -178,10 +182,10 @@ In zsh shell:
 
 In fish shell:
 - set -x SOURCE_DATE_EPOCH (date +%s)
-- echo $SOURCE_DATE_EPOCH 
+- echo $SOURCE_DATE_EPOCH
 
 In bash shell:
-- export SOURCE_DATE_EPOCH=$(date +%s) &amp;&amp; echo $SOURCE_DATE_EPOCH`
+- export SOURCE_DATE_EPOCH=$(date +%s) &amp;&amp; echo $SOURCE_DATE_EPOCH
 
 </span><span class='heredoc_end'>BUILD_TIME_WARNING</span></pre></dd>
       
@@ -325,10 +329,6 @@ is performed, and temporary files are cleaned up.</p>
       <pre class="lines">
 
 
-92
-93
-94
-95
 96
 97
 98
@@ -450,10 +450,14 @@ is performed, and temporary files are cleaned up.</p>
 214
 215
 216
-217</pre>
+217
+218
+219
+220
+221</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='label'>git_dry_run:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_git_dry_run_flag'>git_dry_run_flag</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_git_dry_run'>git_dry_run</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="#GIT_DRY_RUN_ENV-constant" title="GemChecksums::GIT_DRY_RUN_ENV (constant)">GIT_DRY_RUN_ENV</a></span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--dry-run</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='kw'>nil</span>
@@ -628,12 +632,12 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
       <pre class="lines">
 
 
-63
-64
-65</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install_tasks'>install_tasks</span>
   <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gem_checksums/tasks.rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -648,7 +652,7 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
 </div>
 
       <div id="footer">
-  Generated on Mon Aug 25 01:05:49 2025 by
+  Generated on Mon Aug 25 01:18:26 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

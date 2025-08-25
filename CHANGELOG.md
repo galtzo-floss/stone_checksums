@@ -28,11 +28,13 @@ Please file a bug if you notice a violation of semantic versioning.
 - TAG: [v1.0.1][1.0.1t]
 - COVERAGE:  98.80% -- 82/83 lines in 5 files
 - BRANCH COVERAGE:  96.67% -- 29/30 branches in 5 files
-- 38.46% documented
+- 68.42% documented
 ### Added
 - Added proper namespace: StoneChecksums
   - Namespace now matches gem name according to RubyGems convention
   - Old Namespace will be dropped in next major version
+### Changed
+- Improve error help text on old bundler, recommend upgrading
 ### Fixed
 - Support for bundler >= v2.7, which no longer relies on SOURCE_DATE_EPOCH
   - NOTE: Bundler v2.7+ defaults to a constant build date in 1980 to make all builds reproducible.

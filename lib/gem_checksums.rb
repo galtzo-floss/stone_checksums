@@ -27,12 +27,16 @@ module GemChecksums
   PACKAGE_DIR = ENV.fetch("GEM_CHECKSUMS_PACKAGE_DIR", "pkg")
   BUILD_TIME_WARNING = <<-BUILD_TIME_WARNING
 WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
-         To ensure consistent SHA-256 & SHA-512 checksums,
-         you must set this environment variable *before* building the gem.
+         When using Bundler < 2.7.0, you must set SOURCE_DATE_EPOCH *before* building
+         the gem to ensure consistent SHA-256 & SHA-512 checksums.
 
-IMPORTANT: After setting the build time, you *must re-build the gem*, i.e. bundle exec rake build, or gem build.
+PREFERRED: Upgrade to Bundler >= 2.7.0, which uses a constant timestamp for gem builds,
+           making SOURCE_DATE_EPOCH unnecessary for reproducible checksums.
 
-How to set the build time:
+IMPORTANT: If you choose to set the build time via SOURCE_DATE_EPOCH,
+           you must re-build the gem, i.e. `bundle exec rake build` or `gem build`.
+
+How to set the build time (only needed for Bundler < 2.7.0):
 
 In zsh shell:
   - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
@@ -41,10 +45,10 @@ In zsh shell:
 
 In fish shell:
   - set -x SOURCE_DATE_EPOCH (date +%s)
-  - echo $SOURCE_DATE_EPOCH 
+  - echo $SOURCE_DATE_EPOCH
 
 In bash shell:
-  - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
+  - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH
 
   BUILD_TIME_WARNING
 
