@@ -96,6 +96,7 @@ Control options with ENV variables!
 
   # Development Tasks
   spec.add_development_dependency("rake", "~> 13.0")                          # ruby >= 2.2
+  spec.add_development_dependency("kettle-dev", "~> 1.0", ">= 1.0.8")         # ruby >= 2.3
 
   # Linting - rubocop-lts v8 is a rubocop wrapper for Ruby >= 2.2,
   #   and should only be bumped when dropping old Ruby support
