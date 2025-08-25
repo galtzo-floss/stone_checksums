@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require_relative "../stone_checksums/version"
+
 module GemChecksums
   module Version
-    VERSION = "1.0.0"
+    VERSION = ::StoneChecksums::Version::VERSION
   end
 end

@@ -14,7 +14,7 @@ PATH
   remote: .
   specs:
     stone_checksums (1.0.0)
-      version_gem (>= 1.1.5, < 3)
+      version_gem (~> 1.1, >= 1.1.8)
 
 GEM
   remote: https://rubygems.org/
@@ -313,13 +313,9 @@ DEPENDENCIES
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)
   pry (~> 0.14)
-  rake (~> 13.0)
   rdoc (~> 6.11)
   reek (~> 6.5)
-  rspec (~> 3.13)
-  rspec-block_is_expected (~> 1.0)
-  rspec-pending_for (~> 0.1, >= 0.1.16)
-  rspec-stubbed_env (~> 1.0, >= 1.0.1)
+  rspec-pending_for (~> 0.1, >= 0.1.18)
   rubocop-lts (~> 8.0)
   rubocop-on-rbs (~> 1.8)
   rubocop-packaging (~> 0.6, >= 0.6.0)
