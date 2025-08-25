@@ -162,7 +162,32 @@ For a quick starting point, this repository’s `.envrc` shows sane defaults, an
 
 ## 🔧 Basic Usage
 
+### Generate Gem Checksums (SHA-256 and SHA-512)
 
+This library helps you generate checksums for your built gem and commit them.
+
+- Bundler >= 2.7.0: No SOURCE_DATE_EPOCH needed. Bundler now uses a constant timestamp internally, making builds reproducible by default.
+- Bundler < 2.7.0: You must set SOURCE_DATE_EPOCH before building the gem to get deterministic checksums, or upgrade Bundler.
+  - If you still want to proceed on old Bundler non-interactively, set GEM_CHECKSUMS_ASSUME_YES=true (SOURCE_DATE_EPOCH is still required).
+
+Usage via Rake (recommended):
+
+```console
+bundle exec rake build
+bundle exec rake build:generate_checksums
+```
+
+Usage via CLI (equivalent):
+
+```console
+bin/gem_checksums [pkg/your_gem-1.2.3.gem]
+```
+
+Configuration env vars:
+- GEM_CHECKSUMS_CHECKSUMS_DIR: Where to write checksum files (default: checksums)
+- GEM_CHECKSUMS_PACKAGE_DIR: Where to look for built gems (default: pkg)
+- GEM_CHECKSUMS_GIT_DRY_RUN: When true, run a dry-run commit and clean up temporary files
+- GEM_CHECKSUMS_ASSUME_YES: When true and Bundler < 2.7.0, proceed without interactive prompt (still requires SOURCE_DATE_EPOCH)
 
 ### Open Collective README updater
 

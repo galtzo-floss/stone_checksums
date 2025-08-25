@@ -1,4 +1,18 @@
 module GemChecksums
   VERSION: String
+  VERSION_REGEX: Regexp
+  RUNNING_AS: String
+  BUILD_TIME_ERROR_MESSAGE: String
+  GIT_DRY_RUN_ENV: bool
+  CHECKSUMS_DIR: String
+  PACKAGE_DIR: String
+  BUILD_TIME_WARNING: String
+
+  class Error < ::StandardError
+  end
+
+  def self.install_tasks: () -> void
+  def self.generate: (?git_dry_run: bool) -> untyped
+
   # See the writing guide of rbs: https://github.com/ruby/rbs#guides
 end

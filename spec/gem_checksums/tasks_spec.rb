@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable RSpec/NestedGroups
+
 require "rake"
 
 RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/DescribeClass
@@ -123,13 +125,27 @@ git add banana_checksums/* && git commit --dry-run -m "🔒️ Checksums for v1.
     end
   end
 
-  context "without SOURCE_DATE_EPOCH set" do
+  context "without SOURCE_DATE_EPOCH set and Bundler >= 2.7.0" do
     before do
       stub_env("SOURCE_DATE_EPOCH" => "")
+      stub_const("Bundler::VERSION", "2.7.0")
     end
 
-    it "raises an error" do
+    it "skips the check and proceeds to search for gems" do
+      block_is_expected.to raise_error(GemChecksums::Error, "Unable to find gems avocado_packages/*.gem")
+    end
+  end
+
+  context "without SOURCE_DATE_EPOCH set and Bundler < 2.7.0" do
+    before do
+      stub_env("SOURCE_DATE_EPOCH" => "")
+      stub_const("Bundler::VERSION", "2.6.9")
+      stub_env("GEM_CHECKSUMS_ASSUME_YES" => "true")
+    end
+
+    it "enforces SOURCE_DATE_EPOCH and fails" do
       block_is_expected.to raise_error(GemChecksums::Error, "Environment variable SOURCE_DATE_EPOCH must be set. You'll need to rebuild the gem. See README.md of stone_checksums")
     end
   end
 end
+# rubocop:enable RSpec/NestedGroups

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
+
 # Inspired by: https://thoughtbot.com/blog/test-rake-tasks-like-a-boss
 # This version doesn't require a Rails app!
 require "rake"
@@ -24,3 +26,4 @@ RSpec.shared_context("with rake") do |task_base_name|
     Rake.application.rake_require(task_base_name, [rakelib], loaded_files_excluding_current_rake_file(task_base_name))
   end
 end
+# rubocop:enable RSpec/MultipleMemoizedHelpers

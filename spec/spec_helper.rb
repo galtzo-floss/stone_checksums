@@ -26,8 +26,18 @@ end
 
 # Set ENV variables to alter the defaults since we don't want to destroy this gem's actual checksums.
 ENV["GEM_CHECKSUMS_GIT_DRY_RUN"] = "true"
-ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] = "banana_checksums"
+ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] = "spec/tmp/banana_checksums"
 ENV["GEM_CHECKSUMS_PACKAGE_DIR"] = "avocado_packages"
+
+# Ensure the test checksums directory exists under spec/tmp with a .keep file
+begin
+  dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"]
+  FileUtils.mkdir_p(dir)
+  keep_path = File.join(dir, ".keep")
+  File.write(keep_path, "") unless File.exist?(keep_path)
+rescue StandardError
+  # noop: directory creation failures will surface in individual specs if needed
+end
 
 # This gem
 require "stone_checksums"
@@ -46,5 +56,16 @@ RSpec.configure do |config|
     Dir.rmdir(pkg_dir) if Dir.exist?(pkg_dir)
 
     stub_const("GemChecksums::GIT_DRY_RUN_ENV", true)
+  end
+
+  config.after(:suite) do
+    # Clean up any files in spec/tmp/banana_checksums except .keep
+    dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"]
+    next unless dir && Dir.exist?(dir)
+
+    Dir[File.join(dir, "*")].each do |path|
+      next if File.basename(path) == ".keep"
+      File.delete(path) if File.file?(path)
+    end
   end
 end

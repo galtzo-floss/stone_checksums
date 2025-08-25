@@ -53,24 +53,78 @@ In bash shell:
   #   require "gem_checksums"
   #   GemChecksums.install_tasks
   #
+  # Load gem-provided Rake tasks into the current Rake application.
+  #
+  # @example In your Rakefile
+  #   require "gem_checksums"
+  #   GemChecksums.install_tasks
+  #
+  # @return [void]
   def install_tasks
     load("gem_checksums/tasks.rb")
   end
   module_function :install_tasks
 
   # Script, stolen from myself, from https://github.com/rubygems/guides/pull/325
-  # NOTE: SOURCE_DATE_EPOCH must be set in your environment prior to building the gem.
+  # NOTE (Bundler < 2.7.0): SOURCE_DATE_EPOCH must be set in your environment prior to building the gem.
+  #       Bundler >= 2.7.0 uses a constant timestamp internally, so SOURCE_DATE_EPOCH is no longer required.
   #       This ensures that the gem build, and the gem checksum will use the same timestamp,
   #       and thus will match the SHA-256 checksum generated for every gem on Rubygems.org.
+  # Generate SHA-256 and SHA-512 checksums for a built .gem and commit them.
+  #
+  # Behavior regarding reproducible builds depends on Bundler version:
+  # - Bundler >= 2.7.0: SOURCE_DATE_EPOCH is not required; Bundler uses a constant timestamp.
+  # - Bundler < 2.7.0: you must set SOURCE_DATE_EPOCH, or upgrade Bundler. If
+  #   GEM_CHECKSUMS_ASSUME_YES=true is set, the check proceeds non-interactively, but
+  #   SOURCE_DATE_EPOCH is still required.
+  #
+  # The generated checksum files are written to the directory configured via
+  # GEM_CHECKSUMS_CHECKSUMS_DIR (default: "checksums"). By default, the newest .gem in
+  # GEM_CHECKSUMS_PACKAGE_DIR (default: "pkg") is used, unless a specific .gem path is
+  # passed as the first CLI argument when running under Rake or the gem_checksums CLI.
+  #
+  # By default this command will exec a `git add && git commit` to include the checksum
+  # files. When `git_dry_run` is true, or GEM_CHECKSUMS_GIT_DRY_RUN=true, a dry-run commit
+  # is performed, and temporary files are cleaned up.
+  #
+  # @param git_dry_run [Boolean] when true, perform a dry-run and do not leave files staged
+  # @return [void]
   def generate(git_dry_run: false)
-    build_time = ENV.fetch("SOURCE_DATE_EPOCH", "")
-    build_time_missing = !(build_time =~ /\d{10,}/)
     git_dry_run_flag = (git_dry_run || GIT_DRY_RUN_ENV) ? "--dry-run" : nil
     warn("Will run git commit with --dry-run") if git_dry_run_flag
 
-    if build_time_missing
-      warn(BUILD_TIME_WARNING)
-      raise Error, BUILD_TIME_ERROR_MESSAGE
+    # Bundler version gate for reproducibility requirements
+    bundler_ver = begin
+      (defined?(Bundler) && Bundler::VERSION) ? Gem::Version.new(Bundler::VERSION) : nil
+    rescue StandardError
+      nil
+    end
+
+    requires_epoch = bundler_ver.nil? || bundler_ver < Gem::Version.new("2.7.0")
+
+    if requires_epoch
+      # For older bundler, ask the user whether to proceed, or quit to update.
+      proceed = ENV.fetch("GEM_CHECKSUMS_ASSUME_YES", "").casecmp("true").zero?
+
+      unless proceed
+        # Non-interactive prompt: advise and abort
+        prompt_msg = <<-PROMPT
+Detected Bundler #{bundler_ver || "(unknown)"} which is older than 2.7.0.
+For reproducible builds without SOURCE_DATE_EPOCH, please update Bundler to >= 2.7.0.
+If you still want to proceed with this older Bundler, you must set SOURCE_DATE_EPOCH and re-run.
+Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requires SOURCE_DATE_EPOCH).
+        PROMPT
+        warn(prompt_msg)
+        # Continue to enforce SOURCE_DATE_EPOCH below; if not set, this will raise.
+      end
+
+      build_time = ENV.fetch("SOURCE_DATE_EPOCH", "")
+      build_time_missing = !(build_time =~ /\d{10,}/)
+
+      if build_time_missing
+        warn(BUILD_TIME_WARNING)
+        raise Error, BUILD_TIME_ERROR_MESSAGE
+      end
     end
 
     gem_path_parts =
