@@ -322,6 +322,29 @@ bundle exec rake build:generate_checksums
   <li>GEM_CHECKSUMS_ASSUME_YES: When true and Bundler &lt; 2.7.0, proceed without interactive prompt (still requires SOURCE_DATE_EPOCH)</li>
 </ul>
 
+<h3 id="public-api-yard">Public API (YARD)</h3>
+
+<ul>
+  <li>Module StoneChecksums (primary namespace)
+    <ul>
+      <li>::install_tasks() -&gt; void — loads Rake tasks (delegates to GemChecksums.install_tasks)</li>
+      <li>::generate(git_dry_run: Boolean = false) -&gt; void — generate SHA-256/512 checksums and commit (delegates to GemChecksums.generate)</li>
+      <li>Error &lt; GemChecksums::Error — error class hierarchy is preserved</li>
+      <li>Version::VERSION: String — current gem version</li>
+    </ul>
+  </li>
+  <li>Module GemChecksums (backward-compatible namespace)
+    <ul>
+      <li>::install_tasks() -&gt; void — identical behavior</li>
+      <li>::generate(git_dry_run: Boolean = false) -&gt; void — identical behavior</li>
+      <li>Error — base error class used internally</li>
+      <li>Version::VERSION: String — same as StoneChecksums::Version::VERSION</li>
+    </ul>
+  </li>
+</ul>
+
+<p>See the generated YARD docs for full details: <a href="http://rubydoc.info/gems/stone_checksums">Current release on RubyDoc.info</a>.</p>
+
 <h3 id="open-collective-readme-updater">Open Collective README updater</h3>
 
 <ul>
@@ -578,7 +601,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Mon Aug 25 01:00:45 2025 by
+  Generated on Mon Aug 25 01:05:49 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

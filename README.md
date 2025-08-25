@@ -189,6 +189,21 @@ Configuration env vars:
 - GEM_CHECKSUMS_GIT_DRY_RUN: When true, run a dry-run commit and clean up temporary files
 - GEM_CHECKSUMS_ASSUME_YES: When true and Bundler < 2.7.0, proceed without interactive prompt (still requires SOURCE_DATE_EPOCH)
 
+### Public API (YARD)
+
+- Module StoneChecksums (primary namespace)
+  - ::install_tasks() -> void — loads Rake tasks (delegates to GemChecksums.install_tasks)
+  - ::generate(git_dry_run: Boolean = false) -> void — generate SHA-256/512 checksums and commit (delegates to GemChecksums.generate)
+  - Error < GemChecksums::Error — error class hierarchy is preserved
+  - Version::VERSION: String — current gem version
+- Module GemChecksums (backward-compatible namespace)
+  - ::install_tasks() -> void — identical behavior
+  - ::generate(git_dry_run: Boolean = false) -> void — identical behavior
+  - Error — base error class used internally
+  - Version::VERSION: String — same as StoneChecksums::Version::VERSION
+
+See the generated YARD docs for full details: [Current release on RubyDoc.info][🚎yard-current].
+
 ### Open Collective README updater
 
 - Script: `exe/kettle-readme-backers`
