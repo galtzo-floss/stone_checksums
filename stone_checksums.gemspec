@@ -63,9 +63,11 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   spec.files = Dir[
-    # Splats (alphabetical)
+    # Executables and tasks
     "lib/**/*.rb",
     "lib/gem_checksums/rakelib/*.rake",
+    # Signatures
+    "sig/**/*.rbs",
   ]
   # Automatically included with gem package, no need to list again in files.
   spec.extra_rdoc_files = Dir[
