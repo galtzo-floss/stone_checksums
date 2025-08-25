@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - 'main'
+      - "*-stable"
     tags:
       - '!*' # Do not execute on tags
   pull_request:
@@ -26,8 +27,8 @@ concurrency:
 
 jobs:
   test:
-    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
@@ -35,42 +36,27 @@ jobs:
     strategy:
       matrix:
         include:
-          # TODO: truffleruby does not support upgrading rubygems; VALIDATE ASSUMPTION that same applies to JRuby
-          # jruby-9.1 (targets Ruby 2.3 compatibility)
-          - ruby: "jruby-9.1"
-            appraisal: "ruby-2-3"
-            exec_cmd: "rake spec"
-            gemfile: "Appraisal.root"
-            rubygems: default
-            bundler: default
-
-          # jruby-9.2 (targets Ruby 2.5 compatibility)
-          - ruby: "jruby-9.2"
-            appraisal: "ruby-2-5"
-            exec_cmd: "rake spec"
-            gemfile: "Appraisal.root"
-            rubygems: default
-            bundler: default
-
-          # jruby-9.3 (targets Ruby 2.6 compatibility)
-          - ruby: "jruby-9.3"
-            appraisal: "ruby-2-6"
-            exec_cmd: "rake spec"
-            gemfile: "Appraisal.root"
-            rubygems: default
-            bundler: default
+#          # NoMethodError: undefined method `resolve_feature_path' for #<Array:0x566f4659>
+#          #       <main> at /home/runner/.rubies/jruby-9.3.15.0/lib/ruby/gems/shared/gems/erb-4.0.4-java/lib/erb/util.rb:9
+#          # jruby-9.3 (targets Ruby 2.6 compatibility)
+#          - ruby: "jruby-9.3"
+#            appraisal: "ruby-2-6"
+#            exec_cmd: "rake test"
+#            gemfile: "Appraisal.root"
+#            rubygems: default
+#            bundler: default
 
           # jruby-9.4 (targets Ruby 3.1 compatibility)
           - ruby: "jruby-9.4"
             appraisal: "ruby-3-1"
-            exec_cmd: "rake spec"
+            exec_cmd: "rake test"
             gemfile: "Appraisal.root"
             rubygems: default
             bundler: default
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Ruby & RubyGems
         uses: ruby/setup-ruby@v1

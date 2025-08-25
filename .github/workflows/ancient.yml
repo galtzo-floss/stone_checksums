@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      - "*-stable"
     tags:
       - '!*' # Do not execute on tags
   pull_request:
@@ -20,8 +21,8 @@ concurrency:
 
 jobs:
   test:
-    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
@@ -33,7 +34,7 @@ jobs:
           # Ruby 2.3
           - ruby: "ruby-2.3"
             appraisal: "ruby-2-3"
-            exec_cmd: "rake spec"
+            exec_cmd: "rake test"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
@@ -41,7 +42,7 @@ jobs:
           # Ruby 2.4
           - ruby: "ruby-2.4"
             appraisal: "ruby-2-4"
-            exec_cmd: "rake spec"
+            exec_cmd: "rake test"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
@@ -49,14 +50,14 @@ jobs:
           # Ruby 2.5
           - ruby: "ruby-2.5"
             appraisal: "ruby-2-5"
-            exec_cmd: "rake spec"
+            exec_cmd: "rake test"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Ruby & RubyGems
         uses: ruby/setup-ruby@v1
