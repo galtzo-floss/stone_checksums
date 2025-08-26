@@ -38,6 +38,11 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
 
         context "with output" do
           it "prints information" do
+            # For some reason the output matcher is expecting a string version of the matcher code.
+            # The diff has:
+            # -(an object satisfying expression `normalize.call(s) == normalize.call(expected_output)`)
+            skip_for(ruby: "2.3", engine: "ruby", reason: "output matcher doesn't work here")
+            skip_for(ruby: Range.new("3.1", "3.2"), engine: "truffleruby", reason: "output matcher doesn't work here")
             dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] || "banana_checksums"
             expected_output = <<~CHECKSUMS_OUTPUT
               [ stone_checksums #{StoneChecksums::Version::VERSION} ]
@@ -78,6 +83,11 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
 
       context "with output" do
         it "prints information" do
+          # For some reason the output matcher is expecting a string version of the matcher code.
+          # The diff has:
+          # -(an object satisfying expression `normalize.call(s) == normalize.call(expected_output)`)
+          skip_for(ruby: "2.3", engine: "ruby", reason: "output matcher doesn't work here")
+          skip_for(ruby: Range.new("3.1", "3.2"), engine: "truffleruby", reason: "output matcher doesn't work here")
           dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] || "banana_checksums"
           expected_output = <<~CHECKSUMS_OUTPUT
             [ stone_checksums #{StoneChecksums::Version::VERSION} ]
