@@ -457,11 +457,7 @@ is performed, and temporary files are cleaned up.</p>
 214
 215
 216
-217
-218
-219
-220
-221</pre>
+217</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 89</span>
@@ -478,13 +474,9 @@ is performed, and temporary files are cleaned up.</p>
 </span>  <span class='kw'>end</span>
 
   <span class='comment'># Bundler version gate for reproducibility requirements
-</span>  <span class='id identifier rubyid_bundler_ver'>bundler_ver</span> <span class='op'>=</span> <span class='kw'>begin</span>
-    <span class='lparen'>(</span><span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Bundler</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'>Bundler</span><span class='op'>::</span><span class='const'>VERSION</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Bundler</span><span class='op'>::</span><span class='const'>VERSION</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='kw'>nil</span>
-  <span class='kw'>rescue</span> <span class='const'>StandardError</span>
-    <span class='kw'>nil</span>
-  <span class='kw'>end</span>
+</span>  <span class='id identifier rubyid_bundler_ver'>bundler_ver</span> <span class='op'>=</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Bundler</span><span class='op'>::</span><span class='const'>VERSION</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_requires_epoch'>requires_epoch</span> <span class='op'>=</span> <span class='id identifier rubyid_bundler_ver'>bundler_ver</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_bundler_ver'>bundler_ver</span> <span class='op'>&lt;</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2.7.0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_requires_epoch'>requires_epoch</span> <span class='op'>=</span> <span class='id identifier rubyid_bundler_ver'>bundler_ver</span> <span class='op'>&lt;</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2.7.0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_requires_epoch'>requires_epoch</span>
     <span class='comment'># For older bundler, ask the user whether to proceed, or quit to update.
@@ -651,7 +643,7 @@ is performed, and temporary files are cleaned up.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Aug 26 13:36:24 2025 by
+  Generated on Tue Aug 26 16:08:49 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

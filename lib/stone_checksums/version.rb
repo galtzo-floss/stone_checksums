@@ -6,6 +6,6 @@ module StoneChecksums
   module Version
     # Current gem version
     # @return [String]
-    VERSION = "1.0.0"
+    VERSION = "1.0.1"
   end
 end
