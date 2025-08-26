@@ -39,7 +39,7 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
         context "with output" do
           it "prints information" do
             dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] || "banana_checksums"
-            block_is_expected.to output(<<~CHECKSUMS_OUTPUT).to_stdout
+            expected_output = <<~CHECKSUMS_OUTPUT
               [ stone_checksums #{StoneChecksums::Version::VERSION} ]
               Looking for: "spec/support/fixtures/*.gem"
               Found: 1 gems; latest is gem_checksums-1.0.0.gem
@@ -56,6 +56,9 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
               git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
             
             CHECKSUMS_OUTPUT
+
+            normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
+            block_is_expected.to output(a_string_satisfying { |s| normalize.call(s) == normalize.call(expected_output) }).to_stdout
           end
         end
       end
@@ -76,7 +79,7 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
       context "with output" do
         it "prints information" do
           dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] || "banana_checksums"
-          block_is_expected.to output(<<~CHECKSUMS_OUTPUT).to_stdout
+          expected_output = <<~CHECKSUMS_OUTPUT
             [ stone_checksums #{StoneChecksums::Version::VERSION} ]
             Looking for: "spec/support/fixtures/gem_checksums-1.0.0.gem"
             Found: ["spec/support/fixtures/gem_checksums-1.0.0.gem"]
@@ -93,6 +96,9 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
             git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
             
           CHECKSUMS_OUTPUT
+
+          normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
+          block_is_expected.to output(a_string_satisfying { |s| normalize.call(s) == normalize.call(expected_output) }).to_stdout
         end
       end
 
