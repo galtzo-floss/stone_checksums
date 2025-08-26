@@ -12,6 +12,13 @@ RSpec.describe GemChecksums do
 
     include_context "with stubbed env"
 
+    it "prints a header with gem name and version", :check_output do
+      stub_env("SOURCE_DATE_EPOCH" => "")
+      stub_const("Bundler::VERSION", "2.7.0")
+      expect { generate }.to output(/\[ stone_checksums #{Regexp.escape(StoneChecksums::Version::VERSION)} \]/o).to_stdout.and \
+        raise_error(GemChecksums::Error, /Unable to find gems/)
+    end
+
     context "with SOURCE_DATE_EPOCH set" do
       before do
         stub_env("SOURCE_DATE_EPOCH" => "1738472935")

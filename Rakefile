@@ -47,10 +47,8 @@
 # rake yard                                   # Generate YARD Documentation
 #
 
+# External gems
 require "bundler/gem_tasks" if !Dir[File.join(__dir__, "*.gemspec")].empty?
-
-# External gems - add here!
-require "kettle/dev"
 
 # Define a base default task early so other files can enhance it.
 desc "Default tasks aggregator"
@@ -58,17 +56,33 @@ task :default do
   puts "Default task complete."
 end
 
-Kettle::Dev.install_tasks
+# Detect if the invoked task is spec/test to avoid eagerly requiring the library,
+# which would load code before SimpleCov can start (when running `rake spec`).
+invoked_tasks = Rake.application.top_level_tasks
+running_specs = invoked_tasks.any? { |t| t == "spec" || t == "test" || t == "coverage" }
 
-### RELEASE TASKS
-# Setup stone_checksums
-begin
-  require "stone_checksums"
+if running_specs
+  # Define minimal rspec tasks locally to keep coverage accurate
+  begin
+    require "rspec/core/rake_task"
+    desc("Run RSpec code examples")
+    RSpec::Core::RakeTask.new(:spec)
+    desc("Run tests")
+    task(test: :spec)
+  rescue LoadError
+    # If rspec isn't available, let it fail when the task is invoked
+  end
+else
+  require "kettle-dev"
 
-  GemChecksums.install_tasks
-rescue LoadError
-  desc("(stub) build:generate_checksums is unavailable")
-  task("build:generate_checksums") do
-    warn("NOTE: stone_checksums isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+  ### RELEASE TASKS
+  # Setup stone_checksums
+  begin
+    require "stone_checksums"
+  rescue LoadError
+    desc("(stub) build:generate_checksums is unavailable")
+    task("build:generate_checksums") do
+      warn("NOTE: stone_checksums isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+    end
   end
 end

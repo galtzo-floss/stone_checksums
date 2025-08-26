@@ -7,7 +7,7 @@
 [🖼️stone_checksums-i]: https://logos.galtzo.com/assets/images/galtzo-floss/stone_checksums/avatar-192px.svg
 [🖼️stone_checksums]: https://github.com/galtzo-floss/stone_checksums
 
-# 🍲 StoneChecksums
+# 🍲 StoneChecksums - Generate SHA-256 and SHA-512 checksums of a RubyGem
 
 [![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🔑codecovi]][🔑codecov] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
 
@@ -21,6 +21,16 @@ OTOH, if `ci_badges.map(&:color).all? { it == "green"}` 👇️ send money so I 
 
 ## 🌻 Synopsis
 
+Generate SHA-256 and SHA-512 checksums of a rubygem library,
+and commit them to your repository.
+The SHA-256 will match the shown for each gem published to RubyGems.org.
+
+```console
+# as a rake task:
+bundle exec rake build:generate_checksums
+# as a binstub:
+bin/generate_checksums
+```
 
 
 ## 💡 Info you can shake a stick at
@@ -122,43 +132,11 @@ NOTE: Be prepared to track down certs for signed gems and add them the same way 
 
 ## ⚙️ Configuration
 
-
-
-### Environment Variables
-
-Below are the primary environment variables recognized by stone_checksums (and its integrated tools). Unless otherwise noted, set boolean values to the string "true" to enable.
-
-General/runtime
-- DEBUG: Enable extra internal logging for this library (default: false)
-- REQUIRE_BENCH: Enable `require_bench` to profile requires (default: false)
-- CI: When set to true, adjusts default rake tasks toward CI behavior
-
-Coverage (kettle-soup-cover / SimpleCov)
-- K_SOUP_COV_DO: Enable coverage collection (default: true in .envrc)
-- K_SOUP_COV_FORMATTERS: Comma-separated list of formatters (html, xml, rcov, lcov, json, tty)
-- K_SOUP_COV_MIN_LINE: Minimum line coverage threshold (integer, e.g., 100)
-- K_SOUP_COV_MIN_BRANCH: Minimum branch coverage threshold (integer, e.g., 100)
-- K_SOUP_COV_MIN_HARD: Fail the run if thresholds are not met (true/false)
-- K_SOUP_COV_MULTI_FORMATTERS: Enable multiple formatters at once (true/false)
-- K_SOUP_COV_OPEN_BIN: Path to browser opener for HTML (empty disables auto-open)
-- MAX_ROWS: Limit console output rows for simplecov-console (e.g., 1)
-Tip: When running a single spec file locally, you may want `K_SOUP_COV_MIN_HARD=false` to avoid failing thresholds for a partial run.
-
-GitHub API and CI helpers
-- GITHUB_TOKEN or GH_TOKEN: Token used by `ci:act` and release workflow checks to query GitHub Actions status at higher rate limits
-
-Releasing and signing
-- SKIP_GEM_SIGNING: If set, skip gem signing during build/release
-- GEM_CERT_USER: Username for selecting your public cert in `certs/<USER>.pem` (defaults to $USER)
-- SOURCE_DATE_EPOCH: Reproducible build timestamp. `kettle-release` will set this automatically for the session.
-
-Git hooks and commit message helpers (exe/kettle-commit-msg)
-- GIT_HOOK_BRANCH_VALIDATE: Branch name validation mode (e.g., `jira`) or `false` to disable
-- GIT_HOOK_FOOTER_APPEND: Append a footer to commit messages when goalie allows (true/false)
-- GIT_HOOK_FOOTER_SENTINEL: Required when footer append is enabled — a unique first-line sentinel to prevent duplicates
-- GIT_HOOK_FOOTER_APPEND_DEBUG: Extra debug output in the footer template (true/false)
-
-For a quick starting point, this repository’s `.envrc` shows sane defaults, and `.env.local` can override them locally.
+Configuration env vars:
+- GEM_CHECKSUMS_CHECKSUMS_DIR: Where to write checksum files (default: checksums)
+- GEM_CHECKSUMS_PACKAGE_DIR: Where to look for built gems (default: pkg)
+- GEM_CHECKSUMS_GIT_DRY_RUN: When true, run a dry-run commit and clean up temporary files
+- GEM_CHECKSUMS_ASSUME_YES: When true and Bundler < 2.7.0, proceed without interactive prompt (still requires SOURCE_DATE_EPOCH)
 
 ## 🔧 Basic Usage
 
@@ -183,56 +161,20 @@ Usage via CLI (equivalent):
 bin/gem_checksums [pkg/your_gem-1.2.3.gem]
 ```
 
-Configuration env vars:
-- GEM_CHECKSUMS_CHECKSUMS_DIR: Where to write checksum files (default: checksums)
-- GEM_CHECKSUMS_PACKAGE_DIR: Where to look for built gems (default: pkg)
-- GEM_CHECKSUMS_GIT_DRY_RUN: When true, run a dry-run commit and clean up temporary files
-- GEM_CHECKSUMS_ASSUME_YES: When true and Bundler < 2.7.0, proceed without interactive prompt (still requires SOURCE_DATE_EPOCH)
-
 ### Public API (YARD)
 
 - Module StoneChecksums (primary namespace)
-  - ::install_tasks() -> void — loads Rake tasks (delegates to GemChecksums.install_tasks)
-  - ::generate(git_dry_run: Boolean = false) -> void — generate SHA-256/512 checksums and commit (delegates to GemChecksums.generate)
-  - Error < GemChecksums::Error — error class hierarchy is preserved
-  - Version::VERSION: String — current gem version
-- Module GemChecksums (backward-compatible namespace)
-  - ::install_tasks() -> void — identical behavior
-  - ::generate(git_dry_run: Boolean = false) -> void — identical behavior
-  - Error — base error class used internally
-  - Version::VERSION: String — same as StoneChecksums::Version::VERSION
+    - ::install_tasks() -> void — loads Rake tasks (delegates to GemChecksums.install_tasks)
+    - ::generate(git_dry_run: Boolean = false) -> void — generate SHA-256/512 checksums and commit (delegates to GemChecksums.generate)
+    - Error < GemChecksums::Error — error class hierarchy is preserved
+    - Version::VERSION: String — current gem version
+- Module GemChecksums (deprecated, backward-compatible namespace)
+    - ::install_tasks() -> void — identical behavior
+    - ::generate(git_dry_run: Boolean = false) -> void — identical behavior
+    - Error — base error class used internally
+    - Version::VERSION: String — same as StoneChecksums::Version::VERSION
 
 See the generated YARD docs for full details: [Current release on RubyDoc.info][🚎yard-current].
-
-### Open Collective README updater
-
-- Script: `exe/kettle-readme-backers`
-- Purpose: Updates README sections for Open Collective backers (individuals) and sponsors (organizations) by fetching live data from your collective.
-- Tags updated in README.md (first match wins for backers):
-  - The default tag prefix is `OPENCOLLECTIVE`, and it is configurable:
-    - ENV: `KETTLE_DEV_BACKER_README_OSC_TAG="OPENCOLLECTIVE"`
-    - YAML (.opencollective.yml): `readme-osc-tag: "OPENCOLLECTIVE"`
-    - The resulting markers become: `<!-- <TAG>:START --> … <!-- <TAG>:END -->`, `<!-- <TAG>-INDIVIDUALS:START --> … <!-- <TAG>-INDIVIDUALS:END -->`, and `<!-- <TAG>-ORGANIZATIONS:START --> … <!-- <TAG>-ORGANIZATIONS:END -->`.
-    - ENV overrides YAML.
-  - Backers (Individuals): `<!-- <TAG>:START --> … <!-- <TAG>:END -->` or `<!-- <TAG>-INDIVIDUALS:START --> … <!-- <TAG>-INDIVIDUALS:END -->`
-  - Sponsors (Organizations): `<!-- <TAG>-ORGANIZATIONS:START --> … <!-- <TAG>-ORGANIZATIONS:END -->`
-- Handle resolution:
-  1. `OPENCOLLECTIVE_HANDLE` environment variable, if set
-  2. `opencollective.yml` in the project root (`collective: "galtzo-floss"` by default in this repo)
-- Usage:
-  - `exe/kettle-readme-backers`
-  - `OPENCOLLECTIVE_HANDLE=my-collective exe/kettle-readme-backers`
-- Behavior:
-  - Writes to README.md only if content between the tags would change.
-  - If neither the backers nor sponsors tags are present, prints a helpful warning and exits with status 2.
-  - When there are no entries, inserts a friendly placeholder: "No backers yet. Be the first!" or "No sponsors yet. Be the first!".
-  - When updates are written and the repository is a git work tree, the script stages README.md and commits with a message thanking new backers and subscribers, including mentions for any newly added backers and subscribers (GitHub @handles when their website/profile is a github.com URL; otherwise their name).
-  - Customize the commit subject via env var: `KETTLE_README_BACKERS_COMMIT_SUBJECT="💸 Thanks 🙏 to our new backers 🎒 and subscribers 📜"`.
-    - Or via .opencollective.yml: set `readme-backers-commit-subject: "💸 Thanks 🙏 to our new backers 🎒 and subscribers 📜"`.
-    - Precedence: ENV overrides .opencollective.yml; if neither is set, a sensible default is used.
-    - Note: When used with the provided `.git-hooks`, the subject should start with a gitmoji character (see [gitmoji][📌gitmoji]).
-- Tip: Run this locally before committing to keep your README current, or schedule it in CI to refresh periodically.
-
 
 ## 🦷 FLOSS Funding
 
@@ -591,7 +533,7 @@ Thanks for RTFM. ☺️
 [📌gitmoji]:https://gitmoji.dev
 [📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20😜%20😍-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.130-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
+[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.097-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-259D6C.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year

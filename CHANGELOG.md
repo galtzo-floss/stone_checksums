@@ -24,15 +24,15 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 ### Security
 
-## [1.0.1] - 2025-08-25
+## [1.0.1] - 2025-08-26
 - TAG: [v1.0.1][1.0.1t]
-- COVERAGE:  98.80% -- 82/83 lines in 5 files
-- BRANCH COVERAGE:  96.67% -- 29/30 branches in 5 files
+- COVERAGE: 100.00% -- 98/98 lines in 6 files
+- BRANCH COVERAGE:  96.67% -- 29/30 branches in 6 files
 - 68.42% documented
 ### Added
 - Added proper namespace: StoneChecksums
   - Namespace now matches gem name according to RubyGems convention
-  - Old Namespace will be dropped in next major version
+  - Old Namespace, GemChecksums, will be dropped in next major version
 ### Changed
 - Improve error help text on old bundler, recommend upgrading
 ### Fixed

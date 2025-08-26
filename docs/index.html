@@ -150,7 +150,7 @@ Alternatively:
     <tr>
       <td>Source</td>
       <td>
-<a href="https://gitlab.com/galtzo-floss/stone_checksums/"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/galtzo-floss/stone_checksums"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/galtzo-floss/stone_checksums"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.130-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
+<a href="https://gitlab.com/galtzo-floss/stone_checksums/"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/galtzo-floss/stone_checksums"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/galtzo-floss/stone_checksums"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.097-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
 </td>
     </tr>
     <tr>
@@ -242,52 +242,6 @@ NOTE: Be prepared to track down certs for signed gems and add them the same way 
 
 <h2 id="️-configuration">⚙️ Configuration</h2>
 
-<h3 id="environment-variables">Environment Variables</h3>
-
-<p>Below are the primary environment variables recognized by stone_checksums (and its integrated tools). Unless otherwise noted, set boolean values to the string “true” to enable.</p>
-
-<p>General/runtime</p>
-<ul>
-  <li>DEBUG: Enable extra internal logging for this library (default: false)</li>
-  <li>REQUIRE_BENCH: Enable <code>require_bench</code> to profile requires (default: false)</li>
-  <li>CI: When set to true, adjusts default rake tasks toward CI behavior</li>
-</ul>
-
-<p>Coverage (kettle-soup-cover / SimpleCov)</p>
-<ul>
-  <li>K_SOUP_COV_DO: Enable coverage collection (default: true in .envrc)</li>
-  <li>K_SOUP_COV_FORMATTERS: Comma-separated list of formatters (html, xml, rcov, lcov, json, tty)</li>
-  <li>K_SOUP_COV_MIN_LINE: Minimum line coverage threshold (integer, e.g., 100)</li>
-  <li>K_SOUP_COV_MIN_BRANCH: Minimum branch coverage threshold (integer, e.g., 100)</li>
-  <li>K_SOUP_COV_MIN_HARD: Fail the run if thresholds are not met (true/false)</li>
-  <li>K_SOUP_COV_MULTI_FORMATTERS: Enable multiple formatters at once (true/false)</li>
-  <li>K_SOUP_COV_OPEN_BIN: Path to browser opener for HTML (empty disables auto-open)</li>
-  <li>MAX_ROWS: Limit console output rows for simplecov-console (e.g., 1)<br>
-Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_HARD=false</code> to avoid failing thresholds for a partial run.</li>
-</ul>
-
-<p>GitHub API and CI helpers</p>
-<ul>
-  <li>GITHUB_TOKEN or GH_TOKEN: Token used by <code>ci:act</code> and release workflow checks to query GitHub Actions status at higher rate limits</li>
-</ul>
-
-<p>Releasing and signing</p>
-<ul>
-  <li>SKIP_GEM_SIGNING: If set, skip gem signing during build/release</li>
-  <li>GEM_CERT_USER: Username for selecting your public cert in <code>certs/&lt;USER&gt;.pem</code> (defaults to $USER)</li>
-  <li>SOURCE_DATE_EPOCH: Reproducible build timestamp. <code>kettle-release</code> will set this automatically for the session.</li>
-</ul>
-
-<p>Git hooks and commit message helpers (exe/kettle-commit-msg)</p>
-<ul>
-  <li>GIT_HOOK_BRANCH_VALIDATE: Branch name validation mode (e.g., <code>jira</code>) or <code>false</code> to disable</li>
-  <li>GIT_HOOK_FOOTER_APPEND: Append a footer to commit messages when goalie allows (true/false)</li>
-  <li>GIT_HOOK_FOOTER_SENTINEL: Required when footer append is enabled — a unique first-line sentinel to prevent duplicates</li>
-  <li>GIT_HOOK_FOOTER_APPEND_DEBUG: Extra debug output in the footer template (true/false)</li>
-</ul>
-
-<p>For a quick starting point, this repository’s <code>.envrc</code> shows sane defaults, and <code>.env.local</code> can override them locally.</p>
-
 <h2 id="-basic-usage">🔧 Basic Usage</h2>
 
 <h3 id="generate-gem-checksums-sha-256-and-sha-512">Generate Gem Checksums (SHA-256 and SHA-512)</h3>
@@ -333,7 +287,7 @@ bundle exec rake build:generate_checksums
       <li>Version::VERSION: String — current gem version</li>
     </ul>
   </li>
-  <li>Module GemChecksums (backward-compatible namespace)
+  <li>Module GemChecksums (deprecated, backward-compatible namespace)
     <ul>
       <li>::install_tasks() -&gt; void — identical behavior</li>
       <li>::generate(git_dry_run: Boolean = false) -&gt; void — identical behavior</li>
@@ -344,62 +298,6 @@ bundle exec rake build:generate_checksums
 </ul>
 
 <p>See the generated YARD docs for full details: <a href="http://rubydoc.info/gems/stone_checksums">Current release on RubyDoc.info</a>.</p>
-
-<h3 id="open-collective-readme-updater">Open Collective README updater</h3>
-
-<ul>
-  <li>Script: <code>exe/kettle-readme-backers</code>
-</li>
-  <li>Purpose: Updates README sections for Open Collective backers (individuals) and sponsors (organizations) by fetching live data from your collective.</li>
-  <li>Tags updated in README.md (first match wins for backers):
-    <ul>
-      <li>The default tag prefix is <code>OPENCOLLECTIVE</code>, and it is configurable:
-        <ul>
-          <li>ENV: <code>KETTLE_DEV_BACKER_README_OSC_TAG="OPENCOLLECTIVE"</code>
-</li>
-          <li>YAML (.opencollective.yml): <code>readme-osc-tag: "OPENCOLLECTIVE"</code>
-</li>
-          <li>The resulting markers become: <code>&lt;!-- &lt;TAG&gt;:START --&gt; … &lt;!-- &lt;TAG&gt;:END --&gt;</code>, <code>&lt;!-- &lt;TAG&gt;-INDIVIDUALS:START --&gt; … &lt;!-- &lt;TAG&gt;-INDIVIDUALS:END --&gt;</code>, and <code>&lt;!-- &lt;TAG&gt;-ORGANIZATIONS:START --&gt; … &lt;!-- &lt;TAG&gt;-ORGANIZATIONS:END --&gt;</code>.</li>
-          <li>ENV overrides YAML.</li>
-        </ul>
-      </li>
-      <li>Backers (Individuals): <code>&lt;!-- &lt;TAG&gt;:START --&gt; … &lt;!-- &lt;TAG&gt;:END --&gt;</code> or <code>&lt;!-- &lt;TAG&gt;-INDIVIDUALS:START --&gt; … &lt;!-- &lt;TAG&gt;-INDIVIDUALS:END --&gt;</code>
-</li>
-      <li>Sponsors (Organizations): <code>&lt;!-- &lt;TAG&gt;-ORGANIZATIONS:START --&gt; … &lt;!-- &lt;TAG&gt;-ORGANIZATIONS:END --&gt;</code>
-</li>
-    </ul>
-  </li>
-  <li>Handle resolution:
-    <ol>
-      <li>
-<code>OPENCOLLECTIVE_HANDLE</code> environment variable, if set</li>
-      <li>
-<code>opencollective.yml</code> in the project root (<code>collective: "galtzo-floss"</code> by default in this repo)</li>
-    </ol>
-  </li>
-  <li>Usage:
-    <ul>
-      <li><code>exe/kettle-readme-backers</code></li>
-      <li><code>OPENCOLLECTIVE_HANDLE=my-collective exe/kettle-readme-backers</code></li>
-    </ul>
-  </li>
-  <li>Behavior:
-    <ul>
-      <li>Writes to README.md only if content between the tags would change.</li>
-      <li>If neither the backers nor sponsors tags are present, prints a helpful warning and exits with status 2.</li>
-      <li>When there are no entries, inserts a friendly placeholder: “No backers yet. Be the first!” or “No sponsors yet. Be the first!”.</li>
-      <li>When updates are written and the repository is a git work tree, the script stages README.md and commits with a message thanking new backers and subscribers, including mentions for any newly added backers and subscribers (GitHub @handles when their website/profile is a github.com URL; otherwise their name).</li>
-      <li>Customize the commit subject via env var: <code>KETTLE_README_BACKERS_COMMIT_SUBJECT="💸 Thanks 🙏 to our new backers 🎒 and subscribers 📜"</code>.
-        <ul>
-          <li>Or via .opencollective.yml: set <code>readme-backers-commit-subject: "💸 Thanks 🙏 to our new backers 🎒 and subscribers 📜"</code>.</li>
-          <li>Precedence: ENV overrides .opencollective.yml; if neither is set, a sensible default is used.</li>
-          <li>Note: When used with the provided <code>.git-hooks</code>, the subject should start with a gitmoji character (see <a href="https://gitmoji.dev">gitmoji</a>).</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Tip: Run this locally before committing to keep your README current, or schedule it in CI to refresh periodically.</li>
-</ul>
 
 <h2 id="-floss-funding">🦷 FLOSS Funding</h2>
 
@@ -601,7 +499,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Mon Aug 25 01:18:26 2025 by
+  Generated on Tue Aug 26 13:36:23 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

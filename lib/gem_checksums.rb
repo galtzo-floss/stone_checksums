@@ -25,31 +25,31 @@ module GemChecksums
   GIT_DRY_RUN_ENV = ENV.fetch("GEM_CHECKSUMS_GIT_DRY_RUN", "false").casecmp("true") == 0
   CHECKSUMS_DIR = ENV.fetch("GEM_CHECKSUMS_CHECKSUMS_DIR", "checksums")
   PACKAGE_DIR = ENV.fetch("GEM_CHECKSUMS_PACKAGE_DIR", "pkg")
-  BUILD_TIME_WARNING = <<-BUILD_TIME_WARNING
-WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
-         When using Bundler < 2.7.0, you must set SOURCE_DATE_EPOCH *before* building
-         the gem to ensure consistent SHA-256 & SHA-512 checksums.
-
-PREFERRED: Upgrade to Bundler >= 2.7.0, which uses a constant timestamp for gem builds,
-           making SOURCE_DATE_EPOCH unnecessary for reproducible checksums.
-
-IMPORTANT: If you choose to set the build time via SOURCE_DATE_EPOCH,
-           you must re-build the gem, i.e. `bundle exec rake build` or `gem build`.
-
-How to set the build time (only needed for Bundler < 2.7.0):
-
-In zsh shell:
-  - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
-  - If the echo above has no output, then it didn't work.
-  - Note that you'll need the `zsh/datetime` module enabled.
-
-In fish shell:
-  - set -x SOURCE_DATE_EPOCH (date +%s)
-  - echo $SOURCE_DATE_EPOCH
-
-In bash shell:
-  - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH
-
+  BUILD_TIME_WARNING = <<~BUILD_TIME_WARNING
+    WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
+             When using Bundler < 2.7.0, you must set SOURCE_DATE_EPOCH *before* building
+             the gem to ensure consistent SHA-256 & SHA-512 checksums.
+    
+    PREFERRED: Upgrade to Bundler >= 2.7.0, which uses a constant timestamp for gem builds,
+               making SOURCE_DATE_EPOCH unnecessary for reproducible checksums.
+    
+    IMPORTANT: If you choose to set the build time via SOURCE_DATE_EPOCH,
+               you must re-build the gem, i.e. `bundle exec rake build` or `gem build`.
+    
+    How to set the build time (only needed for Bundler < 2.7.0):
+    
+    In zsh shell:
+      - export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH
+      - If the echo above has no output, then it didn't work.
+      - Note that you'll need the `zsh/datetime` module enabled.
+    
+    In fish shell:
+      - set -x SOURCE_DATE_EPOCH (date +%s)
+      - echo $SOURCE_DATE_EPOCH
+    
+    In bash shell:
+      - export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH
+    
   BUILD_TIME_WARNING
 
   # Make this gem's rake tasks available in your Rakefile:
@@ -90,6 +90,13 @@ In bash shell:
     git_dry_run_flag = (git_dry_run || GIT_DRY_RUN_ENV) ? "--dry-run" : nil
     warn("Will run git commit with --dry-run") if git_dry_run_flag
 
+    # Header: identify the gem and version being run
+    begin
+      puts "[ stone_checksums #{::StoneChecksums::Version::VERSION} ]"
+    rescue StandardError
+      # If for any reason the version constant isn't available, skip header gracefully
+    end
+
     # Bundler version gate for reproducibility requirements
     bundler_ver = begin
       (defined?(Bundler) && Bundler::VERSION) ? Gem::Version.new(Bundler::VERSION) : nil
@@ -105,11 +112,11 @@ In bash shell:
 
       unless proceed
         # Non-interactive prompt: advise and abort
-        prompt_msg = <<-PROMPT
-Detected Bundler #{bundler_ver || "(unknown)"} which is older than 2.7.0.
-For reproducible builds without SOURCE_DATE_EPOCH, please update Bundler to >= 2.7.0.
-If you still want to proceed with this older Bundler, you must set SOURCE_DATE_EPOCH and re-run.
-Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requires SOURCE_DATE_EPOCH).
+        prompt_msg = <<~PROMPT
+          Detected Bundler #{bundler_ver || "(unknown)"} which is older than 2.7.0.
+          For reproducible builds without SOURCE_DATE_EPOCH, please update Bundler to >= 2.7.0.
+          If you still want to proceed with this older Bundler, you must set SOURCE_DATE_EPOCH and re-run.
+          Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requires SOURCE_DATE_EPOCH).
         PROMPT
         warn(prompt_msg)
         # Continue to enforce SOURCE_DATE_EPOCH below; if not set, this will raise.
@@ -171,34 +178,34 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
 
     version = gem_name[VERSION_REGEX]
 
-    git_cmd = <<-GIT_MSG.rstrip
-git add #{CHECKSUMS_DIR}/* && \
-git commit #{git_dry_run_flag} -m "🔒️ Checksums for v#{version}"
+    git_cmd = <<~GIT_MSG.rstrip
+      git add #{CHECKSUMS_DIR}/* && \
+      git commit #{git_dry_run_flag} -m "🔒️ Checksums for v#{version}"
     GIT_MSG
 
     if git_dry_run_flag
-      git_cmd += <<-CLEANUP_MSG
- && \
-echo "Cleaning up in dry run mode" && \
-git reset #{digest512_64bit_path} && \
-git reset #{digest256_32bit_path} && \
-rm -f #{digest512_64bit_path} && \
-rm -f #{digest256_32bit_path}
+      git_cmd += <<~CLEANUP_MSG
+         && \
+        echo "Cleaning up in dry run mode" && \
+        git reset #{digest512_64bit_path} && \
+        git reset #{digest256_32bit_path} && \
+        rm -f #{digest512_64bit_path} && \
+        rm -f #{digest256_32bit_path}
       CLEANUP_MSG
     end
 
-    puts <<-RESULTS
-[ GEM: #{gem_name} ]
-[ VERSION: #{version} ]
-[ GEM PKG LOCATION: #{gem_pkg} ]
-[ CHECKSUM SHA-256: #{digest256_32bit} ]
-[ CHECKSUM SHA-512: #{digest512_64bit} ]
-[ CHECKSUM SHA-256 PATH: #{digest256_32bit_path} ]
-[ CHECKSUM SHA-512 PATH: #{digest512_64bit_path} ]
-
-... Running ...
-
-#{git_cmd}
+    puts <<~RESULTS
+      [ GEM: #{gem_name} ]
+      [ VERSION: #{version} ]
+      [ GEM PKG LOCATION: #{gem_pkg} ]
+      [ CHECKSUM SHA-256: #{digest256_32bit} ]
+      [ CHECKSUM SHA-512: #{digest512_64bit} ]
+      [ CHECKSUM SHA-256 PATH: #{digest256_32bit_path} ]
+      [ CHECKSUM SHA-512 PATH: #{digest512_64bit_path} ]
+      
+      ... Running ...
+      
+      #{git_cmd}
     RESULTS
 
     if git_dry_run_flag

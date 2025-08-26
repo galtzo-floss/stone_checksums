@@ -5,7 +5,7 @@
 
 gem "reek", "~> 6.5"
 # gem "rubocop", "~> 1.73", ">= 1.73.2" # constrained by standard
-gem "rubocop-lts", "~> 8.0"
+gem "rubocop-lts", "~> 10.0"
 gem "rubocop-ruby2_3", "~> 2.0", ">= 2.0.5"
 gem "rubocop-packaging", "~> 0.6", ">= 0.6.0"
 gem "rubocop-rspec", "~> 3.6"

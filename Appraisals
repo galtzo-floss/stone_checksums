@@ -79,12 +79,15 @@ appraise "ruby-3-0" do
 end
 
 appraise "ruby-3-1" do
+  # all versions of git gem are incompatible with truffleruby v23.0, syntactically.
   gem "erb"
   gem "mutex_m", "~> 0.2"
   gem "stringio", "~> 3.0"
 end
 
 appraise "ruby-3-2" do
+  # all versions of git gem are incompatible with truffleruby v23.1, syntactically.
+  gem "git", "< 3"
   gem "erb"
   gem "mutex_m", "~> 0.2"
   gem "stringio", "~> 3.0"

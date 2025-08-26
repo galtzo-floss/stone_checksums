@@ -1,9 +1,0 @@
-lib/gem_checksums.rb -- 7 warnings:
-  [65]:BooleanParameter: GemChecksums#generate has boolean parameter 'git_dry_run' [https://github.com/troessner/reek/blob/v6.4.0/docs/Boolean-Parameter.md]
-  [68]:ControlParameter: GemChecksums#generate is controlled by argument 'git_dry_run' [https://github.com/troessner/reek/blob/v6.4.0/docs/Control-Parameter.md]
-  [86, 104]:DuplicateMethodCall: GemChecksums#generate calls 'gem_path_parts.last' 2 times [https://github.com/troessner/reek/blob/v6.4.0/docs/Duplicate-Method-Call.md]
-  [90, 97]:DuplicateMethodCall: GemChecksums#generate calls 'gems.empty?' 2 times [https://github.com/troessner/reek/blob/v6.4.0/docs/Duplicate-Method-Call.md]
-  [80]:ManualDispatch: GemChecksums#generate manually dispatches method call [https://github.com/troessner/reek/blob/v6.4.0/docs/Manual-Dispatch.md]
-  [14]:TooManyConstants: GemChecksums has 7 constants [https://github.com/troessner/reek/blob/v6.4.0/docs/Too-Many-Constants.md]
-  [65]:TooManyStatements: GemChecksums#generate has approx 41 statements [https://github.com/troessner/reek/blob/v6.4.0/docs/Too-Many-Statements.md]
-7 total warnings
