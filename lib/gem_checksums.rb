@@ -55,13 +55,6 @@ In bash shell:
   # Make this gem's rake tasks available in your Rakefile:
   #
   #   require "gem_checksums"
-  #   GemChecksums.install_tasks
-  #
-  # Load gem-provided Rake tasks into the current Rake application.
-  #
-  # @example In your Rakefile
-  #   require "gem_checksums"
-  #   GemChecksums.install_tasks
   #
   # @return [void]
   def install_tasks

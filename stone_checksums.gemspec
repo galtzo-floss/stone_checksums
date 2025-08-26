@@ -115,7 +115,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Development & Testing Tasks
-  spec.add_development_dependency("kettle-dev", "~> 1.0", ">= 1.0.9")         # ruby >= 2.3
+  spec.add_development_dependency("kettle-dev", "~> 1.0", ">= 1.0.10")        # ruby >= 2.3
   spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.18") # ruby >= 1.8.7
 
   # Linting - rubocop-lts v8 is a rubocop wrapper for Ruby >= 2.2,
