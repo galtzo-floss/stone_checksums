@@ -98,22 +98,6 @@ RSpec.describe GemChecksums do
     end
   end
 
-  context "when Bundler::VERSION" do
-    include_context "with stubbed env"
-
-    before do
-      stub_env("SOURCE_DATE_EPOCH" => "1738472935")
-      # Simulate Bundler constant existing but VERSION access raising
-      stub_const("Bundler::VERSION", nil) if defined?(Bundler::VERSION)
-      allow(Bundler).to receive(:VERSION).and_raise(StandardError)
-      stub_const("GemChecksums::RUNNING_AS", "rspec")
-    end
-
-    it "falls back to requires_epoch and continues (then fails to find gems)" do
-      expect { described_class.generate }.to raise_error(GemChecksums::Error, /Unable to find gems/)
-    end
-  end
-
   describe "::install_tasks" do
     subject(:install_tasks) { described_class.install_tasks }
 

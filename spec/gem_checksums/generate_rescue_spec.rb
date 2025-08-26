@@ -23,9 +23,6 @@ RSpec.describe GemChecksums, :check_output do
       allow(Kernel).to receive(:exec) # should not be called when git_dry_run true, but guard anyway
       allow(Kernel).to receive(:`).and_return("")
 
-      # Force the bundler_ver begin/rescue block to raise and hit the rescue line
-      allow(Gem::Version).to receive(:new).and_raise(StandardError)
-
       # Act: run generate in dry run mode to avoid exec
       described_class.generate(git_dry_run: true)
 

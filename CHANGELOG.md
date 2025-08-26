@@ -27,7 +27,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ## [1.0.1] - 2025-08-26
 - TAG: [v1.0.1][1.0.1t]
 - COVERAGE: 100.00% -- 97/97 lines in 6 files
-- BRANCH COVERAGE:  92.86% -- 26/28 branches in 6 files
+- BRANCH COVERAGE: 92.86% -- 26/28 branches in 6 files
 - 68.42% documented
 ### Added
 - Added proper namespace: StoneChecksums
@@ -45,8 +45,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [1.0.0] - 2025-02-23
 - TAG: [v1.0.0][1.0.0t]
-- COVERAGE:  98.67% -- 74/75 lines in 5 files
-- BRANCH COVERAGE:  79.17% -- 19/24 branches in 5 files
+- COVERAGE: 98.67% -- 74/75 lines in 5 files
+- BRANCH COVERAGE: 79.17% -- 19/24 branches in 5 files
 - 38.46% documented
 ### Added
 - Initial release
