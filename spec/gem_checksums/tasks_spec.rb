@@ -57,8 +57,8 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
             
             CHECKSUMS_OUTPUT
 
-            pattern = Regexp.new(Regexp.escape(expected_output).gsub(/[ \t]+/, "[ \\t]+"))
-            block_is_expected.to output(pattern).to_stdout
+            normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
+            block_is_expected.to output(a_string_satisfying { |s| normalize.call(s) == normalize.call(expected_output) }).to_stdout
           end
         end
       end
@@ -97,8 +97,8 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
             
           CHECKSUMS_OUTPUT
 
-          pattern = Regexp.new(Regexp.escape(expected_output).gsub(/[ \t]+/, "[ \\t]+"))
-          block_is_expected.to output(pattern).to_stdout
+          normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
+          block_is_expected.to output(a_string_satisfying { |s| normalize.call(s) == normalize.call(expected_output) }).to_stdout
         end
       end
 
