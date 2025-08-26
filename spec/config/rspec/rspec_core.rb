@@ -1,11 +1,7 @@
 RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
-
-  # Disable RSpec exposing methods globally on `Module` and `main`
-  config.disable_monkey_patching!
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+  config.mock_with :rspec do |mocks|
+    # You can add further configurations for rspec-mocks here,
+    # for example, to enforce strict verification of partial doubles:
+    mocks.verify_partial_doubles = true
   end
 end

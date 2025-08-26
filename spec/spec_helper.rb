@@ -2,6 +2,7 @@
 
 # External library dependencies
 require "version_gem/ruby"
+require "kettle/test/rspec"
 
 # RSpec Configs
 require_relative "config/byebug"

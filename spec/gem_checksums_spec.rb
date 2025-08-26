@@ -98,7 +98,7 @@ RSpec.describe GemChecksums do
     end
   end
 
-  context "when Bundler::VERSION raises (rescue path)" do
+  context "when Bundler::VERSION" do
     include_context "with stubbed env"
 
     before do

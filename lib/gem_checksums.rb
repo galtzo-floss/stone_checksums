@@ -98,13 +98,9 @@ module GemChecksums
     end
 
     # Bundler version gate for reproducibility requirements
-    bundler_ver = begin
-      (defined?(Bundler) && Bundler::VERSION) ? Gem::Version.new(Bundler::VERSION) : nil
-    rescue StandardError
-      nil
-    end
+    bundler_ver = Gem::Version.new(Bundler::VERSION)
 
-    requires_epoch = bundler_ver.nil? || bundler_ver < Gem::Version.new("2.7.0")
+    requires_epoch = bundler_ver < Gem::Version.new("2.7.0")
 
     if requires_epoch
       # For older bundler, ask the user whether to proceed, or quit to update.
