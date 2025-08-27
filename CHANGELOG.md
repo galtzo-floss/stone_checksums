@@ -63,7 +63,9 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Added
 - Initial release
 
-[Unreleased]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.0...HEAD
+[Unreleased]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.2...HEAD
+[1.0.2]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.1...v1.0.2
+[1.0.2t]: https://gitlab.com/galtzo-floss/stone_checksums/-/tags/v1.0.2
 [1.0.1]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.0...v1.0.1
 [1.0.1t]: https://gitlab.com/galtzo-floss/stone_checksums/-/tags/v1.0.1
 [1.0.0]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/1fd75630d9d3c4a1ef8fed384fda98755ae01d5e...v1.0.0
