@@ -8,9 +8,8 @@ variables:
   K_SOUP_COV_DEBUG: true
   K_SOUP_COV_DO: true
   K_SOUP_COV_HARD: true
-  # Lower than local, which is at 100/100, because rubocop-lts isn't installed in the coverage workflow
-  K_SOUP_COV_MIN_BRANCH: 90
-  K_SOUP_COV_MIN_LINE: 95
+  K_SOUP_COV_MIN_BRANCH: 92
+  K_SOUP_COV_MIN_LINE: 100
   K_SOUP_COV_VERBOSE: true
   K_SOUP_COV_FORMATTERS: "html,xml,rcov,lcov,json,tty"
   K_SOUP_COV_MULTI_FORMATTERS: true
