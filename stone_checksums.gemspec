@@ -23,14 +23,19 @@ Gem::Specification.new do |spec|
   spec.authors = ["Peter H. Boling"]
   spec.email = ["floss@galtzo.com"]
 
-  spec.summary = "🍲 A kettle-rb meta tool to streamline development and testing"
-  spec.description = "🍲 Kettle::Dev is a meta tool from kettle-rb to streamline development and testing. " \
-    "Acts as a shim dependency, pulling in many other dependencies, to give you OOTB productivity with a RubyGem, or Ruby app project. " \
-    "Configures a complete set of Rake tasks, for all the libraries is brings in, so they arrive ready to go. " \
-    "Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev"
-  spec.homepage = "https://github.com/galtzo-floss/kettle-dev"
+  spec.summary = "🗿 Generate both SHA256 & SHA512 checksums of RubyGem libraries"
+  spec.description = <<~DESCRIPTION.rstrip
+    🗿 Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.
+      gem install stone_checksums
+    Then, use the rake task or the script:
+      rake build:generate_checksums
+      gem_checksums
+    Control options with ENV variables!
+    Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev
+  DESCRIPTION
+  spec.homepage = "https://github.com/galtzo-floss/stone_checksums"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.3.0"
+  spec.required_ruby_version = ">= 2.2.0"
 
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]

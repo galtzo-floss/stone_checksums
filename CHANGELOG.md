@@ -24,6 +24,18 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 ### Security
 
+## [1.0.2] - 2025-08-26
+- TAG: [v1.0.2][1.0.2t]
+- COVERAGE: 100.00% -- 97/97 lines in 6 files
+- BRANCH COVERAGE: 92.86% -- 26/28 branches in 6 files
+- 68.42% documented
+### Fixed
+- gemspec details that got mangled in the switch from gem_checksums.gemspec to stone_checksums.gemspec
+  - spec.required_ruby_version (accidentally bumped from 2.2 to 2.3)
+  - spec.summary
+  - spec.description
+  - spec.homepage
+
 ## [1.0.1] - 2025-08-26
 - TAG: [v1.0.1][1.0.1t]
 - COVERAGE: 100.00% -- 97/97 lines in 6 files
