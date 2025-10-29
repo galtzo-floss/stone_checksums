@@ -44,22 +44,22 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
             skip_for(ruby: "2.3", engine: "ruby", reason: "output matcher doesn't work here")
             skip_for(ruby: Range.new("3.1", "3.2"), engine: "truffleruby", reason: "output matcher doesn't work here")
             dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] || "banana_checksums"
-            expected_output = <<~CHECKSUMS_OUTPUT
-              [ stone_checksums #{StoneChecksums::Version::VERSION} ]
-              Looking for: "spec/support/fixtures/*.gem"
-              Found: 1 gems; latest is gem_checksums-1.0.0.gem
-              [ GEM: gem_checksums-1.0.0.gem ]
-              [ VERSION: 1.0.0 ]
-              [ GEM PKG LOCATION: spec/support/fixtures/gem_checksums-1.0.0.gem ]
-              [ CHECKSUM SHA-256: 8e35e0a7cae7fab47c0b7e3d3e81d38294151138bcfcfe8d4aa2e971ff302339 ]
-              [ CHECKSUM SHA-512: 8b18f8422f22a5a3b301deeaeb8b4e669dfc8033a63c1b5fbfc787af59f60e9df7f920ae2c48ede27ef7d09f0b025f63fc2474a842d54d8f148b266eac4bfa94 ]
-              [ CHECKSUM SHA-256 PATH: #{dir}/gem_checksums-1.0.0.gem.sha256 ]
-              [ CHECKSUM SHA-512 PATH: #{dir}/gem_checksums-1.0.0.gem.sha512 ]
-            
-              ... Running ...
-            
-              git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
-            
+            expected_output = <<-CHECKSUMS_OUTPUT
+[ stone_checksums #{StoneChecksums::Version::VERSION} ]
+Looking for: "spec/support/fixtures/*.gem"
+Found: 1 gems; latest is gem_checksums-1.0.0.gem
+[ GEM: gem_checksums-1.0.0.gem ]
+[ VERSION: 1.0.0 ]
+[ GEM PKG LOCATION: spec/support/fixtures/gem_checksums-1.0.0.gem ]
+[ CHECKSUM SHA-256: 8e35e0a7cae7fab47c0b7e3d3e81d38294151138bcfcfe8d4aa2e971ff302339 ]
+[ CHECKSUM SHA-512: 8b18f8422f22a5a3b301deeaeb8b4e669dfc8033a63c1b5fbfc787af59f60e9df7f920ae2c48ede27ef7d09f0b025f63fc2474a842d54d8f148b266eac4bfa94 ]
+[ CHECKSUM SHA-256 PATH: #{dir}/gem_checksums-1.0.0.gem.sha256 ]
+[ CHECKSUM SHA-512 PATH: #{dir}/gem_checksums-1.0.0.gem.sha512 ]
+
+... Running ...
+
+git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
+
             CHECKSUMS_OUTPUT
 
             normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
@@ -89,22 +89,22 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
           skip_for(ruby: "2.3", engine: "ruby", reason: "output matcher doesn't work here")
           skip_for(ruby: Range.new("3.1", "3.2"), engine: "truffleruby", reason: "output matcher doesn't work here")
           dir = ENV["GEM_CHECKSUMS_CHECKSUMS_DIR"] || "banana_checksums"
-          expected_output = <<~CHECKSUMS_OUTPUT
-            [ stone_checksums #{StoneChecksums::Version::VERSION} ]
-            Looking for: "spec/support/fixtures/gem_checksums-1.0.0.gem"
-            Found: ["spec/support/fixtures/gem_checksums-1.0.0.gem"]
-            [ GEM: gem_checksums-1.0.0.gem ]
-            [ VERSION: 1.0.0 ]
-            [ GEM PKG LOCATION: spec/support/fixtures/gem_checksums-1.0.0.gem ]
-            [ CHECKSUM SHA-256: 8e35e0a7cae7fab47c0b7e3d3e81d38294151138bcfcfe8d4aa2e971ff302339 ]
-            [ CHECKSUM SHA-512: 8b18f8422f22a5a3b301deeaeb8b4e669dfc8033a63c1b5fbfc787af59f60e9df7f920ae2c48ede27ef7d09f0b025f63fc2474a842d54d8f148b266eac4bfa94 ]
-            [ CHECKSUM SHA-256 PATH: #{dir}/gem_checksums-1.0.0.gem.sha256 ]
-            [ CHECKSUM SHA-512 PATH: #{dir}/gem_checksums-1.0.0.gem.sha512 ]
-            
-            ... Running ...
-            
-            git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
-            
+          expected_output = <<-CHECKSUMS_OUTPUT
+[ stone_checksums #{StoneChecksums::Version::VERSION} ]
+Looking for: "spec/support/fixtures/gem_checksums-1.0.0.gem"
+Found: ["spec/support/fixtures/gem_checksums-1.0.0.gem"]
+[ GEM: gem_checksums-1.0.0.gem ]
+[ VERSION: 1.0.0 ]
+[ GEM PKG LOCATION: spec/support/fixtures/gem_checksums-1.0.0.gem ]
+[ CHECKSUM SHA-256: 8e35e0a7cae7fab47c0b7e3d3e81d38294151138bcfcfe8d4aa2e971ff302339 ]
+[ CHECKSUM SHA-512: 8b18f8422f22a5a3b301deeaeb8b4e669dfc8033a63c1b5fbfc787af59f60e9df7f920ae2c48ede27ef7d09f0b025f63fc2474a842d54d8f148b266eac4bfa94 ]
+[ CHECKSUM SHA-256 PATH: #{dir}/gem_checksums-1.0.0.gem.sha256 ]
+[ CHECKSUM SHA-512 PATH: #{dir}/gem_checksums-1.0.0.gem.sha512 ]
+
+... Running ...
+
+git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
+
           CHECKSUMS_OUTPUT
 
           normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
