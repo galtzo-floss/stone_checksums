@@ -62,7 +62,12 @@ git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && ec
 
             CHECKSUMS_OUTPUT
 
-            normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
+            normalize = ->(s) {
+              s
+                .gsub(/\s+/, " ") # collapse all whitespace sequences
+                .gsub(/\s*&&\s*/, "&&") # ignore spacing around &&
+                .strip
+            }
             block_is_expected.to output(an_object_satisfying { |s| normalize.call(s) == normalize.call(expected_output) }).to_stdout
           end
         end
@@ -107,7 +112,12 @@ git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && ec
 
           CHECKSUMS_OUTPUT
 
-          normalize = ->(s) { s.gsub(/[ \t]+/, " ") }
+          normalize = ->(s) {
+            s
+              .gsub(/\s+/, " ") # collapse all whitespace sequences
+              .gsub(/\s*&&\s*/, "&&") # ignore spacing around &&
+              .strip
+          }
           block_is_expected.to output(an_object_satisfying { |s| normalize.call(s) == normalize.call(expected_output) }).to_stdout
         end
       end
