@@ -24,22 +24,20 @@ Gem::Specification.new do |spec|
   spec.email = ["floss@galtzo.com"]
 
   spec.summary = "🗿 Generate both SHA256 & SHA512 checksums of RubyGem libraries"
-  spec.description = <<~DESCRIPTION.rstrip
-    🗿 Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.
-      gem install stone_checksums
-    Then, use the rake task or the script:
-      rake build:generate_checksums
-      gem_checksums
-    Control options with ENV variables!
-    Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev
-  DESCRIPTION
+  spec.description = "🗿 Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.
+  gem install stone_checksums
+Then, use the rake task or the script:
+  rake build:generate_checksums
+  gem_checksums
+Control options with ENV variables!
+Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev"
   spec.homepage = "https://github.com/galtzo-floss/stone_checksums"
-  spec.license = "MIT"
+  spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 2.2.0"
 
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]
-  # Ref: https://gitlab.com/oauth-xx/version_gem/-/issues/3
+  # Ref: https://gitlab.com/ruby-oauth/version_gem/-/issues/3
   # Hence, only enable signing if `SKIP_GEM_SIGNING` is not set in ENV.
   # See CONTRIBUTING.md
   unless ENV.include?("SKIP_GEM_SIGNING")
@@ -66,22 +64,28 @@ Gem::Specification.new do |spec|
   spec.metadata["discord_uri"] = "https://discord.gg/3qme4XHNKN"
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  # Specify which files should be added to the gem when it is released.
+  # Specify which files are part of the released package.
   spec.files = Dir[
     # Executables and tasks
+    "exe/*",
     "lib/**/*.rb",
-    "lib/gem_checksums/rakelib/*.rake",
+    "lib/**/*.rake",
     # Signatures
     "sig/**/*.rbs",
   ]
+
   # Automatically included with gem package, no need to list again in files.
   spec.extra_rdoc_files = Dir[
     # Files (alphabetical)
     "CHANGELOG.md",
+    "CITATION.cff",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
+    "FUNDING.md",
     "LICENSE.txt",
     "README.md",
+    "REEK",
+    "RUBOCOP.md",
     "SECURITY.md",
   ]
   spec.rdoc_options += [
@@ -89,29 +93,26 @@ Gem::Specification.new do |spec|
     "#{spec.name} - #{spec.summary}",
     "--main",
     "README.md",
+    "--exclude",
+    "^sig/",
     "--line-numbers",
     "--inline-source",
     "--quiet",
   ]
-
-  # bin/ is scripts, in any available language, for development of this specific gem
-  # exe/ is for ruby scripts that will ship with this gem to be used by other tools
-  spec.bindir = "exe"
-  spec.executables = %w[
-    gem_checksums
-  ]
   spec.require_paths = ["lib"]
+  spec.bindir = "exe"
+  # Listed files are the relative paths from bindir above.
+  spec.executables = ["gem_checksums"]
 
   # Utilities
-  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.8")              # ruby >= 2.2.0
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
-  #       visibility and discoverability on RubyGems.org.
+  #       visibility and discoverability.
   #       However, development dependencies in gemspec will install on
   #       all versions of Ruby that will run in CI.
-  #       This gem, and its runtime dependencies, will install on Ruby down to 1.8.7.
-  #       This gem, and its development dependencies, will install on Ruby down to 2.3.x.
-  #       This is because in CI easy installation of Ruby, via setup-ruby, is for >= 2.3.
+  #       This gem, and its gemspec runtime dependencies, will install on Ruby down to 2.2.0.
+  #       This gem, and its gemspec development dependencies, will install on Ruby down to 2.3.
   #       Thus, dev dependencies in gemspec must have
   #
   #       required_ruby_version ">= 2.3" (or lower)
@@ -119,12 +120,41 @@ Gem::Specification.new do |spec|
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
-  # Development & Testing Tasks
-  spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.39")        # ruby >= 2.3
+  # Dev, Test, & Release Tasks
+  spec.add_development_dependency("kettle-dev", "~> 1.1")                           # ruby >= 2.3.0
 
-  # Linting - rubocop-lts v8 is a rubocop wrapper for Ruby >= 2.2,
-  #   and should only be bumped when dropping old Ruby support
-  # NOTE: it can only be installed on, and run on Ruby >= 2.7, so we add the dependency in the Gemfile.
-  # see: https://rubocop-lts.gitlab.io
-  # spec.add_development_dependency 'rubocop-lts', ['~> 8.1', '>= 8.1.1']
+  # Security
+  spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
+
+  # Tasks
+  spec.add_development_dependency("rake", "~> 13.0")                                # ruby >= 2.2.0
+
+  # Debugging
+  spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
+
+  # Testing
+  spec.add_development_dependency("appraisal2", "~> 3.0")                           # ruby >= 1.8.7, for testing against multiple versions of dependencies
+  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.6")              # ruby >= 2.3
+
+  # Releasing
+  spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
+
+  # Git integration (optional)
+  # The 'git' gem is optional; stone_checksums falls back to shelling out to `git` if it is not present.
+  # The current release of the git gem depends on activesupport, which makes it too heavy to depend on directly
+  # spec.add_dependency("git", ">= 1.19.1")                               # ruby >= 2.3
+
+  # Development tasks
+  # The cake is a lie. erb v2.2, the oldest release, was never compatible with Ruby 2.3.
+  # This means we have no choice but to use the erb that shipped with Ruby 2.3
+  # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
+  # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
+  spec.add_development_dependency("gitmoji-regex", "~> 1.0", ">= 1.0.3")            # ruby >= 2.3.0
+
+  # HTTP recording for deterministic specs
+  # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
+  # This is done in the "head" appraisal.
+  # See: https://github.com/vcr/vcr/issues/1057
+  # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
+  # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
 end

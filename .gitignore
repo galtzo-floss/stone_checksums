@@ -4,6 +4,7 @@
 *.gem
 
 # Bundler
+/vendor/bundle/
 /.bundle/
 /gemfiles/*.lock
 /gemfiles/.bundle/
@@ -16,6 +17,7 @@ Appraisal.*.gemfile.lock
 /coverage/
 /spec/reports/
 /results/
+.output.txt
 
 # Documentation
 /.yardoc/

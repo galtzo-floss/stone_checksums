@@ -17,19 +17,28 @@ Please file a bug if you notice a violation of semantic versioning.
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
 
 ## [Unreleased]
+
 ### Added
+
 ### Changed
+
 ### Deprecated
+
 ### Removed
+
 ### Fixed
+
 ### Security
 
 ## [1.0.2] - 2025-08-26
+
 - TAG: [v1.0.2][1.0.2t]
 - COVERAGE: 100.00% -- 97/97 lines in 6 files
 - BRANCH COVERAGE: 92.86% -- 26/28 branches in 6 files
 - 68.42% documented
+
 ### Fixed
+
 - gemspec details that got mangled in the switch from gem_checksums.gemspec to stone_checksums.gemspec
   - spec.required_ruby_version (accidentally bumped from 2.2 to 2.3)
   - spec.summary
@@ -37,30 +46,42 @@ Please file a bug if you notice a violation of semantic versioning.
   - spec.homepage
 
 ## [1.0.1] - 2025-08-26
+
 - TAG: [v1.0.1][1.0.1t]
 - COVERAGE: 100.00% -- 97/97 lines in 6 files
 - BRANCH COVERAGE: 92.86% -- 26/28 branches in 6 files
 - 68.42% documented
+
 ### Added
+
 - Added proper namespace: StoneChecksums
   - Namespace now matches gem name according to RubyGems convention
   - Old Namespace, GemChecksums, will be dropped in next major version
+
 ### Changed
+
 - Improve error help text on old bundler, recommend upgrading
+
 ### Fixed
+
 - Support for bundler >= v2.7, which no longer relies on SOURCE_DATE_EPOCH
   - NOTE: Bundler v2.7+ defaults to a constant build date in 1980 to make all builds reproducible.
+
 ### Documentation
+
 - Updated README with checksum usage, Bundler version guidance, and env vars.
 - Added YARD docstrings for public APIs.
 - Expanded RBS signatures for public constants and methods.
 
 ## [1.0.0] - 2025-02-23
+
 - TAG: [v1.0.0][1.0.0t]
 - COVERAGE: 98.67% -- 74/75 lines in 5 files
 - BRANCH COVERAGE: 79.17% -- 19/24 branches in 5 files
 - 38.46% documented
+
 ### Added
+
 - Initial release
 
 [Unreleased]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.2...HEAD

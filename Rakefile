@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# kettle-dev Rakefile v1.0.0 - 2025-08-23
+# kettle-dev Rakefile v1.1.41 - 2025-10-28
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # MIT License (see License.txt)
@@ -15,14 +15,10 @@
 # rake bench                                  # Run all benchmarks (alias for bench:run)
 # rake bench:list                             # List available benchmark scripts
 # rake bench:run                              # Run all benchmark scripts (skips on CI)
-# rake build                                  # Build kettle-dev-1.0.0.gem into the pkg d...
-# rake build:checksum                         # Generate SHA512 checksum of kettle-dev-1....
 # rake build:generate_checksums               # Generate both SHA256 & SHA512 checksums i...
 # rake bundle:audit:check                     # Checks the Gemfile.lock for insecure depe...
 # rake bundle:audit:update                    # Updates the bundler-audit vulnerability d...
 # rake ci:act[opt]                            # Run 'act' with a selected workflow
-# rake clean                                  # Remove any temporary products
-# rake clobber                                # Remove any generated files
 # rake coverage                               # Run specs w/ coverage and open results in...
 # rake default                                # Default tasks aggregator
 # rake install                                # Build and install kettle-dev-1.0.0.gem in...
@@ -47,7 +43,6 @@
 # rake yard                                   # Generate YARD Documentation
 #
 
-# External gems
 require "bundler/gem_tasks" if !Dir[File.join(__dir__, "*.gemspec")].empty?
 
 # Define a base default task early so other files can enhance it.
@@ -56,33 +51,16 @@ task :default do
   puts "Default task complete."
 end
 
-# Detect if the invoked task is spec/test to avoid eagerly requiring the library,
-# which would load code before SimpleCov can start (when running `rake spec`).
-invoked_tasks = Rake.application.top_level_tasks
-running_specs = invoked_tasks.any? { |t| t == "spec" || t == "test" || t == "coverage" }
+# External gems that define tasks - add here!
+require "kettle/dev"
 
-if running_specs
-  # Define minimal rspec tasks locally to keep coverage accurate
-  begin
-    require "rspec/core/rake_task"
-    desc("Run RSpec code examples")
-    RSpec::Core::RakeTask.new(:spec)
-    desc("Run tests")
-    task(test: :spec)
-  rescue LoadError
-    # If rspec isn't available, let it fail when the task is invoked
-  end
-else
-  require "kettle-dev"
-
-  ### RELEASE TASKS
-  # Setup stone_checksums
-  begin
-    require "stone_checksums"
-  rescue LoadError
-    desc("(stub) build:generate_checksums is unavailable")
-    task("build:generate_checksums") do
-      warn("NOTE: stone_checksums isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
-    end
+### RELEASE TASKS
+# Setup stone_checksums
+begin
+  require "stone_checksums"
+rescue LoadError
+  desc("(stub) build:generate_checksums is unavailable")
+  task("build:generate_checksums") do
+    warn("NOTE: stone_checksums isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
   end
 end
