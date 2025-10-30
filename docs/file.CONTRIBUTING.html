@@ -59,13 +59,13 @@
 
       <div id="content"><div id='filecontents'><h1 id="contributing">Contributing</h1>
 
-<p>Bug reports and pull requests are welcome on GitHub, CodeBerg, or <a href="https://gitlab.com/galtzo-floss/stone_checksums">GitLab</a>.<br>
+<p>Bug reports and pull requests are welcome on <a href="https://codeberg.org/galtzo-floss/stone_checksums">CodeBerg</a>, <a href="https://gitlab.com/galtzo-floss/stone_checksums/">GitLab</a>, or <a href="https://github.com/galtzo-floss/stone_checksums">GitHub</a>.<br>
 This project should be a safe, welcoming space for collaboration, so contributors agree to adhere to<br>
 the <a href="https://gitlab.com/galtzo-floss/stone_checksums/-/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 
 <p>To submit a patch, please fork the project, create a patch with tests, and send a pull request.</p>
 
-<p>Remember to <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat" alt="Keep A Changelog"></a>.</p>
+<p>Remember to <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat" alt="Keep A Changelog"></a> if you make changes.</p>
 
 <h2 id="help-out">Help out!</h2>
 
@@ -82,6 +82,27 @@ the <a href="https://gitlab.com/galtzo-floss/stone_checksums/-/blob/main/CODE_OF
   <li>Make sure to add tests for it. This is important, so it doesn’t break in a future release.</li>
   <li>Create new Pull Request.</li>
 </ol>
+
+<h2 id="executables-vs-rake-tasks">Executables vs Rake tasks</h2>
+
+<p>Executables shipped by dependencies, such as stone_checksums, and stone_checksums, are available<br>
+after running <code>bin/setup</code>. These include:</p>
+
+<ul>
+  <li>gem_checksums</li>
+  <li>kettle-changelog</li>
+  <li>kettle-commit-msg</li>
+  <li>stone_checksums-setup</li>
+  <li>kettle-dvcs</li>
+  <li>kettle-pre-release</li>
+  <li>kettle-readme-backers</li>
+  <li>kettle-release</li>
+</ul>
+
+<p>There are many Rake tasks available as well. You can see them by running:</p>
+
+<pre class="code language-shell"><code class="language-shell">bin/rake -T
+</code></pre>
 
 <h2 id="environment-variables-for-local-development">Environment Variables for Local Development</h2>
 
@@ -131,13 +152,13 @@ Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_
 
 <h2 id="appraisals">Appraisals</h2>
 
-<p>From time to time the Appraisal2 gemfiles in <code>gemfiles/</code> will need to be updated.<br>
+<p>From time to time the <a href="https://github.com/appraisal-rb/appraisal2">appraisal2</a> gemfiles in <code>gemfiles/</code> will need to be updated.<br>
 They are created and updated with the commands:</p>
 
 <pre class="code language-console"><code class="language-console">bin/rake appraisal:update
 </code></pre>
 
-<p>When adding an appraisal to CI check the <a href="https://github.com/ruby/ruby-builder/releases/tag/toolcache">runner tool cache</a> to see which runner to use.</p>
+<p>When adding an appraisal to CI, check the <a href="https://github.com/ruby/ruby-builder/releases/tag/toolcache">runner tool cache</a> to see which runner to use.</p>
 
 <h2 id="the-reek-list">The Reek List</h2>
 
@@ -158,9 +179,10 @@ They are created and updated with the commands:</p>
 <h3 id="spec-organization-required">Spec organization (required)</h3>
 
 <ul>
-  <li>For each class or module under <code>lib/</code>, keep all of its unit tests in a single spec file under <code>spec/</code> that mirrors the path and file name (e.g., specs for <code>lib/kettle/dev/release_cli.rb</code> live in <code>spec/kettle/dev/release_cli_spec.rb</code>).</li>
-  <li>Do not create ad-hoc “_more” or split spec files for the same class/module. Consolidate all unit tests into the main spec file for that class/module.</li>
-  <li>Only integration scenarios that intentionally span multiple classes belong in <code>spec/integration/</code>.</li>
+  <li>One spec file per class/module. For each class or module under <code>lib/</code>, keep all of its unit tests in a single spec file under <code>spec/</code> that mirrors the path and file name exactly: <code>lib/stone_checksums/release_cli.rb</code> -&gt; <code>spec/stone_checksums/release_cli_spec.rb</code>.</li>
+  <li>Never add a second spec file for the same class/module. Examples of disallowed names: <code>*_more_spec.rb</code>, <code>*_extra_spec.rb</code>, <code>*_status_spec.rb</code>, or any other suffix that still targets the same class. If you find yourself wanting a second file, merge those examples into the canonical spec file for that class/module.</li>
+  <li>Exception: Integration specs that intentionally span multiple classes. Place these under <code>spec/integration/</code> (or a clearly named integration folder), and do not directly mirror a single class. Name them after the scenario, not a class.</li>
+  <li>Migration note: If a duplicate spec file exists, move all examples into the canonical file and delete the duplicate. Do not leave stubs or empty files behind.</li>
 </ul>
 
 <h2 id="lint-it">Lint It</h2>
@@ -183,7 +205,7 @@ They are created and updated with the commands:</p>
 
 <ul>
   <li>Prefer configuration-based exclusions when a rule should not apply to certain paths or files (e.g., via <code>.rubocop.yml</code>).</li>
-  <li>When a violation is temporary and you plan to fix it later, record it in <code>.rubocop_gradual.lock</code> using the gradual workflow:
+  <li>When a violation is temporary, and you plan to fix it later, record it in <code>.rubocop_gradual.lock</code> using the gradual workflow:
     <ul>
       <li>
 <code>bundle exec rake rubocop_gradual:autocorrect</code> (preferred)</li>
@@ -209,19 +231,23 @@ They are created and updated with the commands:</p>
 
 <h3 id="one-time-per-maintainer-setup">One-time, Per-maintainer, Setup</h3>
 
-<p><strong>IMPORTANT</strong>: If you want to sign the build you create,<br>
-your public key for signing gems will need to be picked up by the line in the<br>
+<p><strong>IMPORTANT</strong>: To sign a build,<br>
+a public key for signing gems will need to be picked up by the line in the<br>
 <code>gemspec</code> defining the <code>spec.cert_chain</code> (check the relevant ENV variables there).<br>
-All releases to RubyGems.org will be signed.<br>
+All releases are signed releases.<br>
 See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Security Guide</a></p>
 
-<p>NOTE: To build without signing the gem you must set <code>SKIP_GEM_SIGNING</code> to some value in your environment.</p>
+<p>NOTE: To build without signing the gem set <code>SKIP_GEM_SIGNING</code> to any value in the environment.</p>
 
 <h3 id="to-release-a-new-version">To release a new version:</h3>
 
 <h4 id="automated-process">Automated process</h4>
 
-<p>Run <code>kettle-release</code>.</p>
+<ol>
+  <li>Update version.rb to contain the correct version-to-be-released.</li>
+  <li>Run <code>bundle exec kettle-changelog</code>.</li>
+  <li>Run <code>bundle exec kettle-release</code>.</li>
+</ol>
 
 <h4 id="manual-process">Manual process</h4>
 
@@ -267,16 +293,15 @@ to create SHA-256 and SHA-512 checksums. This functionality is provided by the <
     </ul>
   </li>
   <li>Run <code>bundle exec rake release</code> which will create a git tag for the version,<br>
-push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>
-</li>
+push git commits and tags, and push the <code>.gem</code> file to the gem host configured in the gemspec.</li>
 </ol>
 
 </div></div>
 
       <div id="footer">
-  Generated on Tue Aug 26 18:13:34 2025 by
+  Generated on Wed Oct 29 23:54:40 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.37 (ruby-3.4.7).
 </div>
 
     </div>

@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- documentation
+
 ### Security
 
 ## [1.0.2] - 2025-08-26

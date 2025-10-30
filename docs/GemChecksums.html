@@ -162,31 +162,31 @@ The positive lookahead ensures it is present, and prevents it from being capture
         <dt id="BUILD_TIME_WARNING-constant" class="">BUILD_TIME_WARNING =
           
         </dt>
-        <dd><pre class="code"><span class='heredoc_beg'>&lt;&lt;~BUILD_TIME_WARNING</span>
-<span class='tstring_content'>  WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
-</span><span class='tstring_content'>           When using Bundler &lt; 2.7.0, you must set SOURCE_DATE_EPOCH *before* building
-</span><span class='tstring_content'>           the gem to ensure consistent SHA-256 &amp; SHA-512 checksums.
-</span><span class='tstring_content'>  
-</span><span class='tstring_content'>  PREFERRED: Upgrade to Bundler &gt;= 2.7.0, which uses a constant timestamp for gem builds,
-</span><span class='tstring_content'>             making SOURCE_DATE_EPOCH unnecessary for reproducible checksums.
-</span><span class='tstring_content'>  
-</span><span class='tstring_content'>  IMPORTANT: If you choose to set the build time via SOURCE_DATE_EPOCH,
-</span><span class='tstring_content'>             you must re-build the gem, i.e. `bundle exec rake build` or `gem build`.
-</span><span class='tstring_content'>  
-</span><span class='tstring_content'>  How to set the build time (only needed for Bundler &lt; 2.7.0):
-</span><span class='tstring_content'>  
-</span><span class='tstring_content'>  In zsh shell:
-</span><span class='tstring_content'>    - export SOURCE_DATE_EPOCH=$EPOCHSECONDS &amp;&amp; echo $SOURCE_DATE_EPOCH
-</span><span class='tstring_content'>    - If the echo above has no output, then it didn&#39;t work.
-</span><span class='tstring_content'>    - Note that you&#39;ll need the `zsh/datetime` module enabled.
-</span><span class='tstring_content'>  
-</span><span class='tstring_content'>  In fish shell:
-</span><span class='tstring_content'>    - set -x SOURCE_DATE_EPOCH (date +%s)
-</span><span class='tstring_content'>    - echo $SOURCE_DATE_EPOCH
-</span><span class='tstring_content'>  
-</span><span class='tstring_content'>  In bash shell:
-</span><span class='tstring_content'>    - export SOURCE_DATE_EPOCH=$(date +%s) &amp;&amp; echo $SOURCE_DATE_EPOCH
-</span><span class='tstring_content'>  
+        <dd><pre class="code"><span class='heredoc_beg'>&lt;&lt;-BUILD_TIME_WARNING</span>
+<span class='tstring_content'>WARNING: Build time not provided via environment variable SOURCE_DATE_EPOCH.
+When using Bundler &lt; 2.7.0, you must set SOURCE_DATE_EPOCH *before* building
+the gem to ensure consistent SHA-256 &amp; SHA-512 checksums.
+
+PREFERRED: Upgrade to Bundler &gt;= 2.7.0, which uses a constant timestamp for gem builds,
+         making SOURCE_DATE_EPOCH unnecessary for reproducible checksums.
+
+IMPORTANT: If you choose to set the build time via SOURCE_DATE_EPOCH,
+         you must re-build the gem, i.e. `bundle exec rake build` or `gem build`.
+
+How to set the build time (only needed for Bundler &lt; 2.7.0):
+
+In zsh shell:
+- export SOURCE_DATE_EPOCH=$EPOCHSECONDS &amp;&amp; echo $SOURCE_DATE_EPOCH
+- If the echo above has no output, then it didn&#39;t work.
+- Note that you&#39;ll need the `zsh/datetime` module enabled.
+
+In fish shell:
+- set -x SOURCE_DATE_EPOCH (date +%s)
+- echo $SOURCE_DATE_EPOCH
+
+In bash shell:
+- export SOURCE_DATE_EPOCH=$(date +%s) &amp;&amp; echo $SOURCE_DATE_EPOCH
+
 </span><span class='heredoc_end'>BUILD_TIME_WARNING</span></pre></dd>
       
     </dl>
@@ -484,11 +484,11 @@ is performed, and temporary files are cleaned up.</p>
 
     <span class='kw'>unless</span> <span class='id identifier rubyid_proceed'>proceed</span>
       <span class='comment'># Non-interactive prompt: advise and abort
-</span>      <span class='id identifier rubyid_prompt_msg'>prompt_msg</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~PROMPT</span>
-<span class='tstring_content'>        Detected Bundler </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bundler_ver'>bundler_ver</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(unknown)</span><span class='tstring_end'>&quot;</span></span><span class='embexpr_end'>}</span><span class='tstring_content'> which is older than 2.7.0.
-</span><span class='tstring_content'>        For reproducible builds without SOURCE_DATE_EPOCH, please update Bundler to &gt;= 2.7.0.
-</span><span class='tstring_content'>        If you still want to proceed with this older Bundler, you must set SOURCE_DATE_EPOCH and re-run.
-</span><span class='tstring_content'>        Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requires SOURCE_DATE_EPOCH).
+</span>      <span class='id identifier rubyid_prompt_msg'>prompt_msg</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;-PROMPT</span>
+<span class='tstring_content'>Detected Bundler </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bundler_ver'>bundler_ver</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(unknown)</span><span class='tstring_end'>&quot;</span></span><span class='embexpr_end'>}</span><span class='tstring_content'> which is older than 2.7.0.
+For reproducible builds without SOURCE_DATE_EPOCH, please update Bundler to &gt;= 2.7.0.
+If you still want to proceed with this older Bundler, you must set SOURCE_DATE_EPOCH and re-run.
+Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requires SOURCE_DATE_EPOCH).
 </span><span class='heredoc_end'>      PROMPT
 </span>      <span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='id identifier rubyid_prompt_msg'>prompt_msg</span><span class='rparen'>)</span>
       <span class='comment'># Continue to enforce SOURCE_DATE_EPOCH below; if not set, this will raise.
@@ -550,34 +550,34 @@ is performed, and temporary files are cleaned up.</p>
 
   <span class='id identifier rubyid_version'>version</span> <span class='op'>=</span> <span class='id identifier rubyid_gem_name'>gem_name</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#VERSION_REGEX-constant" title="GemChecksums::VERSION_REGEX (constant)">VERSION_REGEX</a></span></span><span class='rbracket'>]</span>
 
-  <span class='id identifier rubyid_git_cmd'>git_cmd</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~GIT_MSG</span><span class='period'>.</span><span class='id identifier rubyid_rstrip'>rstrip</span>
-<span class='tstring_content'>    git add </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#CHECKSUMS_DIR-constant" title="GemChecksums::CHECKSUMS_DIR (constant)">CHECKSUMS_DIR</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>/* &amp;&amp; \
-</span><span class='tstring_content'>    git commit </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_git_dry_run_flag'>git_dry_run_flag</span><span class='embexpr_end'>}</span><span class='tstring_content'> -m &quot;🔒️ Checksums for v</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;
+  <span class='id identifier rubyid_git_cmd'>git_cmd</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;-GIT_MSG</span><span class='period'>.</span><span class='id identifier rubyid_rstrip'>rstrip</span>
+<span class='tstring_content'>git add </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#CHECKSUMS_DIR-constant" title="GemChecksums::CHECKSUMS_DIR (constant)">CHECKSUMS_DIR</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>/* &amp;&amp; \
+</span><span class='tstring_content'>git commit </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_git_dry_run_flag'>git_dry_run_flag</span><span class='embexpr_end'>}</span><span class='tstring_content'> -m &quot;🔒️ Checksums for v</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;
 </span><span class='heredoc_end'>  GIT_MSG
 </span>
   <span class='kw'>if</span> <span class='id identifier rubyid_git_dry_run_flag'>git_dry_run_flag</span>
-    <span class='id identifier rubyid_git_cmd'>git_cmd</span> <span class='op'>+=</span> <span class='heredoc_beg'>&lt;&lt;~CLEANUP_MSG</span>
-<span class='tstring_content'>       &amp;&amp; \
-</span><span class='tstring_content'>      echo &quot;Cleaning up in dry run mode&quot; &amp;&amp; \
-</span><span class='tstring_content'>      git reset </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit_path'>digest512_64bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> &amp;&amp; \
-</span><span class='tstring_content'>      git reset </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit_path'>digest256_32bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> &amp;&amp; \
-</span><span class='tstring_content'>      rm -f </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit_path'>digest512_64bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> &amp;&amp; \
-</span><span class='tstring_content'>      rm -f </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit_path'>digest256_32bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+    <span class='id identifier rubyid_git_cmd'>git_cmd</span> <span class='op'>+=</span> <span class='heredoc_beg'>&lt;&lt;-CLEANUP_MSG</span>
+<span class='tstring_content'>&amp;&amp; \
+</span><span class='tstring_content'>echo &quot;Cleaning up in dry run mode&quot; &amp;&amp; \
+</span><span class='tstring_content'>git reset </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit_path'>digest512_64bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> &amp;&amp; \
+</span><span class='tstring_content'>git reset </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit_path'>digest256_32bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> &amp;&amp; \
+</span><span class='tstring_content'>rm -f </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit_path'>digest512_64bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> &amp;&amp; \
+</span><span class='tstring_content'>rm -f </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit_path'>digest256_32bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>
 </span><span class='heredoc_end'>    CLEANUP_MSG
 </span>  <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_puts'>puts</span> <span class='heredoc_beg'>&lt;&lt;~RESULTS</span>
-<span class='tstring_content'>    [ GEM: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
-</span><span class='tstring_content'>    [ VERSION: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
-</span><span class='tstring_content'>    [ GEM PKG LOCATION: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_pkg'>gem_pkg</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
-</span><span class='tstring_content'>    [ CHECKSUM SHA-256: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit'>digest256_32bit</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
-</span><span class='tstring_content'>    [ CHECKSUM SHA-512: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit'>digest512_64bit</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
-</span><span class='tstring_content'>    [ CHECKSUM SHA-256 PATH: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit_path'>digest256_32bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
-</span><span class='tstring_content'>    [ CHECKSUM SHA-512 PATH: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit_path'>digest512_64bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
-</span><span class='tstring_content'>    
-</span><span class='tstring_content'>    ... Running ...
-</span><span class='tstring_content'>    
-</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_git_cmd'>git_cmd</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='heredoc_beg'>&lt;&lt;-RESULTS</span>
+<span class='tstring_content'>[ GEM: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
+[ VERSION: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
+[ GEM PKG LOCATION: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_pkg'>gem_pkg</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
+[ CHECKSUM SHA-256: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit'>digest256_32bit</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
+[ CHECKSUM SHA-512: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit'>digest512_64bit</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
+[ CHECKSUM SHA-256 PATH: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest256_32bit_path'>digest256_32bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
+[ CHECKSUM SHA-512 PATH: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_digest512_64bit_path'>digest512_64bit_path</span><span class='embexpr_end'>}</span><span class='tstring_content'> ]
+
+... Running ...
+
+</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_git_cmd'>git_cmd</span><span class='embexpr_end'>}</span><span class='tstring_content'>
 </span><span class='heredoc_end'>  RESULTS
 </span>
   <span class='kw'>if</span> <span class='id identifier rubyid_git_dry_run_flag'>git_dry_run_flag</span>
@@ -643,9 +643,9 @@ is performed, and temporary files are cleaned up.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Aug 26 18:13:35 2025 by
+  Generated on Wed Oct 29 23:54:40 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.37 (ruby-3.4.7).
 </div>
 
     </div>
