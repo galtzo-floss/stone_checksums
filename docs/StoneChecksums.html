@@ -6,13 +6,13 @@
 <title>
   Module: StoneChecksums
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.44
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "StoneChecksums";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,8 +80,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/stone_checksums.rb<span class="defines">,<br />
+    <dd>lib/stone_checksums.rb<span class="defines">,<br>
   lib/stone_checksums/version.rb</span>
+
 </dd>
   </dl>
   
@@ -87,13 +90,31 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Semantic version for the StoneChecksums gem</p>
+    <p>Primary namespace of this library (shim over GemChecksums)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Load Rake tasks provided by the gem</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stone_checksums</span><span class='tstring_end'>&quot;</span></span>
+<span class='const'>StoneChecksums</span><span class='period'>.</span><span class='id identifier rubyid_install_tasks'><span class='object_link'><a href="#install_tasks-class_method" title="StoneChecksums.install_tasks (method)">install_tasks</a></span></span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Generate checksums for the newest built gem (dry run)</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'>StoneChecksums</span><span class='period'>.</span><span class='id identifier rubyid_generate'><span class='object_link'><a href="#generate-class_method" title="StoneChecksums.generate (method)">generate</a></span></span><span class='lparen'>(</span><span class='label'>git_dry_run:</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div><h2>Defined Under Namespace</h2>
 <p class="children">
@@ -107,6 +128,32 @@
     
   
 </p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Traditional Constant Location</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="StoneChecksums/Version.html" title="StoneChecksums::Version (module)">Version</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="StoneChecksums/Version.html#VERSION-constant" title="StoneChecksums::Version::VERSION (constant)">VERSION</a></span></span></pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -169,6 +216,7 @@
 
       
     </ul>
+    
   
 
 
@@ -226,12 +274,12 @@ GemChecksums.generate; this method delegates directly to it.</p>
       <pre class="lines">
 
 
-47
-48
-49</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/stone_checksums.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/stone_checksums.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='label'>git_dry_run:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='op'>::</span><span class='const'><span class='object_link'><a href="GemChecksums.html" title="GemChecksums (module)">GemChecksums</a></span></span><span class='period'>.</span><span class='id identifier rubyid_generate'><span class='object_link'><a href="GemChecksums.html#generate-class_method" title="GemChecksums.generate (method)">generate</a></span></span><span class='lparen'>(</span><span class='label'>git_dry_run:</span> <span class='id identifier rubyid_git_dry_run'>git_dry_run</span><span class='rparen'>)</span>
@@ -268,12 +316,12 @@ GemChecksums.generate; this method delegates directly to it.</p>
       <pre class="lines">
 
 
-36
-37
-38</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/stone_checksums.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/stone_checksums.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install_tasks'>install_tasks</span>
   <span class='op'>::</span><span class='const'><span class='object_link'><a href="GemChecksums.html" title="GemChecksums (module)">GemChecksums</a></span></span><span class='period'>.</span><span class='id identifier rubyid_install_tasks'><span class='object_link'><a href="GemChecksums.html#install_tasks-class_method" title="GemChecksums.install_tasks (method)">install_tasks</a></span></span>
@@ -288,9 +336,9 @@ GemChecksums.generate; this method delegates directly to it.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Oct 29 23:54:40 2025 by
+  Generated on Tue Jun 23 17:13:48 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.7).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>

@@ -52,6 +52,20 @@ RSpec.describe GemChecksums do
       end
     end
 
+    context "when the selected built gem does not match the current gemspec" do
+      before do
+        project_spec = instance_double(Gem::Specification, name: "gem_checksums", version: Gem::Version.new("0.9.0"))
+        allow(described_class).to receive(:current_project_spec).and_return(project_spec)
+      end
+
+      it "fails closed with a version mismatch error" do
+        expect { described_class.validate_project_package!("spec/support/fixtures/gem_checksums-1.0.0.gem") }.to raise_error(
+          GemChecksums::Error,
+          /Current gemspec resolves to gem_checksums 0\.9\.0, but selected package is gem_checksums 1\.0\.0/
+        )
+      end
+    end
+
     context "when prompt is shown for old Bundler without proceeding", :check_output do
       before do
         stub_env("SOURCE_DATE_EPOCH" => "")

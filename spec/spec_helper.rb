@@ -17,11 +17,16 @@ require_relative "support/shared_contexts/with_rake"
 
 # Last thing before loading this gem is to set up code coverage
 begin
-  # This does not require "simplecov", but
   require "kettle-soup-cover"
+  if Kettle::Soup::Cover::DO_COV
+    # Requiring simplecov loads the project-local `.simplecov`.
+    require "simplecov"
+    require "kettle/soup/cover/config"
+    SimpleCov.start
+  end
   #   this next line has a side effect of running `.simplecov`
-  require "simplecov" if defined?(Kettle) && Kettle::Soup::Cover::DO_COV
 rescue LoadError
+  # check the error message and re-raise when unexpected
   nil
 end
 
@@ -36,7 +41,7 @@ begin
   FileUtils.mkdir_p(dir)
   keep_path = File.join(dir, ".keep")
   File.write(keep_path, "") unless File.exist?(keep_path)
-rescue StandardError
+rescue
   # noop: directory creation failures will surface in individual specs if needed
 end
 
@@ -44,13 +49,21 @@ end
 require "stone_checksums"
 
 RSpec.configure do |config|
+  # Enable flags like --only-failures and --next-failure
+  config.example_status_persistence_file_path = ".rspec_status"
+
+  # Disable RSpec exposing methods globally on `Module` and `main`
+  config.disable_monkey_patching!
+
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
   config.before do
     # We must delete the package directory because the real gems built for release go there,
     #   which makes this spec flaky locally.
     # In order to delete it we must ensure it is empty first.
     pkg_dir = "pkg"
     Dir[File.join(pkg_dir, "*.gem")].each do |file|
-      puts "Deleting old gem #{file} to normalize specs"
       File.delete(file)
     end
     # This will fail if the directory is still not empty.

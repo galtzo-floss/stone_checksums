@@ -1,11 +1,8 @@
 module StoneChecksums
-  VERSION: String
-
   class Error < ::GemChecksums::Error
   end
 
   module Version
-    VERSION: String
   end
 
   def self.install_tasks: () -> void

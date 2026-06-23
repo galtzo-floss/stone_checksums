@@ -7,6 +7,8 @@
 #
 # RubyGems does not allow publishing a gem named `gem_checksums`,
 # hence the updated namespace and gem name.
+require "version_gem"
+
 require_relative "gem_checksums"
 
 # This library's version

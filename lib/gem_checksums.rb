@@ -3,6 +3,7 @@
 # Std lib
 require "digest/sha2"
 require "fileutils"
+require "rubygems/package"
 
 # external gems
 require "version_gem"
@@ -93,7 +94,7 @@ In bash shell:
     # Header: identify the gem and version being run
     begin
       puts "[ stone_checksums #{::StoneChecksums::Version::VERSION} ]"
-    rescue StandardError
+    rescue
       # If for any reason the version constant isn't available, skip header gracefully
     end
 
@@ -159,6 +160,8 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
       puts "Found: #{gems.length} gems; latest is #{gem_name}"
     end
 
+    validate_project_package!(gem_pkg)
+
     pkg_bits = File.read(gem_pkg)
 
     # SHA-512 digest is 8 64-bit words
@@ -205,7 +208,7 @@ rm -f #{digest256_32bit_path}
     RESULTS
 
     if git_dry_run_flag
-      %x{#{git_cmd}}
+      `#{git_cmd}`
     else
       # `exec` will replace the current process with the git process, and exit.
       # Within the generate method, Ruby code placed after the `exec` *will not be run*:
@@ -216,6 +219,37 @@ rm -f #{digest256_32bit_path}
     end
   end
   module_function :generate
+
+  def validate_project_package!(gem_pkg)
+    project_spec = current_project_spec
+    return unless project_spec
+    return unless validate_package_against_project?(gem_pkg, project_spec)
+
+    package_spec = Gem::Package.new(gem_pkg).spec
+    return if package_spec.name == project_spec.name && package_spec.version == project_spec.version
+
+    raise Error, [
+      "Built gem version mismatch for #{gem_pkg}.",
+      "Current gemspec resolves to #{project_spec.name} #{project_spec.version}, but selected package is #{package_spec.name} #{package_spec.version}.",
+      "Remove stale packages or pass the intended .gem path explicitly before generating checksums."
+    ].join("\n")
+  rescue Gem::Package::Error => error
+    raise Error, "Unable to inspect built gem #{gem_pkg}: #{error.message}"
+  end
+  module_function :validate_project_package!
+
+  def current_project_spec
+    gemspecs = Dir["*.gemspec"]
+    return unless gemspecs.length == 1
+
+    Gem::Specification.load(gemspecs.first)
+  end
+  module_function :current_project_spec
+
+  def validate_package_against_project?(gem_pkg, project_spec)
+    File.basename(File.expand_path(PACKAGE_DIR)) == "pkg" || File.basename(gem_pkg).start_with?("#{project_spec.name}-")
+  end
+  module_function :validate_package_against_project?
 end
 
 GemChecksums::Version.class_eval do
