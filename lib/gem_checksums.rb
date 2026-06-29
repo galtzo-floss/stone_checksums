@@ -154,10 +154,10 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
       # Sort by newest last
       # [ "my_gem-2.3.9.gem", "my_gem-2.3.11.pre.alpha.4.gem", "my_gem-2.3.15.gem", ... ]
       gems.sort_by! { |gem| Gem::Version.new(gem[VERSION_REGEX]) }
-      gem_pkg = gems.last
+      gem_pkg = preferred_project_package(gems) || gems.last
       gem_path_parts = gem_pkg.split("/")
       gem_name = gem_path_parts.last
-      puts "Found: #{gems.length} gems; latest is #{gem_name}"
+      puts "Found: #{gems.length} gems; selected #{gem_name}"
     end
 
     validate_project_package!(gem_pkg)
@@ -245,6 +245,15 @@ rm -f #{digest256_32bit_path}
     Gem::Specification.load(gemspecs.first)
   end
   module_function :current_project_spec
+
+  def preferred_project_package(gems)
+    project_spec = current_project_spec
+    return unless project_spec
+
+    expected_name = "#{project_spec.name}-#{project_spec.version}.gem"
+    gems.find { |gem| File.basename(gem) == expected_name }
+  end
+  module_function :preferred_project_package
 
   def validate_package_against_project?(gem_pkg, project_spec)
     File.basename(File.expand_path(PACKAGE_DIR)) == "pkg" || File.basename(gem_pkg).start_with?("#{project_spec.name}-")

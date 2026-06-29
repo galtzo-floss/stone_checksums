@@ -66,6 +66,97 @@ RSpec.describe GemChecksums do
       end
     end
 
+    context "when stale package artifacts exist for newer versions" do
+      before do
+        project_spec = instance_double(Gem::Specification, name: "rubocop-lts", version: Gem::Version.new("0.3.1"))
+        allow(described_class).to receive(:current_project_spec).and_return(project_spec)
+      end
+
+      it "prefers the package matching the current gemspec" do
+        packages = [
+          "pkg/rubocop-lts-0.3.1.gem",
+          "pkg/rubocop-lts-24.2.0.gem"
+        ]
+
+        expect(described_class.preferred_project_package(packages)).to eq("pkg/rubocop-lts-0.3.1.gem")
+      end
+
+      it "returns nil when no package matches the current gemspec" do
+        packages = [
+          "pkg/rubocop-lts-0.3.0.gem",
+          "pkg/rubocop-lts-24.2.0.gem"
+        ]
+
+        expect(described_class.preferred_project_package(packages)).to be_nil
+      end
+    end
+
+    context "when there is no current project gemspec" do
+      before do
+        allow(described_class).to receive(:current_project_spec).and_return(nil)
+      end
+
+      it "does not prefer a package" do
+        expect(described_class.preferred_project_package(["pkg/rubocop-lts-0.3.1.gem"])).to be_nil
+      end
+
+      it "skips package validation" do
+        expect(described_class.validate_project_package!("pkg/rubocop-lts-0.3.1.gem")).to be_nil
+      end
+    end
+
+    describe "::current_project_spec" do
+      it "returns nil when there is not exactly one gemspec" do
+        allow(Dir).to receive(:[]).with("*.gemspec").and_return(%w[one.gemspec two.gemspec])
+        expect(described_class.current_project_spec).to be_nil
+      end
+    end
+
+    describe "::validate_package_against_project?" do
+      let(:project_spec) { instance_double(Gem::Specification, name: "rubocop-lts") }
+
+      it "validates default pkg packages" do
+        stub_const("GemChecksums::PACKAGE_DIR", "pkg")
+        expect(described_class.validate_package_against_project?("pkg/other-1.0.0.gem", project_spec)).to be true
+      end
+
+      it "validates matching packages outside the default pkg directory" do
+        stub_const("GemChecksums::PACKAGE_DIR", "fixtures")
+        expect(described_class.validate_package_against_project?("fixtures/rubocop-lts-1.0.0.gem", project_spec)).to be true
+      end
+
+      it "skips non-matching packages outside the default pkg directory" do
+        stub_const("GemChecksums::PACKAGE_DIR", "fixtures")
+        expect(described_class.validate_package_against_project?("fixtures/other-1.0.0.gem", project_spec)).to be false
+      end
+    end
+
+    context "when the selected built gem matches the current gemspec" do
+      before do
+        project_spec = instance_double(Gem::Specification, name: "rubocop-lts", version: Gem::Version.new("0.3.1"))
+        package_spec = instance_double(Gem::Specification, name: "rubocop-lts", version: Gem::Version.new("0.3.1"))
+        package = instance_double(Gem::Package, spec: package_spec)
+        allow(described_class).to receive(:current_project_spec).and_return(project_spec)
+        allow(Gem::Package).to receive(:new).with("pkg/rubocop-lts-0.3.1.gem").and_return(package)
+      end
+
+      it "passes package validation" do
+        expect(described_class.validate_project_package!("pkg/rubocop-lts-0.3.1.gem")).to be_nil
+      end
+    end
+
+    context "when a non-project package is selected outside the default pkg directory" do
+      before do
+        project_spec = instance_double(Gem::Specification, name: "rubocop-lts", version: Gem::Version.new("0.3.1"))
+        allow(described_class).to receive(:current_project_spec).and_return(project_spec)
+      end
+
+      it "skips package validation" do
+        stub_const("GemChecksums::PACKAGE_DIR", "fixtures")
+        expect(described_class.validate_project_package!("fixtures/other-1.0.0.gem")).to be_nil
+      end
+    end
+
     context "when prompt is shown for old Bundler without proceeding", :check_output do
       before do
         stub_env("SOURCE_DATE_EPOCH" => "")

@@ -47,7 +47,7 @@ RSpec.describe "rake build:generate_checksums" do # rubocop:disable RSpec/Descri
             expected_output = <<-CHECKSUMS_OUTPUT
 [ stone_checksums #{StoneChecksums::Version::VERSION} ]
 Looking for: "spec/support/fixtures/*.gem"
-Found: 1 gems; latest is gem_checksums-1.0.0.gem
+Found: 1 gems; selected gem_checksums-1.0.0.gem
 [ GEM: gem_checksums-1.0.0.gem ]
 [ VERSION: 1.0.0 ]
 [ GEM PKG LOCATION: spec/support/fixtures/gem_checksums-1.0.0.gem ]

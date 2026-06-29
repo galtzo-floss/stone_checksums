@@ -29,6 +29,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - documentation
+- `gem_checksums` now prefers the built package matching the current project
+  gemspec when stale packages for newer versions are present in `pkg/`.
 - `gem_checksums` now fails before writing checksum files when the selected
   built gem package does not match the current project gemspec name and version.
 
