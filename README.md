@@ -569,7 +569,7 @@ Thanks for RTFM. ☺️
 | Field | Value |
 |---|---|
 | Package | stone_checksums |
-| Description | 🗿 Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.<br>gem install stone_checksums<br>Then, use the rake task or the script:<br>rake build:generate_checksums<br>gem_checksums<br>Control options with ENV variables!<br>Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev |
+| Description | 🦗 Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.<br>gem install stone_checksums<br>Then, use the rake task or the script:<br>rake build:generate_checksums<br>gem_checksums<br>Control options with ENV variables!<br>Fund overlooked open source projects - bottom of stack, dev/test dependencies: floss-funding.dev |
 | Homepage | https://github.com/galtzo-floss/stone_checksums |
 | Source | https://github.com/galtzo-floss/stone_checksums |
 | License | `MIT` |
