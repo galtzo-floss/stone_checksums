@@ -28,13 +28,22 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+### Security
+
+## [1.0.4] - 2026-06-28
+
+- TAG: [v1.0.4][1.0.4t]
+- COVERAGE: 99.19% -- 123/124 lines in 6 files
+- BRANCH COVERAGE: 94.74% -- 36/38 branches in 6 files
+- 54.17% documented
+
+### Fixed
+
 - documentation
 - `gem_checksums` now prefers the built package matching the current project
   gemspec when stale packages for newer versions are present in `pkg/`.
 - `gem_checksums` now fails before writing checksum files when the selected
   built gem package does not match the current project gemspec name and version.
-
-### Security
 
 ## [1.0.2] - 2025-08-26
 
@@ -90,10 +99,12 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.4...HEAD
+[1.0.4]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.2...v1.0.4
+[1.0.4t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.4
 [1.0.2]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.1...v1.0.2
-[1.0.2t]: https://gitlab.com/galtzo-floss/stone_checksums/-/tags/v1.0.2
+[1.0.2t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.2
 [1.0.1]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.0...v1.0.1
-[1.0.1t]: https://gitlab.com/galtzo-floss/stone_checksums/-/tags/v1.0.1
-[1.0.0]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/1fd75630d9d3c4a1ef8fed384fda98755ae01d5e...v1.0.0
-[1.0.0t]: https://gitlab.com/galtzo-floss/stone_checksums/-/tags/v1.0.0
+[1.0.1t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.1
+[1.0.0]: https://github.com/galtzo-floss/stone_checksums/compare/1fd75630d9d3c4a1ef8fed384fda98755ae01d5e...v1.0.0
+[1.0.0t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.0
