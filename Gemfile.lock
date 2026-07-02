@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    stone_checksums (1.0.4)
+    stone_checksums (1.0.5)
       version_gem (~> 1.1, >= 1.1.13)
 
 GEM

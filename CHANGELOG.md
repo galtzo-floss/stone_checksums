@@ -28,9 +28,18 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Package configured license files in gem release file lists.
-
 ### Security
+
+## [1.0.5] - 2026-07-02
+
+- TAG: [v1.0.5][1.0.5t]
+- COVERAGE: 99.19% -- 123/124 lines in 6 files
+- BRANCH COVERAGE: 94.74% -- 36/38 branches in 6 files
+- 54.17% documented
+
+### Fixed
+
+- Package configured license files in gem release file lists.
 
 ## [1.0.4] - 2026-06-28
 
@@ -101,7 +110,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.4...v1.0.5
+[1.0.5t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.5
 [1.0.4]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.2...v1.0.4
 [1.0.4t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.4
 [1.0.2]: https://gitlab.com/galtzo-floss/stone_checksums/-/compare/v1.0.1...v1.0.2
