@@ -22,6 +22,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- `require "stone_checksums"` and `require "gem_checksums"` no longer load
+  `version_gem` by default; require `stone_checksums/version_gem` or
+  `gem_checksums/version_gem` for the optional `VersionGem::Basic` extension.
+
 ### Deprecated
 
 ### Removed

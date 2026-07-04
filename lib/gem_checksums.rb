@@ -5,9 +5,6 @@ require "digest/sha2"
 require "fileutils"
 require "rubygems/package"
 
-# external gems
-require "version_gem"
-
 # this library's version
 require_relative "gem_checksums/version"
 
@@ -259,10 +256,6 @@ rm -f #{digest256_32bit_path}
     File.basename(File.expand_path(PACKAGE_DIR)) == "pkg" || File.basename(gem_pkg).start_with?("#{project_spec.name}-")
   end
   module_function :validate_package_against_project?
-end
-
-GemChecksums::Version.class_eval do
-  extend VersionGem::Basic
 end
 
 GemChecksums.install_tasks if GemChecksums::RUNNING_AS == "rake"
