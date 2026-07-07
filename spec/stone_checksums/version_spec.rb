@@ -1,3 +1,5 @@
+require "stone_checksums/version_gem"
+
 RSpec.describe StoneChecksums::Version do
   it_behaves_like "a Version module", described_class
 
