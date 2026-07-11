@@ -22,10 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- `require "stone_checksums"` and `require "gem_checksums"` no longer load
-  `version_gem` by default; require `stone_checksums/version_gem` or
-  `gem_checksums/version_gem` for the optional `VersionGem::Basic` extension.
-
 ### Deprecated
 
 ### Removed
@@ -33,6 +29,19 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [1.0.6] - 2026-07-11
+
+- TAG: [v1.0.6][1.0.6t]
+- COVERAGE: 98.45% -- 127/129 lines in 8 files
+- BRANCH COVERAGE: 94.74% -- 36/38 branches in 8 files
+- 54.17% documented
+
+### Changed
+
+- `require "stone_checksums"` and `require "gem_checksums"` no longer load
+  `version_gem` by default; require `stone_checksums/version_gem` or
+  `gem_checksums/version_gem` for the optional `VersionGem::Basic` extension.
 
 ## [1.0.5] - 2026-07-02
 
@@ -114,7 +123,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...HEAD
+[1.0.6]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...v1.0.6
+[1.0.6t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.6
 [1.0.5]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.4...v1.0.5
 [1.0.5t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.5
 [1.0.4]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.2...v1.0.4

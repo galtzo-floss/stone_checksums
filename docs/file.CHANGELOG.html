@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -83,6 +83,26 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <h3 id="fixed">Fixed</h3>
 
 <h3 id="security">Security</h3>
+
+<h2 id="106---2026-07-11">
+<a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...v1.0.6">1.0.6</a> - 2026-07-11</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.6">v1.0.6</a>
+</li>
+  <li>COVERAGE: 98.45% – 127/129 lines in 8 files</li>
+  <li>BRANCH COVERAGE: 94.74% – 36/38 branches in 8 files</li>
+  <li>54.17% documented</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>
+<code>require "stone_checksums"</code> and <code>require "gem_checksums"</code> no longer load<br>
+<code>version_gem</code> by default; require <code>stone_checksums/version_gem</code> or<br>
+<code>gem_checksums/version_gem</code> for the optional <code>VersionGem::Basic</code> extension.</li>
+</ul>
 
 <h2 id="105---2026-07-02">
 <a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.4...v1.0.5">1.0.5</a> - 2026-07-02</h2>
@@ -170,7 +190,7 @@ built gem package does not match the current project gemspec name and version.</
   </li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>Improve error help text on old bundler, recommend upgrading</li>
@@ -214,7 +234,7 @@ built gem package does not match the current project gemspec name and version.</
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jul  2 00:48:12 2026 by
+  Generated on Sat Jul 11 03:23:00 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
