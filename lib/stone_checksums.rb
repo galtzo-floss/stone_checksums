@@ -7,6 +7,8 @@
 #
 # RubyGems does not allow publishing a gem named `gem_checksums`,
 # hence the updated namespace and gem name.
+require "version_gem"
+
 require_relative "gem_checksums"
 
 # This library's version
@@ -48,4 +50,8 @@ module StoneChecksums
       ::GemChecksums.generate(git_dry_run: git_dry_run)
     end
   end
+end
+
+StoneChecksums::Version.class_eval do
+  extend VersionGem::Basic
 end
