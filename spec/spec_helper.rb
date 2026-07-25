@@ -63,11 +63,13 @@ RSpec.configure do |config|
     #   which makes this spec flaky locally.
     # In order to delete it we must ensure it is empty first.
     pkg_dir = "pkg"
-    Dir[File.join(pkg_dir, "*.gem")].each do |file|
-      File.delete(file)
-    end
+    Dir[File.join(pkg_dir, "*.gem")].each { |file| FileUtils.rm_f(file) }
     # This will fail if the directory is still not empty.
-    Dir.rmdir(pkg_dir) if Dir.exist?(pkg_dir)
+    begin
+      Dir.rmdir(pkg_dir) if Dir.exist?(pkg_dir)
+    rescue Errno::ENOENT, Errno::ENOTEMPTY
+      nil
+    end
 
     stub_const("GemChecksums::GIT_DRY_RUN_ENV", true)
   end
@@ -79,7 +81,8 @@ RSpec.configure do |config|
 
     Dir[File.join(dir, "*")].each do |path|
       next if File.basename(path) == ".keep"
-      File.delete(path) if File.file?(path)
+
+      FileUtils.rm_f(path)
     end
   end
 end

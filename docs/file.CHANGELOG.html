@@ -131,6 +131,8 @@ repository index lock races when specs run in parallel.</li>
 load path, keeping locked dependency style checks green.</li>
   <li>Version coverage specs no longer re-emit constant redefinition warnings under<br>
 unlocked dependency runs.</li>
+  <li>Spec cleanup is now idempotent across parallel workers, avoiding TruffleRuby<br>
+after-suite file removal races.</li>
 </ul>
 
 <h2 id="106---2026-07-11">

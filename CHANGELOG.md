@@ -69,6 +69,8 @@ Please file a bug if you notice a violation of semantic versioning.
   load path, keeping locked dependency style checks green.
 - Version coverage specs no longer re-emit constant redefinition warnings under
   unlocked dependency runs.
+- Spec cleanup is now idempotent across parallel workers, avoiding TruffleRuby
+  after-suite file removal races.
 
 ## [1.0.6] - 2026-07-11
 
