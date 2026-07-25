@@ -10,7 +10,7 @@ RSpec.describe GemChecksums::Version do
   it "ensures the version file is executed for coverage" do
     path = File.expand_path("../../lib/gem_checksums/version.rb", __dir__)
     # Re-execute the file to ensure SimpleCov tracks its lines in this run
-    load path
+    load(path, true)
     expect(GemChecksums::Version::VERSION).to be_a(String)
   end
 end

@@ -129,6 +129,8 @@ workflows as failures.</li>
 repository index lock races when specs run in parallel.</li>
   <li>The <code>gem_checksums</code> executable now loads its version through Bundler’s normal<br>
 load path, keeping locked dependency style checks green.</li>
+  <li>Version coverage specs no longer re-emit constant redefinition warnings under<br>
+unlocked dependency runs.</li>
 </ul>
 
 <h2 id="106---2026-07-11">
