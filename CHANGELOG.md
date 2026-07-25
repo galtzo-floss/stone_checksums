@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.0.7] - 2026-07-25
+
+- TAG: [v1.0.7][1.0.7t]
+- COVERAGE: 99.21% -- 125/126 lines in 8 files
+- BRANCH COVERAGE: 94.74% -- 36/38 branches in 8 files
+- 54.17% documented
+
+### Changed
+
 - The `gem_checksums` executable now supports `-v` / `--version` and prints a
   standard startup header on normal runs.
 
@@ -43,14 +60,6 @@ Please file a bug if you notice a violation of semantic versioning.
   files now run when pull request head branches start with `feature/release`,
   so release CI monitoring does not report intentionally skipped engine
   workflows as failures.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [1.0.6] - 2026-07-11
 
@@ -145,7 +154,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.7...HEAD
+[1.0.7]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...v1.0.7
+[1.0.7t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.7
 [1.0.6]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...v1.0.6
 [1.0.6t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.6
 [1.0.5]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.4...v1.0.5

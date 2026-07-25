@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.7...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -84,6 +84,44 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="security">Security</h3>
 
+<h2 id="107---2026-07-25">
+<a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...v1.0.7">1.0.7</a> - 2026-07-25</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.7">v1.0.7</a>
+</li>
+  <li>COVERAGE: 99.21% – 125/126 lines in 8 files</li>
+  <li>BRANCH COVERAGE: 94.74% – 36/38 branches in 8 files</li>
+  <li>54.17% documented</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>
+    <p>The <code>gem_checksums</code> executable now supports <code>-v</code> / <code>--version</code> and prints a<br>
+standard startup header on normal runs.</p>
+  </li>
+  <li>kettle-jem-template-20260716-001 - Shim gemspec manifests now include<br>
+<code>LICENSE.md</code> instead of nonexistent <code>LICENSE.txt</code>.</li>
+  <li>kettle-jem-template-20260716-002 - Generated gemspec manifests now ship fewer<br>
+repository-only files by default to reduce downstream distro packaging churn.</li>
+  <li>kettle-jem-template-20260720-001 - Generated READMEs can now render<br>
+template-managed corporate sponsor logos from project or family config.</li>
+  <li>kettle-jem-template-20260720-002 - Generated development Gemfiles now use the<br>
+released <code>tree_sitter_language_pack</code> gem 1.13.3 or newer by default.</li>
+  <li>kettle-jem-template-20260720-003 - Generated StructuredMerge Git diff driver<br>
+config now uses the installed <code>smorg-rb</code> Ruby driver name.</li>
+  <li>kettle-jem-template-20260720-004 - Generated multi-engine workflow files now<br>
+omit JRuby and TruffleRuby jobs when project config declares MRI-only engines.</li>
+  <li>kettle-jem-template-20260720-005 - Generated README Support &amp; Community rows<br>
+now include a RubyForum help badge.</li>
+  <li>kettle-jem-template-20260725-001 - Generated JRuby and TruffleRuby workflow<br>
+files now run when pull request head branches start with <code>feature/release</code>,<br>
+so release CI monitoring does not report intentionally skipped engine<br>
+workflows as failures.</li>
+</ul>
+
 <h2 id="106---2026-07-11">
 <a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...v1.0.6">1.0.6</a> - 2026-07-11</h2>
 
@@ -95,7 +133,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>54.17% documented</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>
@@ -190,7 +228,7 @@ built gem package does not match the current project gemspec name and version.</
   </li>
 </ul>
 
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 
 <ul>
   <li>Improve error help text on old bundler, recommend upgrading</li>
