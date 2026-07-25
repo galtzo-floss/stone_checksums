@@ -82,6 +82,11 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="fixed">Fixed</h3>
 
+<ul>
+  <li>Checksum generation dry-runs no longer execute Git commands, avoiding<br>
+repository index lock races when specs run in parallel.</li>
+</ul>
+
 <h3 id="security">Security</h3>
 
 <h2 id="107---2026-07-25">

@@ -79,8 +79,9 @@ In bash shell:
   # passed as the first CLI argument when running under Rake or the gem_checksums CLI.
   #
   # By default this command will exec a `git add && git commit` to include the checksum
-  # files. When `git_dry_run` is true, or GEM_CHECKSUMS_GIT_DRY_RUN=true, a dry-run commit
-  # is performed, and temporary files are cleaned up.
+  # files. When `git_dry_run` is true, or GEM_CHECKSUMS_GIT_DRY_RUN=true, the planned
+  # dry-run commit is printed and temporary files are cleaned up without touching the
+  # Git index.
   #
   # @param git_dry_run [Boolean] when true, perform a dry-run and do not leave files staged
   # @return [void]
@@ -174,17 +175,17 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
 
     version = gem_name[VERSION_REGEX]
 
+    git_commit_flag = git_dry_run_flag ? "--dry-run" : nil
+    git_add_flag = git_dry_run_flag ? "--dry-run" : nil
     git_cmd = <<-GIT_MSG.rstrip
-git add #{CHECKSUMS_DIR}/* && \
-git commit #{git_dry_run_flag} -m "🔒️ Checksums for v#{version}"
+git add #{git_add_flag} #{CHECKSUMS_DIR}/* && \
+git commit #{git_commit_flag} -m "🔒️ Checksums for v#{version}"
     GIT_MSG
 
     if git_dry_run_flag
       git_cmd += <<-CLEANUP_MSG
 && \
 echo "Cleaning up in dry run mode" && \
-git reset #{digest512_64bit_path} && \
-git reset #{digest256_32bit_path} && \
 rm -f #{digest512_64bit_path} && \
 rm -f #{digest256_32bit_path}
       CLEANUP_MSG
@@ -205,7 +206,8 @@ rm -f #{digest256_32bit_path}
     RESULTS
 
     if git_dry_run_flag
-      `#{git_cmd}`
+      warn("Cleaning up in dry run mode")
+      FileUtils.rm_f([digest512_64bit_path, digest256_32bit_path])
     else
       # `exec` will replace the current process with the git process, and exit.
       # Within the generate method, Ruby code placed after the `exec` *will not be run*:

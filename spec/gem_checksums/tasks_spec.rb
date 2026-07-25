@@ -58,7 +58,7 @@ Found: 1 gems; selected gem_checksums-1.0.0.gem
 
 ... Running ...
 
-git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
+git add --dry-run #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
 
             CHECKSUMS_OUTPUT
 
@@ -108,7 +108,7 @@ Found: ["spec/support/fixtures/gem_checksums-1.0.0.gem"]
 
 ... Running ...
 
-git add #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && git reset #{dir}/gem_checksums-1.0.0.gem.sha512 && git reset #{dir}/gem_checksums-1.0.0.gem.sha256 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
+git add --dry-run #{dir}/* && git commit --dry-run -m "🔒️ Checksums for v1.0.0" && echo "Cleaning up in dry run mode" && rm -f #{dir}/gem_checksums-1.0.0.gem.sha512 && rm -f #{dir}/gem_checksums-1.0.0.gem.sha256
 
           CHECKSUMS_OUTPUT
 

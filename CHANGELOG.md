@@ -28,6 +28,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Checksum generation dry-runs no longer execute Git commands, avoiding
+  repository index lock races when specs run in parallel.
+
 ### Security
 
 ## [1.0.7] - 2026-07-25
