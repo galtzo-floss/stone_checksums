@@ -27,6 +27,12 @@ RSpec.describe GemChecksums do
       it "raises an error" do
         block_is_expected.to raise_error(GemChecksums::Error, "Unable to find gems avocado_packages/*.gem")
       end
+
+      it "allows old Bundler to proceed when the epoch is present" do
+        stub_const("Bundler::VERSION", "2.6.9")
+
+        block_is_expected.to raise_error(GemChecksums::Error, "Unable to find gems avocado_packages/*.gem")
+      end
     end
 
     context "without SOURCE_DATE_EPOCH set and Bundler >= 2.7.0" do
@@ -62,6 +68,15 @@ RSpec.describe GemChecksums do
         expect { described_class.validate_project_package!("spec/support/fixtures/gem_checksums-1.0.0.gem") }.to raise_error(
           GemChecksums::Error,
           /Current gemspec resolves to gem_checksums 0\.9\.0, but selected package is gem_checksums 1\.0\.0/
+        )
+      end
+
+      it "wraps corrupt package inspection errors" do
+        allow(Gem::Package).to receive(:new).with("spec/support/fixtures/gem_checksums-1.0.0.gem").and_raise(Gem::Package::Error, "not a gem")
+
+        expect { described_class.validate_project_package!("spec/support/fixtures/gem_checksums-1.0.0.gem") }.to raise_error(
+          GemChecksums::Error,
+          "Unable to inspect built gem spec/support/fixtures/gem_checksums-1.0.0.gem: not a gem"
         )
       end
     end
@@ -216,5 +231,6 @@ RSpec.describe GemChecksums do
         change { Rake.application.options.rakelib }
           .to(include(%r{gem_checksums/rakelib}))
     end
+
   end
 end
