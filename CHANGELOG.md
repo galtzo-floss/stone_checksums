@@ -28,18 +28,13 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Checksum generation dry-runs no longer execute Git commands, avoiding
-  repository index lock races when specs run in parallel.
-- The `gem_checksums` executable now loads its version through Bundler's normal
-  load path, keeping locked dependency style checks green.
-
 ### Security
 
 ## [1.0.7] - 2026-07-25
 
 - TAG: [v1.0.7][1.0.7t]
-- COVERAGE: 99.21% -- 125/126 lines in 8 files
-- BRANCH COVERAGE: 94.74% -- 36/38 branches in 8 files
+- COVERAGE: 98.45% -- 127/129 lines in 8 files
+- BRANCH COVERAGE: 95.24% -- 40/42 branches in 8 files
 - 54.17% documented
 
 ### Changed
@@ -65,6 +60,13 @@ Please file a bug if you notice a violation of semantic versioning.
   files now run when pull request head branches start with `feature/release`,
   so release CI monitoring does not report intentionally skipped engine
   workflows as failures.
+
+### Fixed
+
+- Checksum generation dry-runs no longer execute Git commands, avoiding
+  repository index lock races when specs run in parallel.
+- The `gem_checksums` executable now loads its version through Bundler's normal
+  load path, keeping locked dependency style checks green.
 
 ## [1.0.6] - 2026-07-11
 
