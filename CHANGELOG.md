@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Checksum generation dry-runs no longer execute Git commands, avoiding
   repository index lock races when specs run in parallel.
+- The `gem_checksums` executable now loads its version through Bundler's normal
+  load path, keeping locked dependency style checks green.
 
 ### Security
 

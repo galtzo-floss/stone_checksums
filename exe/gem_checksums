@@ -1,13 +1,15 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 script_basename = File.basename(__FILE__)
-require_relative "../lib/gem_checksums/version"
+
+require "bundler/setup"
+require "gem_checksums/version"
+
 if ARGV.any? { |arg| arg == "-v" || arg == "--version" }
   puts GemChecksums::Version::VERSION
   exit(0)
 end
-
-require "bundler/setup"
 
 require "gem_checksums"
 
