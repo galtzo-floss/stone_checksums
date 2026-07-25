@@ -3,8 +3,10 @@ module StoneChecksums
   end
 
   module Version
+    VERSION: String
   end
 
   def self.install_tasks: () -> void
   def self.generate: (?git_dry_run: bool) -> void
+  VERSION: String
 end
