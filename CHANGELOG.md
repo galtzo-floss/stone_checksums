@@ -28,6 +28,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Auto-install task specs now use Ruby 2.4-compatible cleanup syntax, keeping
+  the minimum supported Ruby CI workflow parseable.
+
 ### Security
 
 ## [1.0.7] - 2026-07-25
