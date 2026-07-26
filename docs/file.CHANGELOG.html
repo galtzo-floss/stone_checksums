@@ -122,11 +122,16 @@ files now run when pull request head branches start with <code>feature/release</
 so release CI monitoring does not report intentionally skipped engine<br>
 workflows as failures.</p>
   </li>
-  <li>kettle-jem-template-20260725-002 - Generated gemspec templates now include<br>
+  <li>
+    <p>kettle-jem-template-20260725-002 - Generated gemspec templates now include<br>
 <code>anonymous_loader</code> as a development dependency, and version specs use it to<br>
 execute generated <code>version.rb</code> files for coverage without redefining package<br>
 constants. Managed version specs are removed when <code>version_gem</code> is disabled<br>
-or incompatible with the project’s runtime Ruby floor.</li>
+or incompatible with the project’s runtime Ruby floor.</p>
+  </li>
+  <li>The <code>gem_checksums</code> executable startup header is now shown only when<br>
+<code>--verbose</code> is passed; <code>-v</code> and <code>--version</code> still print just the executable<br>
+version and exit.</li>
 </ul>
 
 <h3 id="fixed-1">Fixed</h3>
@@ -142,8 +147,12 @@ unlocked dependency runs.</li>
     <p>Spec cleanup is now idempotent across parallel workers, avoiding TruffleRuby<br>
 after-suite file removal races.</p>
   </li>
-  <li>Added coverage for the <code>StoneChecksums::Version</code> version-gem shim so the<br>
-release coverage threshold includes both supported namespace entry points.</li>
+  <li>
+    <p>Added coverage for the <code>StoneChecksums::Version</code> version-gem shim so the<br>
+release coverage threshold includes both supported namespace entry points.</p>
+  </li>
+  <li>Auto-install task specs now use Ruby 2.4-compatible cleanup syntax, keeping<br>
+the minimum supported Ruby CI workflow parseable.</li>
 </ul>
 
 <h2 id="106---2026-07-11">

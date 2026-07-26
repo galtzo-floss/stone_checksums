@@ -22,18 +22,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- The `gem_checksums` executable startup header is now shown only when
-  `--verbose` is passed; `-v` and `--version` still print just the executable
-  version and exit.
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-
-- Auto-install task specs now use Ruby 2.4-compatible cleanup syntax, keeping
-  the minimum supported Ruby CI workflow parseable.
 
 ### Security
 
@@ -74,6 +67,10 @@ Please file a bug if you notice a violation of semantic versioning.
   constants. Managed version specs are removed when `version_gem` is disabled
   or incompatible with the project's runtime Ruby floor.
 
+- The `gem_checksums` executable startup header is now shown only when
+  `--verbose` is passed; `-v` and `--version` still print just the executable
+  version and exit.
+
 ### Fixed
 
 - Checksum generation dry-runs no longer execute Git commands, avoiding
@@ -87,6 +84,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Added coverage for the `StoneChecksums::Version` version-gem shim so the
   release coverage threshold includes both supported namespace entry points.
+
+- Auto-install task specs now use Ruby 2.4-compatible cleanup syntax, keeping
+  the minimum supported Ruby CI workflow parseable.
 
 ## [1.0.6] - 2026-07-11
 
