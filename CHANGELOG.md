@@ -34,6 +34,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Added coverage for the `StoneChecksums::Version` version-gem shim so the
+  release coverage threshold includes both supported namespace entry points.
+
 ### Security
 
 ## [1.0.7] - 2026-07-25
