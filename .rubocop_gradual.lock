@@ -1,0 +1,5 @@
+{
+  "spec/gem_checksums/auto_install_tasks_spec.rb:1553709823": [
+    [16, 3, 6, "Lint/Syntax: unexpected token kENSURE\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 1164465823]
+  ]
+}

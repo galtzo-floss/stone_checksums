@@ -231,6 +231,5 @@ RSpec.describe GemChecksums do
         change { Rake.application.options.rakelib }
           .to(include(%r{gem_checksums/rakelib}))
     end
-
   end
 end
