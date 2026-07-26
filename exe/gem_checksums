@@ -13,6 +13,6 @@ end
 
 require "gem_checksums"
 
-puts "== #{script_basename} v#{GemChecksums::Version::VERSION} =="
+puts "== #{script_basename} v#{GemChecksums::Version::VERSION} ==" if ARGV.delete("--verbose")
 
 GemChecksums.generate
