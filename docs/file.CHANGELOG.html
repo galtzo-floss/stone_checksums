@@ -90,8 +90,8 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <ul>
   <li>TAG: <a href="https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.7">v1.0.7</a>
 </li>
-  <li>COVERAGE: 98.45% – 127/129 lines in 8 files</li>
-  <li>BRANCH COVERAGE: 95.24% – 40/42 branches in 8 files</li>
+  <li>COVERAGE: 100.00% – 129/129 lines in 8 files</li>
+  <li>BRANCH COVERAGE: 100.00% – 42/42 branches in 8 files</li>
   <li>54.17% documented</li>
 </ul>
 
@@ -116,10 +116,17 @@ config now uses the installed <code>smorg-rb</code> Ruby driver name.</li>
 omit JRuby and TruffleRuby jobs when project config declares MRI-only engines.</li>
   <li>kettle-jem-template-20260720-005 - Generated README Support &amp; Community rows<br>
 now include a RubyForum help badge.</li>
-  <li>kettle-jem-template-20260725-001 - Generated JRuby and TruffleRuby workflow<br>
+  <li>
+    <p>kettle-jem-template-20260725-001 - Generated JRuby and TruffleRuby workflow<br>
 files now run when pull request head branches start with <code>feature/release</code>,<br>
 so release CI monitoring does not report intentionally skipped engine<br>
-workflows as failures.</li>
+workflows as failures.</p>
+  </li>
+  <li>kettle-jem-template-20260725-002 - Generated gemspec templates now include<br>
+<code>anonymous_loader</code> as a development dependency, and version specs use it to<br>
+execute generated <code>version.rb</code> files for coverage without redefining package<br>
+constants. Managed version specs are removed when <code>version_gem</code> is disabled<br>
+or incompatible with the project’s runtime Ruby floor.</li>
 </ul>
 
 <h3 id="fixed-1">Fixed</h3>
@@ -131,8 +138,12 @@ repository index lock races when specs run in parallel.</li>
 load path, keeping locked dependency style checks green.</li>
   <li>Version coverage specs no longer re-emit constant redefinition warnings under<br>
 unlocked dependency runs.</li>
-  <li>Spec cleanup is now idempotent across parallel workers, avoiding TruffleRuby<br>
-after-suite file removal races.</li>
+  <li>
+    <p>Spec cleanup is now idempotent across parallel workers, avoiding TruffleRuby<br>
+after-suite file removal races.</p>
+  </li>
+  <li>Added coverage for the <code>StoneChecksums::Version</code> version-gem shim so the<br>
+release coverage threshold includes both supported namespace entry points.</li>
 </ul>
 
 <h2 id="106---2026-07-11">

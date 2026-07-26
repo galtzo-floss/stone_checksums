@@ -22,28 +22,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- kettle-jem-template-20260725-002 - Generated gemspec templates now include
-  `anonymous_loader` as a development dependency, and version specs use it to
-  execute generated `version.rb` files for coverage without redefining package
-  constants. Managed version specs are removed when `version_gem` is disabled
-  or incompatible with the project's runtime Ruby floor.
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- Added coverage for the `StoneChecksums::Version` version-gem shim so the
-  release coverage threshold includes both supported namespace entry points.
-
 ### Security
 
 ## [1.0.7] - 2026-07-25
 
 - TAG: [v1.0.7][1.0.7t]
-- COVERAGE: 98.45% -- 127/129 lines in 8 files
-- BRANCH COVERAGE: 95.24% -- 40/42 branches in 8 files
+- COVERAGE: 100.00% -- 129/129 lines in 8 files
+- BRANCH COVERAGE: 100.00% -- 42/42 branches in 8 files
 - 54.17% documented
 
 ### Changed
@@ -70,6 +61,12 @@ Please file a bug if you notice a violation of semantic versioning.
   so release CI monitoring does not report intentionally skipped engine
   workflows as failures.
 
+- kettle-jem-template-20260725-002 - Generated gemspec templates now include
+  `anonymous_loader` as a development dependency, and version specs use it to
+  execute generated `version.rb` files for coverage without redefining package
+  constants. Managed version specs are removed when `version_gem` is disabled
+  or incompatible with the project's runtime Ruby floor.
+
 ### Fixed
 
 - Checksum generation dry-runs no longer execute Git commands, avoiding
@@ -80,6 +77,9 @@ Please file a bug if you notice a violation of semantic versioning.
   unlocked dependency runs.
 - Spec cleanup is now idempotent across parallel workers, avoiding TruffleRuby
   after-suite file removal races.
+
+- Added coverage for the `StoneChecksums::Version` version-gem shim so the
+  release coverage threshold includes both supported namespace entry points.
 
 ## [1.0.6] - 2026-07-11
 
