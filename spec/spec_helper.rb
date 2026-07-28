@@ -3,6 +3,7 @@
 # External library dependencies
 require "version_gem/ruby"
 require "kettle/test/rspec"
+# `kettle/test/rspec` installs harness helpers documented in spec/README.md.
 
 # RSpec Configs
 require_relative "config/byebug"
