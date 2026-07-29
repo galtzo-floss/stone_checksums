@@ -1,7 +1,9 @@
-require "gem_checksums/version_gem"
+# frozen_string_literal: true
+
+require "stone_checksums/version_gem"
 require "anonymous_loader"
 
-RSpec.describe GemChecksums::Version do
+RSpec.describe StoneChecksums::Version do
   it_behaves_like "a Version module", described_class
 
   it "is greater than 1.0.0" do
@@ -12,13 +14,12 @@ RSpec.describe GemChecksums::Version do
     namespace = AnonymousLoader.load(
       files: %w[
         lib/stone_checksums/version.rb
-        lib/gem_checksums/version.rb
-        lib/gem_checksums/version_gem.rb
+        lib/stone_checksums/version_gem.rb
       ],
       root: File.expand_path("../..", __dir__)
     )
 
-    expect(namespace::GemChecksums::Version::VERSION).to eq(described_class::VERSION)
-    expect(namespace::GemChecksums::Version.singleton_class).to be < VersionGem::Basic
+    expect(namespace::StoneChecksums::Version::VERSION).to eq(described_class::VERSION)
+    expect(namespace::StoneChecksums::Version.singleton_class).to be < VersionGem::Basic
   end
 end
