@@ -65,6 +65,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260729-001 - Generated JRuby 9.4 workflows now use the
   legacy manual bundle install path, avoiding setup-time Bundler full-index
   failures against `gem.coop`.
+- Restored the canonical `StoneChecksums::Version` spec so
+  `lib/stone_checksums/version_gem.rb` is covered by the release suite.
 
 ### Security
 
