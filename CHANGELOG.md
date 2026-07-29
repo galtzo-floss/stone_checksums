@@ -68,6 +68,11 @@ Please file a bug if you notice a violation of semantic versioning.
 - Restored the canonical `StoneChecksums::Version` spec so
   `lib/stone_checksums/version_gem.rb` is covered by the release suite.
 
+- kettle-jem-template-20260729-002 - VersionGem bootstrap now preserves
+  and templates dedicated `version_gem.rb` entrypoints even when the gemspec
+  dependency is intentionally omitted, and generated anonymous-loader specs
+  cover both `version.rb` and `version_gem.rb`.
+
 ### Security
 
 ## [1.0.7] - 2026-07-25
