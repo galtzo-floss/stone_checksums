@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.0.8] - 2026-07-31
+
+- TAG: [v1.0.8][1.0.8t]
+- COVERAGE: 100.00% -- 129/129 lines in 8 files
+- BRANCH COVERAGE: 100.00% -- 42/42 branches in 8 files
+- 62.50% documented
+
+### Added
+
 - Documentation linting now has its generated `yard-lint` dependency and severity config available in the local bundle.
 
 - kettle-jem-template-20260726-001 - Projects now include YARD lint
@@ -38,10 +57,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260728-001 - Generated Ruby workflows now use clearer
   setup-ruby-flash planning and can prepare appraisal-only jobs without
   installing the main Gemfile bundle.
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -83,8 +98,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260730-001 - Gemspec package file enumeration now runs
   relative to the gemspec directory, so packaged template assets are included
   even when the gemspec is loaded from another working directory.
-
-### Security
 
 ## [1.0.7] - 2026-07-25
 
@@ -237,7 +250,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.7...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.8...HEAD
+[1.0.8]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.7...v1.0.8
+[1.0.8t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.8
 [1.0.7]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...v1.0.7
 [1.0.7t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.7
 [1.0.6]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.5...v1.0.6
