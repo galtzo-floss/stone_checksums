@@ -9,9 +9,9 @@
 # hence the updated namespace and gem name.
 
 require_relative "gem_checksums"
+require_relative "stone_checksums/version"
 
 # This library's version
-require_relative "stone_checksums/version"
 
 # Primary namespace of this library (shim over GemChecksums)
 #
