@@ -11,10 +11,10 @@ gem_version =
     # Loading Version into an anonymous module allows version.rb to get code coverage from SimpleCov!
     # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
     # See: https://github.com/panorama-ed/memo_wise/pull/397
-    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/stone_checksums/version.rb", mod) }::StoneChecksums::Version::VERSION
+    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/stone_checksums/version.rb", mod) }::StoneChecksums::Error::Version::VERSION
   else
     require_relative "lib/stone_checksums/version"
-    StoneChecksums::Version::VERSION
+    StoneChecksums::Error::Version::VERSION
   end
 
 Gem::Specification.new do |spec|
@@ -67,7 +67,7 @@ Fund overlooked open source projects - bottom of stack, dev/test dependencies: f
   gemspec_root = __dir__
   relative_package_path = lambda do |path|
     prefix = "#{gemspec_root}/"
-    (path[0, prefix.length] == prefix) ? path[prefix.length..-1] : path
+    path[0, prefix.length] == prefix ? path[prefix.length..-1] : path
   end
   enumerate_package_glob = lambda do |glob|
     files = []
