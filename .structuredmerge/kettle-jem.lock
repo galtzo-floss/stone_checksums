@@ -1097,15 +1097,15 @@ files:
   lib/stone_checksums/version.rb:
     recipe: template_source_application_lib_stone_checksums_version_rb
     action: write
-    dest_sha256: 6b54c4b730439e9cecb7757cb4a08cea3f2a3aac003f92327e12a0699fc5ced2
-    input_fingerprint: f4521f5ceb31d552fffb3b93fc77c63144248a3ee69e944df6b6990a54485045
+    dest_sha256: 6020dcee1bb7661a246fcccfaf6282f83fcf640983ce4d3eb553cfee728de9f4
+    input_fingerprint: 619667b654ee3b3aee3b725ffe801b3896bf05c22234661cdebcc070a93a29d0
     template_sources:
     - lib/gem/version.rb.example
   lib/stone_checksums/version_gem.rb:
     recipe: template_source_application_lib_stone_checksums_version_gem_rb
     action: write
-    dest_sha256: c2e91aee1b7556d1f68b20c6edddc36e6465a62f6b9af93f0d9f385249c8b9ab
-    input_fingerprint: 41b04f1cda2f4cd488d5f64a250fdff79dfd7fc07bd899b44a00923af0924296
+    dest_sha256: f2254f2691f89ec482c5824ab7a1926fc3f2f1675532fa58dbe8aed47ace9ebc
+    input_fingerprint: 21ed8c8f0841195b33c1cdc41fc24bc3fde30c77c55dcf72e12f3b10d1f5c900
     template_sources:
     - lib/gem/version_gem.rb.example
   mise.toml:
@@ -1146,7 +1146,7 @@ files:
   stone_checksums.gemspec:
     recipe: template_source_application_stone_checksums_gemspec
     action: write
-    dest_sha256: 671edb362f3c9e23a57990af3f97fb16e8c34dfb728019a73415ab144b5a12b1
-    input_fingerprint: 47c7d5137175c37cba5b93cb790b8d45eab2d61d1dcf95035bbb1c91d039936b
+    dest_sha256: ae89b9e52cf7db244dfa8f01b367b74779e1f11e8de6470bf9764fd81d8f6dda
+    input_fingerprint: 77ea2429b2f8c529fd5118f2d40cdd859dee3ff4e423c8ad1da28e7c46b6d5c4
     template_sources:
     - gem.gemspec.example
