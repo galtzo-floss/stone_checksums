@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.8...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.9...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -83,6 +83,58 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <h3 id="fixed">Fixed</h3>
 
 <h3 id="security">Security</h3>
+
+<h2 id="109---2026-08-13">
+<a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.8...v1.0.9">1.0.9</a> - 2026-08-13</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.9">v1.0.9</a>
+</li>
+  <li>COVERAGE: 100.00% – 129/129 lines in 8 files</li>
+  <li>BRANCH COVERAGE: 100.00% – 42/42 branches in 8 files</li>
+  <li>62.50% documented</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>
+    <p>kettle-jem-template-20260801-001 - Generated README gem dashboard links now<br>
+use ClickGems instead of BestGems.</p>
+  </li>
+  <li>[kc] kettle-jem/prepare: updated 11 project files:
+    <ul>
+      <li>dependencies (11)</li>
+    </ul>
+  </li>
+  <li>[kc] kettle-jem/template: updated 7 project files:
+    <ul>
+      <li>code and tests (1)</li>
+      <li>configuration (1)</li>
+      <li>dependencies (1)</li>
+      <li>documentation (1)</li>
+      <li>other (3)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
+<ul>
+  <li>kettle-jem-template-20260801-002 - Generated RSpec helpers now normalize<br>
+managed configuration block bindings structurally, preventing mixed block<br>
+parameter names from producing invalid configuration after a merge.</li>
+  <li>kettle-jem-template-20260801-003 - Generated project metadata and<br>
+documentation now normalize configured underscore hostnames to valid<br>
+hyphenated hostnames.</li>
+  <li>
+    <p>kettle-jem-template-20260801-004 - Generated organization README logos now<br>
+use GitHub’s stable organization avatar endpoint instead of assuming a<br>
+matching Galtzo-hosted asset exists.</p>
+  </li>
+  <li>kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,<br>
+preserving comments and trailing commas during template updates.</li>
+</ul>
 
 <h2 id="108---2026-07-31">
 <a href="https://github.com/galtzo-floss/stone_checksums/compare/v1.0.7...v1.0.8">1.0.8</a> - 2026-07-31</h2>
@@ -110,14 +162,9 @@ before generated docs are refreshed.</p>
     <p>kettle-jem-template-20260727-001 - Spec harness documentation now lists the<br>
 RSpec helpers provided by <code>kettle-test</code>.</p>
   </li>
-  <li>
-    <p>kettle-jem-template-20260729-005 - Gemspec metadata now publishes this<br>
-project’s RubyForum tag as <code>mailing_list_uri</code>, and support docs link to the<br>
-tagged RubyForum community alongside Discord.</p>
-  </li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>kettle-jem-template-20260728-001 - Generated Ruby workflows now use clearer<br>
@@ -125,7 +172,7 @@ setup-ruby-flash planning and can prepare appraisal-only jobs without<br>
 installing the main Gemfile bundle.</li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-2">Fixed</h3>
 
 <ul>
   <li>
@@ -166,9 +213,6 @@ and templates dedicated <code>version_gem.rb</code> entrypoints even when the ge
 dependency is intentionally omitted, and generated anonymous-loader specs<br>
 cover both <code>version.rb</code> and <code>version_gem.rb</code>.</p>
   </li>
-  <li>kettle-jem-template-20260729-003 - Old-Ruby gems below the VersionGem runtime<br>
-floor now get managed minimal <code>version.rb</code> files and anonymous-loader version<br>
-specs without adding <code>version_gem</code>.</li>
   <li>kettle-jem-template-20260730-001 - Gemspec package file enumeration now runs<br>
 relative to the gemspec directory, so packaged template assets are included<br>
 even when the gemspec is loaded from another working directory.</li>
@@ -185,25 +229,19 @@ even when the gemspec is loaded from another working directory.</li>
   <li>54.17% documented</li>
 </ul>
 
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 
 <ul>
   <li>
     <p>The <code>gem_checksums</code> executable now supports <code>-v</code> / <code>--version</code> and prints a<br>
 standard startup header on normal runs.</p>
   </li>
-  <li>kettle-jem-template-20260716-001 - Shim gemspec manifests now include<br>
-<code>LICENSE.md</code> instead of nonexistent <code>LICENSE.txt</code>.</li>
   <li>kettle-jem-template-20260716-002 - Generated gemspec manifests now ship fewer<br>
 repository-only files by default to reduce downstream distro packaging churn.</li>
-  <li>kettle-jem-template-20260720-001 - Generated READMEs can now render<br>
-template-managed corporate sponsor logos from project or family config.</li>
   <li>kettle-jem-template-20260720-002 - Generated development Gemfiles now use the<br>
 released <code>tree_sitter_language_pack</code> gem 1.13.3 or newer by default.</li>
   <li>kettle-jem-template-20260720-003 - Generated StructuredMerge Git diff driver<br>
 config now uses the installed <code>smorg-rb</code> Ruby driver name.</li>
-  <li>kettle-jem-template-20260720-004 - Generated multi-engine workflow files now<br>
-omit JRuby and TruffleRuby jobs when project config declares MRI-only engines.</li>
   <li>kettle-jem-template-20260720-005 - Generated README Support &amp; Community rows<br>
 now include a RubyForum help badge.</li>
   <li>
@@ -224,7 +262,7 @@ or incompatible with the project’s runtime Ruby floor.</p>
 version and exit.</li>
 </ul>
 
-<h3 id="fixed-2">Fixed</h3>
+<h3 id="fixed-3">Fixed</h3>
 
 <ul>
   <li>Checksum generation dry-runs no longer execute Git commands, avoiding<br>
@@ -256,7 +294,7 @@ the minimum supported Ruby CI workflow parseable.</li>
   <li>54.17% documented</li>
 </ul>
 
-<h3 id="changed-3">Changed</h3>
+<h3 id="changed-4">Changed</h3>
 
 <ul>
   <li>
@@ -276,7 +314,7 @@ the minimum supported Ruby CI workflow parseable.</li>
   <li>54.17% documented</li>
 </ul>
 
-<h3 id="fixed-3">Fixed</h3>
+<h3 id="fixed-4">Fixed</h3>
 
 <ul>
   <li>Package configured license files in gem release file lists.</li>
@@ -293,7 +331,7 @@ the minimum supported Ruby CI workflow parseable.</li>
   <li>54.17% documented</li>
 </ul>
 
-<h3 id="fixed-4">Fixed</h3>
+<h3 id="fixed-5">Fixed</h3>
 
 <ul>
   <li>documentation</li>
@@ -316,7 +354,7 @@ built gem package does not match the current project gemspec name and version.</
   <li>68.42% documented</li>
 </ul>
 
-<h3 id="fixed-5">Fixed</h3>
+<h3 id="fixed-6">Fixed</h3>
 
 <ul>
   <li>gemspec details that got mangled in the switch from gem_checksums.gemspec to stone_checksums.gemspec
@@ -351,13 +389,13 @@ built gem package does not match the current project gemspec name and version.</
   </li>
 </ul>
 
-<h3 id="changed-4">Changed</h3>
+<h3 id="changed-5">Changed</h3>
 
 <ul>
   <li>Improve error help text on old bundler, recommend upgrading</li>
 </ul>
 
-<h3 id="fixed-6">Fixed</h3>
+<h3 id="fixed-7">Fixed</h3>
 
 <ul>
   <li>Support for bundler &gt;= v2.7, which no longer relies on SOURCE_DATE_EPOCH

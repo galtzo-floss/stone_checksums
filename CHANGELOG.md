@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.0.9] - 2026-08-13
+
+- TAG: [v1.0.9][1.0.9t]
+- COVERAGE: 100.00% -- 129/129 lines in 8 files
+- BRANCH COVERAGE: 100.00% -- 42/42 branches in 8 files
+- 62.50% documented
+
+### Changed
+
 - kettle-jem-template-20260801-001 - Generated README gem dashboard links now
   use ClickGems instead of BestGems.
 
@@ -34,10 +51,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - dependencies (1)
   - documentation (1)
   - other (3)
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -53,8 +66,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
   preserving comments and trailing commas during template updates.
-
-### Security
 
 ## [1.0.8] - 2026-07-31
 
@@ -263,7 +274,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.8...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.9...HEAD
+[1.0.9]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.8...v1.0.9
+[1.0.9t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.9
 [1.0.8]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.7...v1.0.8
 [1.0.8t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.8
 [1.0.7]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.6...v1.0.7
