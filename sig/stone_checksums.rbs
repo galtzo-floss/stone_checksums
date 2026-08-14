@@ -9,10 +9,4 @@ module StoneChecksums
   def self.install_tasks: () -> void
   def self.generate: (?git_dry_run: bool) -> void
   VERSION: String
-  module Error
-    module Version
-      VERSION: String
-    end
-    VERSION: String
-  end
 end

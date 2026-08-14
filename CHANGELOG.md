@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fix duplicate StoneChecksums::Error declarations in the published RBS environment.
+
 ### Security
 
 ## [1.0.9] - 2026-08-13
