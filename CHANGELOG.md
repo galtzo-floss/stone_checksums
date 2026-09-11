@@ -22,26 +22,15 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- [kc] kettle-jem/prepare: updated 9 project files:
-  - configuration (1)
-  - dependencies (8)
-
-- [kc] kettle-jem/template: updated 6 project files:
-  - code and tests (1)
-  - dependencies (4)
-  - other (1)
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- Fix duplicate StoneChecksums::Error declarations in the published RBS environment.
-
 ### Security
 
-## [1.0.9] - 2026-08-13
+## [1.0.9] - 2026-09-11
 
 - TAG: [v1.0.9][1.0.9t]
 - COVERAGE: 100.00% -- 129/129 lines in 8 files
@@ -53,15 +42,15 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260801-001 - Generated README gem dashboard links now
   use ClickGems instead of BestGems.
 
-- [kc] kettle-jem/prepare: updated 11 project files:
-  - dependencies (11)
-
-- [kc] kettle-jem/template: updated 7 project files:
-  - code and tests (1)
+- [kc] kettle-jem/prepare: updated 20 project files:
   - configuration (1)
-  - dependencies (1)
+  - dependencies (19)
+- [kc] kettle-jem/template: updated 13 project files:
+  - code and tests (2)
+  - configuration (1)
+  - dependencies (5)
   - documentation (1)
-  - other (3)
+  - other (4)
 
 ### Fixed
 
@@ -77,6 +66,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
   preserving comments and trailing commas during template updates.
+
+- Fix duplicate StoneChecksums::Error declarations in the published RBS environment.
 
 ## [1.0.8] - 2026-07-31
 
