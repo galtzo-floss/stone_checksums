@@ -20,6 +20,7 @@ template_state:
     kettle-jem/template:
     - ".simplecov"
     - Gemfile
+    - Rakefile
     - gemfiles/modular/runtime_heads.gemfile
     - gemfiles/modular/templating.gemfile
     - stone_checksums.gemspec

@@ -26,7 +26,8 @@ Please file a bug if you notice a violation of semantic versioning.
   - configuration (1)
   - dependencies (8)
 
-- [kc] kettle-jem/template: updated 5 project files:
+- [kc] kettle-jem/template: updated 6 project files:
+  - code and tests (1)
   - dependencies (4)
   - other (1)
 
