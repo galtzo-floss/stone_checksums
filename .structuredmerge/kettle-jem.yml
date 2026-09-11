@@ -111,6 +111,9 @@ dependency_conflicts:
       modular: gemfiles/modular/audit.gemfile
       action: remove_modular_gem
       reason: "The gemspec owns the project's audit dependency."
+    # The gemspec defines the released runtime contract. runtime_heads
+    # intentionally resolves version_gem from main to detect upstream changes
+    # before release, so both declarations must remain.
     - gem: version_gem
       direct: stone_checksums.gemspec
       modular: gemfiles/modular/runtime_heads.gemfile
