@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.0.10] - 2026-10-11
+
+- TAG: [v1.0.10][1.0.10t]
+- COVERAGE: 100.00% -- 129/129 lines in 8 files
+- BRANCH COVERAGE: 95.24% -- 40/42 branches in 8 files
+- 62.50% documented
+
+### Added
+
 - kettle-jem-template-20260913-001 - Templating now also surfaces a review
   entry in `dependency_conflicts.resolve` when a direct development
   dependency doesn't support one or more of this project's declared
@@ -39,14 +58,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - documentation (2)
   - other (2)
   - workflows (31)
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [1.0.9] - 2026-09-11
 
@@ -294,7 +305,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.9...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.10...HEAD
+[1.0.10]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.9...v1.0.10
+[1.0.10t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.10
 [1.0.9]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.8...v1.0.9
 [1.0.9t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.9
 [1.0.8]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.7...v1.0.8

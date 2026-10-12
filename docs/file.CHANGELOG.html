@@ -74,7 +74,34 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="added">Added</h3>
 
+<ul>
+  <li>kettle-jem-template-20260913-001 - Templating now also surfaces a review<br>
+entry in <code>dependency_conflicts.resolve</code> when a direct development<br>
+dependency doesn’t support one or more of this project’s declared<br>
+<code>engines:</code> and has no template-managed modular home (e.g. <code>sqlite3</code> on<br>
+<code>jruby</code>). Review each entry and pick a resolution per the project’s own<br>
+engine support needs.</li>
+</ul>
+
 <h3 id="changed">Changed</h3>
+
+<ul>
+  <li>[kc] kettle-jem/prepare: updated 15 project files:
+    <ul>
+      <li>configuration (1)</li>
+      <li>dependencies (14)</li>
+    </ul>
+  </li>
+  <li>[kc] kettle-jem/template: updated 39 project files:
+    <ul>
+      <li>code and tests (2)</li>
+      <li>dependencies (2)</li>
+      <li>documentation (2)</li>
+      <li>other (2)</li>
+      <li>workflows (31)</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="deprecated">Deprecated</h3>
 
