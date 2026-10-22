@@ -2,7 +2,7 @@
 version: 1
 template_state:
   version: 7.1.38
-  applied_at: '2026-10-21'
+  applied_at: '2026-10-22'
   changelog_replay:
     last_entry_key: kettle-jem-template-20260913-001
     last_entry_date: '2026-09-13'
@@ -48,6 +48,7 @@ template_state:
     - ".github/workflows/unlocked_deps.yml"
     - ".simplecov"
     - Gemfile
+    - README.md
     - Rakefile
     - gemfiles/modular/coverage_local.gemfile
     - gemfiles/modular/style_local.gemfile
@@ -775,8 +776,8 @@ files:
   README.md:
     recipe: template_source_application_README_md
     action: write
-    dest_sha256: 9fdf8461e3e9806bfae121ece1133df1c754300187a47f6a56b0c06fd33fd062
-    input_fingerprint: 4f18c9b7d296b724df9c1d6e3dcfb4b877ddf74df2bfa812a08ab403c3322c56
+    dest_sha256: 4fc8b78edd8ca29cd79d19e71383be5958423fbd81f238ee0115b9ebf13f3169
+    input_fingerprint: d233946ff44bd725724a9d62016cb6b3f9abc706a1605b08892581c30ec12f26
     template_sources:
     - README.md.example
   REEK:
@@ -1209,7 +1210,7 @@ files:
   stone_checksums.gemspec:
     recipe: template_source_application_stone_checksums_gemspec
     action: write
-    dest_sha256: eaaf33f6de61911bc4b635faa75d43aba52a2f617b5adb926cbc504b07cff6c5
-    input_fingerprint: 1c2905a19ec924e6ada7825c83a984dd4721ee2755ea038e03e337e281438add
+    dest_sha256: d6a45b795aed4ce0745897b030c4849da0647e2f06aff09928486a3b7e1dac15
+    input_fingerprint: 03d2e663dd6658a834cb04101deefee9501a8e5e0749b2ab0983da2d422129b1
     template_sources:
     - gem.gemspec.example

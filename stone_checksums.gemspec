@@ -23,8 +23,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Peter H. Boling"]
   spec.email = ["floss@galtzo.com"]
 
-  spec.summary = "🦗 Generate both SHA256 & SHA512 checksums of RubyGem libraries"
-  spec.description = "🦗 Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.
+  spec.summary = "🗿 Generate both SHA256 & SHA512 checksums of RubyGem libraries"
+  spec.description = "🗿 Generate both SHA256 & SHA512 checksums into the checksums directory, and git commit them.
   gem install stone_checksums
 Then, use the rake task or the script:
   rake build:generate_checksums
@@ -68,7 +68,7 @@ Fund overlooked open source projects - bottom of stack, dev/test dependencies: f
   gemspec_root = __dir__
   relative_package_path = lambda do |path|
     prefix = "#{gemspec_root}/"
-    (path[0, prefix.length] == prefix) ? path[prefix.length..-1] : path
+    path[0, prefix.length] == prefix ? path[prefix.length..-1] : path
   end
   enumerate_package_glob = lambda do |glob|
     files = []
