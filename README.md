@@ -22,7 +22,7 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 ## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
 Generate SHA-256 and SHA-512 checksums of a rubygem library,
-and commit them to your repository.
+and commit them to your repository with a `chore(checksums): 🔒️ ...` subject.
 The SHA-256 will match the shown for each gem published to RubyGems.org.
 
 ```console

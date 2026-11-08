@@ -38,6 +38,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- stone_checksums: use a Conventional Commit type/scope followed by a Gitmoji for generated checksum commits.
+
 ### Security
 
 ## [1.0.10] - 2026-10-11
