@@ -8,6 +8,7 @@ template_state:
     last_entry_date: '2026-10-25'
   maintenance_changelog:
     kettle-jem/prepare:
+    - gemfiles/modular/templating_local.gemfile
     - stone_checksums.gemspec
     kettle-jem/template:
     - ".git-hooks/commit-msg"
@@ -156,7 +157,7 @@ template_state:
     gemfiles/modular/style.gemfile.example: bb5e3dc3ce3b5459e689b93ad3800671e21d969b1ef26d846bf7cec0d2d2720a
     gemfiles/modular/style_local.gemfile.example: 8b0b3929d2853604ad23524bc9b1e3fa1bec0c5bebb003a435092ca9947a5b44
     gemfiles/modular/templating.gemfile.example: ac12cbc9b3923539792c188a0e1faab7ee2228a4852d074d993f502db2aba47d
-    gemfiles/modular/templating_local.gemfile.example: 2e5fbc7ae453a1d48bdbd24fa1d97db1037b8fb785de81b03f77db4a5c612a08
+    gemfiles/modular/templating_local.gemfile.example: 3287e43d54fde93e6787f9e4928c1efb8180b4244f47f84a0220a45b098385d4
     gemfiles/modular/webrick/r4/v1.9.gemfile.example: 1ee940ff54d5ca3ce7fcff0d82ee9553386979656b9e220d5be5404d0991d5ea
     gemfiles/modular/webrick/vHEAD.gemfile.example: 9d76734cc744f53d6bdf2035a1d97e64ce628065c1114f4021827c922fdffb4b
     gemfiles/modular/x_std_libs.gemfile.example: e3917e90717d7f9f4393d847549a78c53de7f6c8de52a7f590b34b515fd6111a
@@ -672,7 +673,7 @@ files:
   CHANGELOG.md:
     recipe: template_source_application_CHANGELOG_md
     action: write
-    dest_sha256: 5d5d98eefe5a579a229564d8501b97ac6e45199e1c5babfad835e71fbb1ecc6e
+    dest_sha256: 3277b86ba9f3d938111cafc58b8d89ba339a869746e122578453aa2c09587cf8
     input_fingerprint: 4e698de61156db17803902b9e6675d4cdfdd205761d57046050413c83ae06dfb
     template_sources:
     - CHANGELOG.md.example
@@ -1043,8 +1044,8 @@ files:
   gemfiles/modular/templating_local.gemfile:
     recipe: template_source_application_gemfiles_modular_templating_local_gemfile
     action: write
-    dest_sha256: a17b762bbbba0e1d325abbdd2ab0393786254745bda0750988da783a5ede9c7b
-    input_fingerprint: d4794ecce9b4524a45e00c4076029f9708dc383017480302cdcc721d1d074f01
+    dest_sha256: 32f65e9d8bafb45c489c846e78a736281bfeab6be0566862d8e37b1971b03f07
+    input_fingerprint: 28c7915b97ab140205d4867e5d496b68adfbb5e878eca88dbc52d0e43d7e5595
     template_sources:
     - gemfiles/modular/templating_local.gemfile.example
   gemfiles/modular/webrick/r4/v1.9.gemfile:
