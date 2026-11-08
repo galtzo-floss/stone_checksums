@@ -1,4 +1,22 @@
 {
+  "- [kc] kettle-jem/prepare: updated 20 project files:\n- configuration (1)": [
+    {
+      "file": "CHANGELOG.md",
+      "lines": [
+        25,
+        87
+      ]
+    }
+  ],
+  "- configuration (1)\n- dependencies (19)": [
+    {
+      "file": "CHANGELOG.md",
+      "lines": [
+        26,
+        88
+      ]
+    }
+  ],
   "- ruby: \"ruby\"\nappraisal: \"current\"": [
     {
       "file": ".github/workflows/current.yml",
@@ -32,6 +50,24 @@
       "lines": [
         44,
         50
+      ]
+    }
+  ],
+  "out != \"\" { print > out }\n' \"$bundle\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        95,
+        124
+      ]
+    }
+  ],
+  "subject=\"$(openssl x509 -in \"$file\" -noout -subject 2>/dev/null || true)\"\nif [ -n \"$subject\" ] && matches \"$subject\"; then": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        103,
+        127
       ]
     }
   ]

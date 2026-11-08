@@ -18,12 +18,10 @@ begin
   # External gems
   require "gitmoji/regex"
 
-  subject = File.foreach(ARGV[0]).first.to_s.chomp
-  conventional_prefix = subject.match(/\A[a-z][a-z0-9-]*\([^)]+\)!?:[ \t]+/i)
-  gitmoji_index = if conventional_prefix
-    subject[conventional_prefix.end(0)..].to_s =~ Gitmoji::Regex::REGEX
-  end
-  if conventional_prefix && gitmoji_index == 0
+  full_text = File.read(ARGV[0])
+  # Is the first character a GitMoji?
+  gitmoji_index = full_text =~ Gitmoji::Regex::REGEX
+  if gitmoji_index == 0
     exit(0)
   else
     denied = <<~EOM
@@ -39,12 +37,12 @@ begin
 
 
       Did you forget to add a relevant gitmoji? (see https://gitmoji.dev/ for tools)
-      Use the format: type(scope): Gitmoji subject.
+      In this project, a Gitmoji must be the first grapheme of the commit message.
       What's a grapheme?
       A symbol rendered to be visually identifiable as a single character, but which may be composed of multiple Unicode code points)
       Must match: #{Gitmoji::Regex::REGEX}
       #{"Found a gitmoji at character index #{gitmoji_index}... not good enough.\n" if gitmoji_index}
-      Example: git commit -m "feat(core): ✨ add excellent new feature"
+      Example: git commit -m "✨ My excellent new feature"
 
     EOM
     puts denied
