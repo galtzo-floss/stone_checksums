@@ -38,6 +38,15 @@ module StoneChecksums
       ::GemChecksums.install_tasks
     end
 
+    # Verify a built gem against its recorded SHA-256 checksum.
+    # @param gem_path [String] path to the built gem
+    # @param checksums_dir [String] directory containing the checksum
+    # @return [Boolean] true if the checksum matches
+    # @raise [GemChecksums::Error] if validation fails
+    def validate_sha256!(gem_path, checksums_dir: ::GemChecksums::CHECKSUMS_DIR, **options)
+      ::GemChecksums.validate_sha256!(gem_path, checksums_dir: checksums_dir, **options)
+    end
+
     # Generate SHA-256 and SHA-512 checksums for a built .gem and commit them.
     #
     # Behavior, options, and side effects are identical to

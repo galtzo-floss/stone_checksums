@@ -7,6 +7,7 @@ module StoneChecksums
   end
 
   def self.install_tasks: () -> void
+  def self.validate_sha256!: (String gem_path, ?checksums_dir: String, **untyped) -> bool
   def self.generate: (?git_dry_run: bool) -> void
   VERSION: String
 end
