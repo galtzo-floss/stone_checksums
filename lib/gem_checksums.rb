@@ -179,7 +179,7 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
     git_add_flag = git_dry_run_flag ? "--dry-run" : nil
     git_cmd = <<-GIT_MSG.rstrip
 git add #{git_add_flag} #{CHECKSUMS_DIR}/* && \
-git commit #{git_commit_flag} -m "🔒️ Checksums for v#{version}"
+git commit #{git_commit_flag} -m "chore(checksums): 🔒️ update checksums for v#{version}"
     GIT_MSG
 
     if git_dry_run_flag
