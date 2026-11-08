@@ -22,32 +22,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- [kc] kettle-jem/prepare: updated 20 project files:
-  - configuration (1)
-  - dependencies (19)
-
-- [kc] kettle-jem/template: updated 41 project files:
-  - code and tests (1)
-  - dependencies (6)
-  - documentation (1)
-  - other (5)
-  - workflows (28)
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- stone_checksums: use a Conventional Commit type/scope followed by a Gitmoji for generated checksum commits.
-
 ### Security
 
-## [1.0.10] - 2026-10-11
+## [1.0.10] - 2026-11-08
 
 - TAG: [v1.0.10][1.0.10t]
 - COVERAGE: 100.00% -- 129/129 lines in 8 files
-- BRANCH COVERAGE: 95.24% -- 40/42 branches in 8 files
+- BRANCH COVERAGE: 97.62% -- 41/42 branches in 8 files
 - 62.50% documented
 
 ### Added
@@ -61,16 +48,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- [kc] kettle-jem/prepare: updated 15 project files:
-  - configuration (1)
-  - dependencies (14)
+- [kc] kettle-jem/prepare: updated 35 project files:
+  - configuration (2)
+  - dependencies (33)
+- [kc] kettle-jem/template: updated 80 project files:
+  - code and tests (3)
+  - dependencies (8)
+  - documentation (3)
+  - other (7)
+  - workflows (59)
 
-- [kc] kettle-jem/template: updated 39 project files:
-  - code and tests (2)
-  - dependencies (2)
-  - documentation (2)
-  - other (2)
-  - workflows (31)
+### Fixed
+
+- stone_checksums: use a Conventional Commit type/scope followed by a Gitmoji for generated checksum commits.
 
 ## [1.0.9] - 2026-09-11
 
