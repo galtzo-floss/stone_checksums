@@ -8,68 +8,9 @@ template_state:
     last_entry_date: '2026-10-25'
   maintenance_changelog:
     kettle-jem/prepare:
-    - Gemfile
-    - gemfiles/modular/cgi/vHEAD.gemfile
-    - gemfiles/modular/changelog.gemfile
-    - gemfiles/modular/coverage.gemfile
-    - gemfiles/modular/coverage_local.gemfile
-    - gemfiles/modular/debug.gemfile
-    - gemfiles/modular/documentation.gemfile
-    - gemfiles/modular/optional.gemfile
-    - gemfiles/modular/ostruct/r4/v0.6.gemfile
-    - gemfiles/modular/stringio/r2.4/v0.0.2.gemfile
-    - gemfiles/modular/stringio/r2/v3.0.gemfile
-    - gemfiles/modular/stringio/r3/v3.0.gemfile
-    - gemfiles/modular/stringio/r4/v3.0.gemfile
-    - gemfiles/modular/style.gemfile
-    - gemfiles/modular/style_local.gemfile
-    - gemfiles/modular/templating.gemfile
-    - gemfiles/modular/templating_local.gemfile
-    - gemfiles/modular/webrick/vHEAD.gemfile
-    - mise.toml
     - stone_checksums.gemspec
     kettle-jem/template:
     - ".git-hooks/commit-msg"
-    - ".git-hooks/commit-subjects-goalie.txt"
-    - ".github/workflows/coverage.yml"
-    - ".github/workflows/current.yml"
-    - ".github/workflows/dep-heads.yml"
-    - ".github/workflows/heads.yml"
-    - ".github/workflows/jruby-10.0.yml"
-    - ".github/workflows/jruby-9.2.yml"
-    - ".github/workflows/jruby-9.3.yml"
-    - ".github/workflows/jruby-9.4.yml"
-    - ".github/workflows/jruby.yml"
-    - ".github/workflows/locked_deps.yml"
-    - ".github/workflows/ruby-2.4.yml"
-    - ".github/workflows/ruby-2.5.yml"
-    - ".github/workflows/ruby-2.6.yml"
-    - ".github/workflows/ruby-2.7.yml"
-    - ".github/workflows/ruby-3.0.yml"
-    - ".github/workflows/ruby-3.1.yml"
-    - ".github/workflows/ruby-3.2.yml"
-    - ".github/workflows/ruby-3.3.yml"
-    - ".github/workflows/ruby-3.4.yml"
-    - ".github/workflows/style.yml"
-    - ".github/workflows/templating.yml"
-    - ".github/workflows/truffle.yml"
-    - ".github/workflows/truffleruby-22.3.yml"
-    - ".github/workflows/truffleruby-23.1.yml"
-    - ".github/workflows/truffleruby-24.2.yml"
-    - ".github/workflows/truffleruby-25.0.yml"
-    - ".github/workflows/truffleruby-33.0.yml"
-    - ".github/workflows/unlocked_deps.yml"
-    - ".licenserc.yaml"
-    - ".simplecov"
-    - AGENTS.md
-    - Gemfile
-    - README.md
-    - Rakefile
-    - gemfiles/modular/coverage_local.gemfile
-    - gemfiles/modular/style_local.gemfile
-    - gemfiles/modular/templating.gemfile
-    - gemfiles/modular/templating_local.gemfile
-    - stone_checksums.gemspec
   checksums:
     ".aiignore.example": 48a5dfdd93afd1a15fdce39cc28ca9920263f00018b0968ab031fa744521e5ce
     ".config/mise/env.sh": aeea5a2ab489ba6e5467ae8de6e386ec8c8fe4ff31a044e69d0cd6a092dd6654
@@ -82,7 +23,7 @@ template_state:
     ".envrc.example": b7232f4bae0fb399cc9c9cdc4a5eb694bd69623aeeadcbab18c9990e443040a1
     ".envrc.no-osc.example": b7232f4bae0fb399cc9c9cdc4a5eb694bd69623aeeadcbab18c9990e443040a1
     ".gemrc.example": 77b1c36ae6f91bedf08b99e662a971b02f7e66e0d65267805d068d30ff118aba
-    ".git-hooks/commit-msg.example": d858575bf70d6175fdd7656e9ba0b41672de3fb49163181efe3fbc9e40306024
+    ".git-hooks/commit-msg.example": 625cd93f4b912f4b5905dbe2a396b796bfbd2569a136f5ee54e742100e3dccd9
     ".git-hooks/commit-subjects-goalie.txt.example": bb1179c8911af8afeb1f9a604b3de789d4a4b33d9d4a7743b3145998c15b0a94
     ".git-hooks/footer-template.erb.txt.example": 70ed3616ee04a4062126f53892cc255e7aa2b66741fe22d6b372f7df99676718
     ".git-hooks/prepare-commit-msg.example": a18692a36cc8abc9033524b45fdee1a18aeba6717dd81cdfb243e94b5de8b48e
@@ -153,7 +94,7 @@ template_state:
     CHANGELOG.transfer.md: 785283156dbc1cf612c1a2ba0a92703aac26a02e668d844240d0d6fb21f91e90
     CITATION.cff.example: e404ea0a7919d78a83d53d80e211d17b9663576aa606583b709795dc023fd75c
     CODE_OF_CONDUCT.md.example: f1ad532f1860f73ef774c6b27a26d41f4bc1cb8813034f5957487766ebb0986b
-    CONTRIBUTING.md.example: 91e871c4469dc4800c36913f6b7a356632a0105b3106180a1c5e415f4d1dc6b1
+    CONTRIBUTING.md.example: 0fa8708cee61441dc3c610aa35d6eb81ada29507deb1f2032f30dfc372ef75af
     FUNDING.md.example: 392d047904b1557b29f4b43d37ec403b7480edd5b6ab51180be979b57a91e6ba
     FUNDING.md.no-osc.example: 3ef0258dd3e3b7f7e17e8bc2d20dcbcb3e74aa5a5a6f51297075696645e34c77
     Gemfile.example: 42413d040e1e44fdfb98e42cc2ffdf7dd7b087da5e25536a692836ad3896f729
@@ -170,7 +111,7 @@ template_state:
     bin/setup.example: 0ac35089c95a91d8973fe7a318bf9fd98b9f8e00db92c5d9ca6cd858abb8d41b
     bin/turbo_tests2.example: 0d81b72c359419a4f0146e8f0438c610211c528398b672c85325a568c9f26db2
     certs/pboling.pem.example: 18956f60643666cc181e2743b3b3691bec08c5326f514f60af54d0cdb9ebc554
-    gem.gemspec.example: e6f9038676ec8827f4bf31619606a33976cd43061768658f41dc57758b0b8f84
+    gem.gemspec.example: cf14be3a99bd07cc98faabbcf263bc6dd215ece15ea7bc16dcfdfd1341bc9fed
     gemfiles/modular/benchmark/r4/v0.5.gemfile.example: 5bc3190090ae456df1a8cce28dd47a7fb293495f6d845ec7e53a7a8b50f14ae1
     gemfiles/modular/benchmark/vHEAD.gemfile.example: ca6cd52c55c3082759c6ddc97638970f12d953aec1822470823d316086aa6e25
     gemfiles/modular/cgi/r4/v0.5.gemfile.example: c2d14a39377a2435419ceaca22a3421ebd899e9cba943df8a90b576a33624870
@@ -318,8 +259,8 @@ files:
   ".git-hooks/commit-msg":
     recipe: template_source_application_git_hooks_commit_msg
     action: write
-    dest_sha256: d858575bf70d6175fdd7656e9ba0b41672de3fb49163181efe3fbc9e40306024
-    input_fingerprint: 2573c1435c4859e06cd81aea149ae44e8f83949796a11e2762e553074816ce62
+    dest_sha256: 625cd93f4b912f4b5905dbe2a396b796bfbd2569a136f5ee54e742100e3dccd9
+    input_fingerprint: 6c07f3174f5cb30eb088066124e18df3fa82ed83be6aa21f94181ed0279e6408
     template_sources:
     - ".git-hooks/commit-msg.example"
   ".git-hooks/commit-subjects-goalie.txt":
@@ -731,7 +672,7 @@ files:
   CHANGELOG.md:
     recipe: template_source_application_CHANGELOG_md
     action: write
-    dest_sha256: ce07158288ca3b3fe0d9186f7612f4bf898c91d599eb5aebabcbdb1a3b3f3b0a
+    dest_sha256: 5d5d98eefe5a579a229564d8501b97ac6e45199e1c5babfad835e71fbb1ecc6e
     input_fingerprint: 4e698de61156db17803902b9e6675d4cdfdd205761d57046050413c83ae06dfb
     template_sources:
     - CHANGELOG.md.example
@@ -753,7 +694,7 @@ files:
     recipe: template_source_application_CONTRIBUTING_md
     action: write
     dest_sha256: 38151e9659fb47f092225cc87c2eaf11166e76e5e19c5979444291ac59b2f788
-    input_fingerprint: 3372d5ea5d465fb3b3481cc0c52c7a2ad93f0ffae4ccc7a37cf172d53953cf72
+    input_fingerprint: 0f06a3547c1b6b4f98dbf5929bd005d3410a92a7449b54da5fa3e2c27dc58819
     template_sources:
     - CONTRIBUTING.md.example
   FUNDING.md:
@@ -794,7 +735,7 @@ files:
   README.md:
     recipe: template_source_application_README_md
     action: write
-    dest_sha256: 80ca86e9789b45848f033cdf108735077dc5c94d8b09a4b6032cb2d05e59aff2
+    dest_sha256: 0056d60519aedc2da7fa8a30831e5929bd232ca36f5f2a71999d33d9744de53e
     input_fingerprint: 8c3858fd8e42a4ee1900f5954493d99dc3f943bf16fa1b01fa2b6e8b11eed14e
     template_sources:
     - README.md.example
@@ -1207,7 +1148,7 @@ files:
   sig/stone_checksums.rbs:
     recipe: template_source_application_sig_stone_checksums_rbs
     action: write
-    dest_sha256: b8100101230af0e754e65450ac94c36359dc220e099e39291b0c475b83dbc300
+    dest_sha256: 10b59f47ae4419e32eacbffd2f28dd6bbbdae14bdd3f0c6f7a7f6d9e320815c9
     input_fingerprint: 82b8174798bfba5239cae581e70e9675e450c4069dc8db7c0a554add298df48e
     template_sources:
     - sig/gem.rbs.example
@@ -1228,7 +1169,7 @@ files:
   stone_checksums.gemspec:
     recipe: template_source_application_stone_checksums_gemspec
     action: write
-    dest_sha256: d847dad5ca0c041dc457546be99fc4e8733f70df42a25fcc9b6267b54cf80237
-    input_fingerprint: c07f95b6ccc4e20005dcae84626f9de83aad95fbb8e450e59e809c8e89b59385
+    dest_sha256: f479247f15d44f93c6be8261a589c6460f63dadccff53a356d9b664b518fc92f
+    input_fingerprint: 0241d00c507476f2bacb8f8d7622b2efbc00344cf7871f0191414b38b9d02413
     template_sources:
     - gem.gemspec.example
