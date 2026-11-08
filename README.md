@@ -160,6 +160,9 @@ Configuration env vars:
 ### Generate Gem Checksums (SHA-256 and SHA-512)
 
 This library helps you generate checksums for your built gem and commit them.
+The generated commit subject uses Conventional Commits and Gitmoji, for example
+`chore(checksums): 🔒️ update checksums for v1.2.3`.
+
 To verify an existing package against `checksums/<package>.sha256`:
 
 ```ruby

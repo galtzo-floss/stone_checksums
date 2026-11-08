@@ -214,7 +214,7 @@ RSpec.describe GemChecksums do
     it "calls exec with a git commit command (no --dry-run)" do
       allow(described_class).to receive(:exec)
       described_class.generate(git_dry_run: false)
-      expect(described_class).to have_received(:exec).with(a_string_including("git commit  -m \"🔒️ Checksums for v1.0.0\""))
+      expect(described_class).to have_received(:exec).with(a_string_including("git commit  -m \"chore(checksums): 🔒️ update checksums for v1.0.0\""))
     end
   end
 
