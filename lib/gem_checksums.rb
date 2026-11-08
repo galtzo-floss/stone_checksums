@@ -219,6 +219,26 @@ rm -f #{digest256_32bit_path}
   end
   module_function :generate
 
+  # Verify that a built gem matches its recorded SHA-256 checksum.
+  #
+  # @param gem_path [String] path to the built gem
+  # @param checksums_dir [String] directory containing the .sha256 file
+  # @return [Boolean] true when the checksum matches
+  # @raise [Error] when a file is missing or the checksum does not match
+  def validate_sha256!(gem_path, checksums_dir: CHECKSUMS_DIR, **options)
+    raise Error, "Built gem not found: #{gem_path}" unless File.file?(gem_path)
+
+    checksum_path = File.join(checksums_dir, "#{File.basename(gem_path)}.sha256")
+    raise Error, "Expected checksum file not found: #{checksum_path}" unless File.file?(checksum_path)
+
+    expected = File.read(checksum_path).strip
+    actual = Digest::SHA256.file(gem_path).hexdigest
+    return true if actual == expected
+
+    raise Error, "SHA256 mismatch for #{gem_path}: expected #{expected} from #{checksum_path}, got #{actual}"
+  end
+  module_function :validate_sha256!
+
   def validate_project_package!(gem_pkg)
     project_spec = current_project_spec
     return unless project_spec

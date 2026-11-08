@@ -160,6 +160,15 @@ Configuration env vars:
 ### Generate Gem Checksums (SHA-256 and SHA-512)
 
 This library helps you generate checksums for your built gem and commit them.
+To verify an existing package against `checksums/<package>.sha256`:
+
+```ruby
+require "stone_checksums"
+StoneChecksums.validate_sha256!("pkg/your_gem-1.2.3.gem")
+```
+
+The method returns `true` on a match and raises `GemChecksums::Error` if a file
+is missing or the digest differs. Pass `checksums_dir:` to use another directory.
 
 - Bundler >= 2.7.0: No SOURCE_DATE_EPOCH needed. Bundler now uses a constant timestamp internally, making builds reproducible by default.
 - Bundler < 2.7.0: You must set SOURCE_DATE_EPOCH before building the gem to get deterministic checksums, or upgrade Bundler.
