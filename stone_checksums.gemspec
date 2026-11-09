@@ -101,7 +101,11 @@ Fund overlooked open source projects - bottom of stack, dev/test dependencies: f
     *enumerate_package_files.call("lib"),
     # Executables and executable support scripts
     *enumerate_package_files.call("exe")
-  ].grep_v(%r{\.(?:bundle|so|dylib|dll|o|a)\z})
+  ]
+  # kettle-jem:freeze
+  # Keep locally built native binaries out of release packages.
+  spec.files.reject! { |path| path.end_with?(".bundle", ".so", ".dylib", ".dll", ".o", ".a") }
+  # kettle-jem:unfreeze
   spec.rdoc_options += [
     "--title",
     "#{spec.name} - #{spec.summary}",
