@@ -215,6 +215,29 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate_sha256!-class_method" title="validate_sha256! (class method)">.<strong>validate_sha256!</strong>(gem_path, checksums_dir: ::GemChecksums::CHECKSUMS_DIR, **options)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Verify a built gem against its recorded SHA-256 checksum.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
     
   
@@ -274,12 +297,12 @@ GemChecksums.generate; this method delegates directly to it.</p>
       <pre class="lines">
 
 
-48
-49
-50</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/stone_checksums.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/stone_checksums.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='label'>git_dry_run:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='op'>::</span><span class='const'><span class='object_link'><a href="GemChecksums.html" title="GemChecksums (module)">GemChecksums</a></span></span><span class='period'>.</span><span class='id identifier rubyid_generate'><span class='object_link'><a href="GemChecksums.html#generate-class_method" title="GemChecksums.generate (method)">generate</a></span></span><span class='lparen'>(</span><span class='label'>git_dry_run:</span> <span class='id identifier rubyid_git_dry_run'>git_dry_run</span><span class='rparen'>)</span>
@@ -325,6 +348,116 @@ GemChecksums.generate; this method delegates directly to it.</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install_tasks'>install_tasks</span>
   <span class='op'>::</span><span class='const'><span class='object_link'><a href="GemChecksums.html" title="GemChecksums (module)">GemChecksums</a></span></span><span class='period'>.</span><span class='id identifier rubyid_install_tasks'><span class='object_link'><a href="GemChecksums.html#install_tasks-class_method" title="GemChecksums.install_tasks (method)">install_tasks</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate_sha256!-class_method">
+  
+    .<strong>validate_sha256!</strong>(gem_path, checksums_dir: ::GemChecksums::CHECKSUMS_DIR, **options)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Verify a built gem against its recorded SHA-256 checksum.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>gem_path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>path to the built gem</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>checksums_dir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>::GemChecksums::CHECKSUMS_DIR</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>directory containing the checksum</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if the checksum matches</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="GemChecksums/Error.html" title="GemChecksums::Error (class)">GemChecksums::Error</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if validation fails</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/stone_checksums.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validate_sha256!'>validate_sha256!</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='comma'>,</span> <span class='label'>checksums_dir:</span> <span class='op'>::</span><span class='const'><span class='object_link'><a href="GemChecksums.html" title="GemChecksums (module)">GemChecksums</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GemChecksums.html#CHECKSUMS_DIR-constant" title="GemChecksums::CHECKSUMS_DIR (constant)">CHECKSUMS_DIR</a></span></span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='op'>::</span><span class='const'><span class='object_link'><a href="GemChecksums.html" title="GemChecksums (module)">GemChecksums</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_sha256!'><span class='object_link'><a href="GemChecksums.html#validate_sha256!-class_method" title="GemChecksums.validate_sha256! (method)">validate_sha256!</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='comma'>,</span> <span class='label'>checksums_dir:</span> <span class='id identifier rubyid_checksums_dir'>checksums_dir</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

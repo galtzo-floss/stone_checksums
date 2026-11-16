@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.0.11] - 2026-11-15
+
+- TAG: [v1.0.11][1.0.11t]
+- COVERAGE: 100.00% -- 140/140 lines in 8 files
+- BRANCH COVERAGE: 97.92% -- 47/48 branches in 8 files
+- 65.38% documented
+
+### Changed
+
 - [kc] kettle-jem/prepare: updated 9 project files:
   - dependencies (9)
 
@@ -31,14 +48,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - documentation (1)
   - other (3)
   - workflows (8)
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [1.0.10] - 2026-11-08
 
@@ -315,7 +324,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Initial release
 
-[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.10...HEAD
+[Unreleased]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.11...HEAD
+[1.0.11]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.10...v1.0.11
+[1.0.11t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.11
 [1.0.10]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.9...v1.0.10
 [1.0.10t]: https://github.com/galtzo-floss/stone_checksums/releases/tag/v1.0.10
 [1.0.9]: https://github.com/galtzo-floss/stone_checksums/compare/v1.0.8...v1.0.9

@@ -347,6 +347,29 @@ In bash shell:
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate_sha256!-class_method" title="validate_sha256! (class method)">.<strong>validate_sha256!</strong>(gem_path, checksums_dir: CHECKSUMS_DIR, **options)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Verify that a built gem matches its recorded SHA-256 checksum.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
     
   
@@ -372,15 +395,15 @@ In bash shell:
       <pre class="lines">
 
 
-240
-241
-242
-243
-244
-245</pre>
+260
+261
+262
+263
+264
+265</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 260</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_project_spec'>current_project_spec</span>
   <span class='id identifier rubyid_gemspecs'>gemspecs</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*.gemspec</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
@@ -792,16 +815,16 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
       <pre class="lines">
 
 
-248
-249
-250
-251
-252
-253
-254</pre>
+268
+269
+270
+271
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 268</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_preferred_project_package'>preferred_project_package</span><span class='lparen'>(</span><span class='id identifier rubyid_gems'>gems</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_project_spec'>project_spec</span> <span class='op'>=</span> <span class='id identifier rubyid_current_project_spec'>current_project_spec</span>
@@ -853,12 +876,12 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
       <pre class="lines">
 
 
-257
-258
-259</pre>
+277
+278
+279</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 257</span>
+      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 277</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_package_against_project?'>validate_package_against_project?</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_pkg'>gem_pkg</span><span class='comma'>,</span> <span class='id identifier rubyid_project_spec'>project_spec</span><span class='rparen'>)</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#PACKAGE_DIR-constant" title="GemChecksums::PACKAGE_DIR (constant)">PACKAGE_DIR</a></span></span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pkg</span><span class='tstring_end'>&quot;</span></span> <span class='op'>||</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_pkg'>gem_pkg</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_spec'>project_spec</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -883,25 +906,25 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
       <pre class="lines">
 
 
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236
-237</pre>
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 242</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_project_package!'>validate_project_package!</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_pkg'>gem_pkg</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_project_spec'>project_spec</span> <span class='op'>=</span> <span class='id identifier rubyid_current_project_spec'>current_project_spec</span>
@@ -918,6 +941,134 @@ Tip: set GEM_CHECKSUMS_ASSUME_YES=true to proceed non-interactively (still requi
   <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>rescue</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Package</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_error'>error</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="GemChecksums/Error.html" title="GemChecksums::Error (class)">Error</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unable to inspect built gem </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_pkg'>gem_pkg</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate_sha256!-class_method">
+  
+    .<strong>validate_sha256!</strong>(gem_path, checksums_dir: CHECKSUMS_DIR, **options)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Verify that a built gem matches its recorded SHA-256 checksum.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>gem_path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>path to the built gem</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>checksums_dir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>CHECKSUMS_DIR</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>directory containing the .sha256 file</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true when the checksum matches</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="GemChecksums/Error.html" title="GemChecksums::Error (class)">Error</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>when a file is missing or the checksum does not match</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gem_checksums.rb', line 228</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validate_sha256!'>validate_sha256!</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='comma'>,</span> <span class='label'>checksums_dir:</span> <span class='const'><span class='object_link'><a href="#CHECKSUMS_DIR-constant" title="GemChecksums::CHECKSUMS_DIR (constant)">CHECKSUMS_DIR</a></span></span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="GemChecksums/Error.html" title="GemChecksums::Error (class)">Error</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Built gem not found: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_checksum_path'>checksum_path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_checksums_dir'>checksums_dir</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>.sha256</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="GemChecksums/Error.html" title="GemChecksums::Error (class)">Error</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Expected checksum file not found: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum_path'>checksum_path</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='id identifier rubyid_checksum_path'>checksum_path</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_expected'>expected</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_checksum_path'>checksum_path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+  <span class='id identifier rubyid_actual'>actual</span> <span class='op'>=</span> <span class='const'>Digest</span><span class='op'>::</span><span class='const'>SHA256</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_hexdigest'>hexdigest</span>
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_actual'>actual</span> <span class='op'>==</span> <span class='id identifier rubyid_expected'>expected</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="GemChecksums/Error.html" title="GemChecksums::Error (class)">Error</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SHA256 mismatch for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_path'>gem_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>: expected </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_expected'>expected</span><span class='embexpr_end'>}</span><span class='tstring_content'> from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum_path'>checksum_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_actual'>actual</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
